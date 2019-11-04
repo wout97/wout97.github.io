@@ -1,0 +1,202 @@
+﻿html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    -ms-font-smoothing: antialiased !important;
+}
+
+.custom_center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+}
+
+
+body {
+    position: absolute;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2rem;
+    color: #555555;
+}
+
+.md-stepper-horizontal {
+    display: table;
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 8px -6px rgba(0,0,0,.50);
+}
+
+    .md-stepper-horizontal .md-step {
+        display: table-cell;
+        position: relative;
+    }
+
+        .md-stepper-horizontal .md-step:hover,
+        .md-stepper-horizontal .md-step:active {
+            background-color: rgba(0,0,0,0.04);
+        }
+
+        .md-stepper-horizontal .md-step:active {
+            border-radius: 15% / 75%;
+        }
+
+        .md-stepper-horizontal .md-step:first-child:active {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .md-stepper-horizontal .md-step:last-child:active {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .md-stepper-horizontal .md-step:hover .md-step-circle {
+            background-color: #757575;
+        }
+
+        .md-stepper-horizontal .md-step:first-child .md-step-bar-left,
+        .md-stepper-horizontal .md-step:last-child .md-step-bar-right {
+            display: none;
+        }
+
+        .md-stepper-horizontal .md-step .md-step-circle {
+            width: 30px;
+            height: 30px;
+            margin: 0 auto;
+            background-color: #999999;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+    .md-stepper-horizontal.green .md-step.active .md-step-circle {
+        background-color: #00AE4D;
+    }
+
+
+
+    .md-stepper-horizontal .md-step.active .md-step-circle {
+        background-color: rgb(33,150,243);
+    }
+
+    .md-stepper-horizontal .md-step.done .md-step-circle:before {
+        font-family: 'FontAwesome';
+        font-weight: 100;
+        content: "\f00c";
+    }
+
+    .md-stepper-horizontal .md-step.done .md-step-circle *,
+    .md-stepper-horizontal .md-step.editable .md-step-circle * {
+        display: none;
+    }
+
+    .md-stepper-horizontal .md-step.editable .md-step-circle {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+    }
+
+        .md-stepper-horizontal .md-step.editable .md-step-circle:before {
+            font-family: 'FontAwesome';
+            font-weight: 100;
+            content: "\f040";
+        }
+
+    .md-stepper-horizontal .md-step .md-step-title {
+        margin-top: 16px;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .md-stepper-horizontal .md-step .md-step-title,
+    .md-stepper-horizontal .md-step .md-step-optional {
+        text-align: center;
+        color: rgba(0,0,0,.26);
+    }
+
+    .md-stepper-horizontal .md-step.active .md-step-title {
+        font-weight: 600;
+        color: rgba(0,0,0,.87);
+    }
+
+    .md-stepper-horizontal .md-step.active.done .md-step-title,
+    .md-stepper-horizontal .md-step.active.editable .md-step-title {
+        font-weight: 600;
+    }
+
+    .md-stepper-horizontal .md-step .md-step-optional {
+        font-size: 2rem;
+    }
+
+    .md-stepper-horizontal .md-step.active .md-step-optional {
+        color: rgba(0,0,0,.54);
+    }
+
+    .md-stepper-horizontal .md-step .md-step-bar-left,
+    .md-stepper-horizontal .md-step .md-step-bar-right {
+        position: absolute;
+        top: 36px;
+        border-top: 1px solid #DDDDDD;
+    }
+
+    .md-stepper-horizontal .md-step .md-step-bar-right {
+        right: 0;
+        left: 50%;
+        margin-left: 20px;
+    }
+
+    .md-stepper-horizontal .md-step .md-step-bar-left {
+        left: 0;
+        right: 50%;
+        margin-right: 20px;
+    }
+
+
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border-style: solid;
+    border-width: 5px;
+    text-align: left;
+    outline: none;
+    font-size: 2rem;
+    border-radius: 5px;
+}
+
+    .active_collapsible, .collapsible:hover {
+        background-color: #555;
+    }
+
+    .collapsible:after {
+        font-family: 'FontAwesome';
+        font-weight: 100;
+        content: "\f105";
+        color: white;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+.active_collapsible:after {
+    font-family: 'FontAwesome';
+    font-weight: 100;
+    content: "\f107";
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    height: 400px;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f1;
+}
