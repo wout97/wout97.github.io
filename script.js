@@ -5,7 +5,14 @@ var dash="https://developer.spotify.com/dashboard/applications/059f69ae51c445518
 var newToken="https://developer.spotify.com/console/get-playlists/?user_id=wizzler&limit=&offset="
 var url_string = window.location.href;
 var access_token = url_string.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
-console.log(access_token);
+var client_id = getClientId();
+
+function getClientId(){
+	var response = callSpotifyAPI2("https://api.spotify.com/v1/me");
+	console.log(response);
+	return null;
+
+}
 
 
 //get playlists and generate html
