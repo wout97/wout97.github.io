@@ -87,7 +87,7 @@ function getTracks(playlist, index2) {
     }
 
 
-    return " <ion-content fullscreen><ion-list>" + trackItems + "</ion-list><ion-button  " + "onclick='activated(" + '"' + playlist + '"' + ")'>Confirm</ion-button> </ion-content>"
+    return " <ion-content fullscreen><ion-list>" + trackItems + "</ion-list><ion-button href='tune.html?choice="+ playlist +"'" + "onclick='activated(" + '"' + playlist + '"' + ")'>Confirm</ion-button> </ion-content>"
 
 }
 
