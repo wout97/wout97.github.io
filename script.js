@@ -4,8 +4,8 @@ var oAuthUrl="https://accounts.spotify.com/authorize?client_id=059f69ae51c445518
 var dash="https://developer.spotify.com/dashboard/applications/059f69ae51c445518b106f91e9ddaf9c"
 var newToken="https://developer.spotify.com/console/get-playlists/?user_id=wizzler&limit=&offset="
 var url_string = window.location.href;
-var access = url_string.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
-console.log(access);
+var access_token = url_string.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
+console.log(access_token);
 
 
 //get playlists and generate html
@@ -35,7 +35,7 @@ function getTracksfromResponse(response){
 //Uses own token to get my playlists from spotifyAPI returns JSON response
 function callSpotifyAPI(url){
 	var user_id = "11135844104";
-	var authToken = "BQDiRSMV4yhD3nq_EVvL1EKQT_iJiANJ-WEALuLu5D3TMacg884MCM9wusAv4bnKrYkly4MoE_3x2LI3B47PehqU13Td1G8sBVzTj4acS51ppDDcYSXtUwDHJ0tpXMTs2Y8NrCOCeSGMeArc8oR1oB9w_K4agHc3-yQweKcFgZpZA1_3tWvTaihvnCQclvIk3cnh23lzaRg8y3ukuESk_1CeGFFoTANsrcN_0nQ7f3EfJm5ihCzFAzPuov2KYDheAOA-SJ10GuKFkA";
+	var authToken =access_token;
 	var token = "Bearer " + authToken;
 	var playlistUrl = "https://api.spotify.com/v1/users/" + user_id + "/playlists";
 	var response = httpGet(playlistUrl, token);
@@ -92,8 +92,7 @@ function getTracks(playlist) {
 //Uses own token to get my playlists from spotifyAPI returns JSON response
 function callSpotifyAPI2(url){
 	var user_id = "11135844104";
-	var authToken = "BQDiRSMV4yhD3nq_EVvL1EKQT_iJiANJ-WEALuLu5D3TMacg884MCM9wusAv4bnKrYkly4MoE_3x2LI3B47PehqU13Td1G8sBVzTj4acS51ppDDcYSXtUwDHJ0tpXMTs2Y8NrCOCeSGMeArc8oR1oB9w_K4agHc3-yQweKcFgZpZA1_3tWvTaihvnCQclvIk3cnh23lzaRg8y3ukuESk_1CeGFFoTANsrcN_0nQ7f3EfJm5ihCzFAzPuov2KYDheAOA-SJ10GuKFkA";
-	var token = "Bearer " + authToken;
+	var authToken = access_token;
 	var playlistUrl = url;
 	var response = httpGet(playlistUrl, token);
 	var playlist_response = JSON.parse(response);
