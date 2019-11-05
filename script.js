@@ -3,7 +3,9 @@
 var oAuthUrl="https://accounts.spotify.com/authorize?client_id=059f69ae51c445518b106f91e9ddaf9c&redirect_uri=https://wout97.github.io/&scope=user-read-private%20user-read-email&response_type=token&state=123"
 var dash="https://developer.spotify.com/dashboard/applications/059f69ae51c445518b106f91e9ddaf9c"
 var newToken="https://developer.spotify.com/console/get-playlists/?user_id=wizzler&limit=&offset="
-
+var url_string = window.location.href;
+var access = url.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
+console.log(access);
 
 
 //get playlists and generate html
@@ -33,7 +35,7 @@ function getTracksfromResponse(response){
 //Uses own token to get my playlists from spotifyAPI returns JSON response
 function callSpotifyAPI(url){
 	var user_id = "11135844104";
-	var authToken = "BQBDzPqjVhjsHJY5oFszS41iovC39MOroj3ZEoQsWZFhlN5m-pcB7vt4Qg81fWT-6QvFX7y0BPyWr_rEpM2uI-wZPEmgs8_tPYdMQ_ZZt9tp8LkII0DoF5db9DjOWh3eqznwtn2_6NNr61EVtjptcp04B4vKiI3-JH6f7Dp37ZP7xAqBTIYeLI7tKDeGuZgoHTY6Q2jSAdE5NMtyYjeHxirO9YUDeaS3e-e57R9sD8-OD4SucHAgKJhYOTl4blkl1xII9589-SxfWw";
+	var authToken = "BQDiRSMV4yhD3nq_EVvL1EKQT_iJiANJ-WEALuLu5D3TMacg884MCM9wusAv4bnKrYkly4MoE_3x2LI3B47PehqU13Td1G8sBVzTj4acS51ppDDcYSXtUwDHJ0tpXMTs2Y8NrCOCeSGMeArc8oR1oB9w_K4agHc3-yQweKcFgZpZA1_3tWvTaihvnCQclvIk3cnh23lzaRg8y3ukuESk_1CeGFFoTANsrcN_0nQ7f3EfJm5ihCzFAzPuov2KYDheAOA-SJ10GuKFkA";
 	var token = "Bearer " + authToken;
 	var playlistUrl = "https://api.spotify.com/v1/users/" + user_id + "/playlists";
 	var response = httpGet(playlistUrl, token);
@@ -90,7 +92,7 @@ function getTracks(playlist) {
 //Uses own token to get my playlists from spotifyAPI returns JSON response
 function callSpotifyAPI2(url){
 	var user_id = "11135844104";
-	var authToken = "BQBDzPqjVhjsHJY5oFszS41iovC39MOroj3ZEoQsWZFhlN5m-pcB7vt4Qg81fWT-6QvFX7y0BPyWr_rEpM2uI-wZPEmgs8_tPYdMQ_ZZt9tp8LkII0DoF5db9DjOWh3eqznwtn2_6NNr61EVtjptcp04B4vKiI3-JH6f7Dp37ZP7xAqBTIYeLI7tKDeGuZgoHTY6Q2jSAdE5NMtyYjeHxirO9YUDeaS3e-e57R9sD8-OD4SucHAgKJhYOTl4blkl1xII9589-SxfWw";
+	var authToken = "BQDiRSMV4yhD3nq_EVvL1EKQT_iJiANJ-WEALuLu5D3TMacg884MCM9wusAv4bnKrYkly4MoE_3x2LI3B47PehqU13Td1G8sBVzTj4acS51ppDDcYSXtUwDHJ0tpXMTs2Y8NrCOCeSGMeArc8oR1oB9w_K4agHc3-yQweKcFgZpZA1_3tWvTaihvnCQclvIk3cnh23lzaRg8y3ukuESk_1CeGFFoTANsrcN_0nQ7f3EfJm5ihCzFAzPuov2KYDheAOA-SJ10GuKFkA";
 	var token = "Bearer " + authToken;
 	var playlistUrl = url;
 	var response = httpGet(playlistUrl, token);
