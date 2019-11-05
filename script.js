@@ -92,9 +92,10 @@ function getTracks(playlist) {
 //Uses own token to get my playlists from spotifyAPI returns JSON response
 function callSpotifyAPI2(url){
 	var user_id = "11135844104";
-	var authToken = "Bearer " + access_token;
+	var authToken =access_token;
+	var token = "Bearer " + authToken;
 	var playlistUrl = url;
-	var response = httpGet(playlistUrl, authToken);
+	var response = httpGet(playlistUrl, token);
 	var playlist_response = JSON.parse(response);
 	return playlist_response;
 }
