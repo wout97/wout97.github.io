@@ -68,29 +68,42 @@
                 </ion-text>
                 <ion-list>
                     <div class="bar bar-header">
-                        <h3 class="title">Rythm</h3>
+                        <ion-item>
+
+                            <h3 class="title">
+                                Rythm
+                            </h3>
+                            <ion-button item-left id="button1" size="small" color="success">Primary</ion-button>
+
+
+                        </ion-item>
                     </div>
-                    <ion-item>
+                    <ion-item onchange="makeIconShake()">
                         <ion-range id="first" min="0" max="100" color="secondary" pin="true"></ion-range>
-                        <ion-icon size="small" slot="start" name="musical-notes"></ion-icon>
+                        <ion-icon id="firstIcon" size="small" slot="start" name="musical-notes"></ion-icon>
                         <ion-icon size="large" slot="end" name="musical-notes"></ion-icon>
                     </ion-item>
                     <div class="bar bar-header">
-                        <h3 class="title">Accousticness</h3>
-                    </div>
+                        <ion-item>
+
+                            <h3 class="title">  Accousticness</h3>
+                            <ion-button id="button2" size="small" color="danger">Primary</ion-button>
+                        </ion-item>
+                            </div>
                     <ion-item>
                         <ion-range id="second" min="0" max="100" color="secondary" pin="true"></ion-range>
-                        <ion-icon size="small" slot="start" name="microphone"></ion-icon>
+                        <ion-icon id="secondIcon" size="small" slot="start" name="microphone"></ion-icon>
                         <ion-icon size="large" slot="end" name="microphone"></ion-icon>
                     </ion-item>
                     <div class="bar bar-header">
-                        <h3 class="title">Speed</h3>
+                        <ion-item>
+                            <h3 class="title">  Accousticness</h3>
+                            <ion-button id="button3" size="small" color="warning">Primary</ion-button>
+                        </ion-item>
                     </div>
                     <ion-item>
-
                         <ion-range id="third" min="0" max="100" color="secondary" pin="true"></ion-range>
-
-                        <ion-icon size="small" slot="start" name="speedometer"></ion-icon>
+                        <ion-icon id="thirdIcon" size="small" slot="start" name="speedometer"></ion-icon>
                         <ion-icon size="large" slot="end" name="speedometer"></ion-icon>
                     </ion-item>
 
@@ -112,6 +125,55 @@
 
 </body>
 <script>
+ 
+    var oldValue1 = document.getElementById("first").value;
+    var oldValue2 = document.getElementById("second").value;
+    var oldValue3 = document.getElementById("third").value;
+
+    setInterval(makeShake, 50);
+
+function makeShake()
+{
+  var newValue1 = document.getElementById("first").value;
+  var newValue2 = document.getElementById("second").value;
+  var newValue3 = document.getElementById("third").value;
+
+
+    if(newValue1 != oldValue1){
+    oldValue1= newValue1;
+    var el = document.getElementById("firstIcon");
+    el.className ="md icon-small hydrated icons";
+    var el = document.getElementById("button1");
+    el.innerHTML = oldValue1;
+    }else{
+    var el = document.getElementById("firstIcon");
+    el.className = "md icon-small hydrated"}
+    if(newValue2 != oldValue2){
+    oldValue2= newValue2;
+    var el = document.getElementById("secondIcon");
+    el.className ="md icon-small hydrated icons";
+      var el = document.getElementById("button2");
+    el.innerHTML = oldValue2;
+    }else{
+    var el = document.getElementById("secondIcon");
+    el.className = "md icon-small hydrated"}
+       if(newValue3 != oldValue3){
+    oldValue3= newValue3;
+    var el = document.getElementById("thirdIcon");
+    el.className ="md icon-small hydrated icons";
+      var el = document.getElementById("button3");
+    el.innerHTML = oldValue3;
+    }else{
+    var el = document.getElementById("thirdIcon");
+    el.className = "md icon-small hydrated"}
+
+
+}
+    function makeIconShake(){
+      
+   
+    }
+   
    function activated(){
     var el1 = document.getElementById("first").value;
     var el2 = document.getElementById("second").value;
