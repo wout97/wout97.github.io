@@ -94,7 +94,7 @@ function callSpotifyAPI2(url){
 	var user_id = "11135844104";
 	var authToken = access_token;
 	var playlistUrl = url;
-	var response = httpGet(playlistUrl, token);
+	var response = httpGet(playlistUrl, access_token);
 	var playlist_response = JSON.parse(response);
 	return playlist_response;
 }
