@@ -6,6 +6,7 @@ var newToken="https://developer.spotify.com/console/get-playlists/?user_id=wizzl
 var url_string = window.location.href;
 var access_token = url_string.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
 var client_id = getClientId();
+console.log(client_id);
 
 function getClientId(){
 	var response = callSpotifyAPI2("https://api.spotify.com/v1/me");
