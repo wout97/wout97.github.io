@@ -1,38 +1,29 @@
 
 //Authorization links
-var oAuthUrl="https://accounts.spotify.com/authorize?client_id=059f69ae51c445518b106f91e9ddaf9c&redirect_uri=https://wout97.github.io/&scope=user-read-private%20user-read-email&response_type=token&state=123"
+var oAuthUrl="https://accounts.spotify.com/authorize?client_id=059f69ae51c445518b106f91e9ddaf9c&redirect_uri=https://wout97.github.io/index.html&scope=user-read-private%20user-read-email&response_type=token&state=123"
 var dash="https://developer.spotify.com/dashboard/applications/059f69ae51c445518b106f91e9ddaf9c"
 var newToken="https://developer.spotify.com/console/get-playlists/?user_id=wizzler&limit=&offset="
 var url_string = window.location.href;
 var access_token = url_string.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
-console.log("test");
 var client_id = getClientId();
 
-console.log(client_id);
-
-function getClientId(){
-	var response = callSpotifyAPI2("https://api.spotify.com/v1/me");
-	console.log(response);
-	return null;
-
-}
 
 
 //get playlists and generate html
 var playlists = getPlaylists();
 displayPlaylists(playlists);
+var playlistResponse;
 
 
 //Get array of user playlists
 function getPlaylists() {
-    var response = callSpotifyAPI("null");
-	trackList = getTracksfromResponse(response);
-	console.log(trackList);
-	return getArrayUserPlaylist(response);
+    var responseAPI = callSpotifyAPI("null");
+	playlistResponse = responseAPI;
+	return getArrayUserPlaylist(responseAPI);
 }
 
-function getTracksfromResponse(response){
-	var playlistUrl = response.items[0].href;
+function getTracksfromResponse(response, index){
+	var playlistUrl = response.items[index].href;
 	var tracksresponse = callSpotifyAPI2(playlistUrl);
 	var trackList=[];
 	for (x in tracksresponse.tracks.items){
@@ -44,7 +35,7 @@ function getTracksfromResponse(response){
 
 //Uses own token to get my playlists from spotifyAPI returns JSON response
 function callSpotifyAPI(url){
-	var user_id = "11135844104";
+	var user_id = client_id;
 	var authToken =access_token;
 	var token1 = "Bearer " + authToken;
 	var playlistUrl = "https://api.spotify.com/v1/users/" + user_id + "/playlists";
@@ -79,17 +70,18 @@ function displayPlaylists(playlists) {
     var x;
     for (x in playlists) {
 
-        document.getElementById("playlists").innerHTML += ' <button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getTracks(playlists[x]) + '</div>'
+        document.getElementById("playlists").innerHTML += ' <button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getTracks(playlists[x], x) + '</div>'
     }
 
 }
 
 //generate track html for playlist
-function getTracks(playlist) {
+function getTracks(playlist, index2) {
     var x;
     var trackItems = "";
-    var tracks = ["song 1 :" + playlist, "song 2 :" + playlist, "song 3 :" + playlist, "song 4 : " + playlist, "song 5 :" + playlist, "song 6 :" + playlist];
-    for (x in tracks) {
+    //var tracks = ["song 1 :" + playlist, "song 2 :" + playlist, "song 3 :" + playlist, "song 4 : " + playlist, "song 5 :" + playlist, "song 6 :" + playlist];
+    var tracks = getTracksfromResponse(playlistResponse, index2);
+	for (x in tracks) {
 
         trackItems += "<ion-item><ion-label>" + tracks[x] + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
     }
@@ -108,6 +100,10 @@ function callSpotifyAPI2(url){
 	return playlist_response;
 }
 
+function getClientId(){
+	var response = callSpotifyAPI2("https://api.spotify.com/v1/me");
+	return response.id;
+}
 //generate collapsible divs
 var coll = document.getElementsByClassName("collapsible");
 var i;
