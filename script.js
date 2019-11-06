@@ -48,8 +48,8 @@ function getTracksfromResponse(response2, index){
 	var tracksresponse = callSpotifyAPI2(playlistUrl);
 	var trackList=[];
 	for (x in tracksresponse.tracks.items){
-		//console.log(tracksresponse.tracks.items[x].track.name);
-		trackList.push(tracksresponse.tracks.items[x].track.name)
+		//console.log(tracksresponse.tracks.items[x].track);
+		trackList.push(tracksresponse.tracks.items[x].track.name +" - "+ tracksresponse.tracks.items[x].track.artists[0].name )
 	}
 	return trackList;
 }
