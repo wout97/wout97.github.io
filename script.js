@@ -34,6 +34,7 @@ for (x = 0; x < 5; x++) {
 
 console.log(array5);
 displayPlaylists(array5);
+generateCollapsibleDivs()
 }
 
 //Get array of user playlists
@@ -90,9 +91,10 @@ function displayPlaylists(playlists) {
     document.getElementById("playlists").innerHTML = "";
     var x;
     for (x in playlists) {
+		console.log("new plalist adding...")
         document.getElementById("playlists").innerHTML += ' <button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getTracks(playlists[x], x) + '</div>'
-    }
-
+		console.log("done");
+		}
 }
 
 //generate track html for playlist
@@ -101,8 +103,8 @@ function getTracks(playlist, index2) {
     var trackItems = "";
     //var tracks = ["song 1 :" + playlist, "song 2 :" + playlist, "song 3 :" + playlist, "song 4 : " + playlist, "song 5 :" + playlist, "song 6 :" + playlist];
     var tracks = getTracksfromResponse(playlistResponse, index2);
+	console.log("adding = " + tracks);
 	for (x in tracks) {
-
         trackItems += "<ion-item><ion-label>" + tracks[x] + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
     }
 
@@ -125,7 +127,8 @@ function getClientId(){
 	return response.id;
 }
 //generate collapsible divs
-var coll = document.getElementsByClassName("collapsible");
+generateCollapsibleDivs()
+function generateCollapsibleDivs(){var coll = document.getElementsByClassName("collapsible");
 console.log("colls");
 var i;
 for (i = 0; i < coll.length; i++) {
@@ -139,7 +142,8 @@ for (i = 0; i < coll.length; i++) {
             content.style.maxHeight = (lengthContent*54 + 64) + "px";
         }
     });
-}
+}}
+
 
 function activated(playlist) {
     alert("You have selected the " + playlist + " playlist")

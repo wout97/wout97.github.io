@@ -67,11 +67,12 @@
                     <h2>Tune the parameters like you want them.</h2>
                 </ion-text>
                 <ion-list>
+
                     <div class="bar bar-header">
                         <ion-item>
 
                             <h3 class="title">
-                                Rythm
+                                Instrumentalness
                             </h3>
                             <ion-button item-left id="button1" size="small" color="success">Primary</ion-button>
 
@@ -83,6 +84,41 @@
                         <ion-icon id="firstIcon" size="small" slot="start" name="musical-notes"></ion-icon>
                         <ion-icon id="firstIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
                     </ion-item>
+
+                    <div class="bar bar-header">
+                        <ion-item>
+
+                            <h3 class="title">
+                                Danceability
+                            </h3>
+                            <ion-button item-left id="button1" size="small" color="success">Primary</ion-button>
+
+
+                        </ion-item>
+                    </div>
+                    <ion-item onchange="makeIconShake()">
+                        <ion-range id="first" min="0" max="100" color="secondary" pin="true"></ion-range>
+                        <ion-icon id="firstIcon" size="small" slot="start" name="musical-notes"></ion-icon>
+                        <ion-icon id="firstIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
+                    </ion-item>
+
+                    <div class="bar bar-header">
+                        <ion-item>
+
+                            <h3 class="title">
+                                Mood
+                            </h3>
+                            <ion-button item-left id="button1" size="small" color="success">Primary</ion-button>
+
+
+                        </ion-item>
+                    </div>
+                    <ion-item onchange="makeIconShake()">
+                        <ion-range id="first" min="0" max="100" color="secondary" pin="true"></ion-range>
+                        <ion-icon id="firstIcon" size="small" slot="start" name="musical-notes"></ion-icon>
+                        <ion-icon id="firstIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
+                    </ion-item>
+
                     <div class="bar bar-header">
                         <ion-item>
 
@@ -95,9 +131,10 @@
                         <ion-icon id="secondIcon" size="small" slot="start" name="microphone"></ion-icon>
                         <ion-icon id="secondIcon2" size="large" slot="end" name="microphone"></ion-icon>
                     </ion-item>
+
                     <div class="bar bar-header">
                         <ion-item>
-                            <h3 class="title">  Speed</h3>
+                            <h3 class="title">  Energy</h3>
                             <ion-button id="button3" size="small" color="warning">Primary</ion-button>
                         </ion-item>
                     </div>
@@ -106,7 +143,6 @@
                         <ion-icon id="thirdIcon" size="small" slot="start" name="speedometer"></ion-icon>
                         <ion-icon id="thirdIcon2" size="large" slot="end" name="speedometer"></ion-icon>
                     </ion-item>
-
 
 
                 </ion-list>
