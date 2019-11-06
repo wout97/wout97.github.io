@@ -63,7 +63,11 @@
                 </ion-text>
 
                 <!-- Searchbar with cancel button always shown -->
-                <ion-searchbar show-cancel-button="always" inputmode="md"></ion-searchbar>
+                
+                <div class="example"  style="margin:auto;max-width:300px">
+                    <input id="searchBar" type="text" placeholder="Search.." name="search2">
+                    <button onclick="search()" type="submit"><i class="fa fa-search"></i></button>
+                </div>
 
                 <small style="padding:10px;"> suggested playlists</small>
                 <div class="playlists" id="playlists"><p>generating</p></div>

@@ -3,6 +3,10 @@
 var oAuthUrl="https://accounts.spotify.com/authorize?client_id=059f69ae51c445518b106f91e9ddaf9c&redirect_uri=https://wout97.github.io/index.html&scope=user-read-private%20user-read-emai%20playlist-read-privat%20playlist-read-collaborative&response_type=token&state=123"
 var dash="https://developer.spotify.com/dashboard/applications/059f69ae51c445518b106f91e9ddaf9c"
 var newToken="https://developer.spotify.com/console/get-playlists/?user_id=wizzler&limit=&offset="
+
+
+
+
 var url_string = window.location.href;
 var access_token = url_string.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
 var client_id = getClientId();
@@ -14,6 +18,23 @@ var playlists = getPlaylists();
 displayPlaylists(playlists);
 var playlistResponse;
 
+function search(){
+
+var searchBarValue = document.getElementById("searchBar").value;
+var searchString = "https://api.spotify.com/v1/search?q=" + searchBarValue + "&type=playlist";
+var responseSearch = callSpotifyAPI2(searchString);
+
+console.log(responseSearch.playlists);
+playlistResponse = responseSearch.playlists;
+var array5 = [];
+for (x = 0; x < 5; x++) {
+		console.log(responseSearch.playlists.items[x].name);
+		array5.push(responseSearch.playlists.items[x].name);
+	}
+
+console.log(array5);
+displayPlaylists(array5);
+}
 
 //Get array of user playlists
 function getPlaylists() {
@@ -22,8 +43,8 @@ function getPlaylists() {
 	return getArrayUserPlaylist(responseAPI);
 }
 
-function getTracksfromResponse(response, index){
-	var playlistUrl = response.items[index].href;
+function getTracksfromResponse(response2, index){
+	var playlistUrl = response2.items[index].href;
 	var tracksresponse = callSpotifyAPI2(playlistUrl);
 	var trackList=[];
 	for (x in tracksresponse.tracks.items){
@@ -69,7 +90,6 @@ function displayPlaylists(playlists) {
     document.getElementById("playlists").innerHTML = "";
     var x;
     for (x in playlists) {
-
         document.getElementById("playlists").innerHTML += ' <button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getTracks(playlists[x], x) + '</div>'
     }
 
