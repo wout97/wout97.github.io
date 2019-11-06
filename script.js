@@ -135,7 +135,8 @@ for (i = 0; i < coll.length; i++) {
         if (content.style.maxHeight) {
             content.style.maxHeight = null;
         } else {
-            content.style.maxHeight = "200" + "px";
+			var lengthContent = content.children[0].children[0].children.length
+            content.style.maxHeight = (lengthContent*54 + 64) + "px";
         }
     });
 }
