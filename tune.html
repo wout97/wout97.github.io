@@ -88,40 +88,6 @@
                     <div class="bar bar-header">
                         <ion-item>
 
-                            <h3 class="title">
-                                Danceability
-                            </h3>
-                            <ion-button item-left id="button1" size="small" color="success">Primary</ion-button>
-
-
-                        </ion-item>
-                    </div>
-                    <ion-item onchange="makeIconShake()">
-                        <ion-range id="first" min="0" max="100" color="secondary" pin="true"></ion-range>
-                        <ion-icon id="firstIcon" size="small" slot="start" name="musical-notes"></ion-icon>
-                        <ion-icon id="firstIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
-                    </ion-item>
-
-                    <div class="bar bar-header">
-                        <ion-item>
-
-                            <h3 class="title">
-                                Mood
-                            </h3>
-                            <ion-button item-left id="button1" size="small" color="success">Primary</ion-button>
-
-
-                        </ion-item>
-                    </div>
-                    <ion-item onchange="makeIconShake()">
-                        <ion-range id="first" min="0" max="100" color="secondary" pin="true"></ion-range>
-                        <ion-icon id="firstIcon" size="small" slot="start" name="musical-notes"></ion-icon>
-                        <ion-icon id="firstIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
-                    </ion-item>
-
-                    <div class="bar bar-header">
-                        <ion-item>
-
                             <h3 class="title">  Accousticness</h3>
                             <ion-button id="button2" size="small" color="danger">Primary</ion-button>
                         </ion-item>
@@ -140,14 +106,46 @@
                     </div>
                     <ion-item>
                         <ion-range id="third" min="0" max="100" color="secondary" pin="true"></ion-range>
-                        <ion-icon id="thirdIcon" size="small" slot="start" name="speedometer"></ion-icon>
+                        <ion-icon id="thirdIcon" class="pulse-button" size="small" slot="start" name="speedometer"></ion-icon>
                         <ion-icon id="thirdIcon2" size="large" slot="end" name="speedometer"></ion-icon>
                     </ion-item>
 
+                    <div class="bar bar-header">
+                        <ion-item>
 
+                            <h3 class="title">
+                                Danceability
+                            </h3>
+                            <ion-button item-left id="button4" size="small" color="success">Primary</ion-button>
+
+
+                        </ion-item>
+                    </div>
+                    <ion-item onchange="makeIconShake()">
+                        <ion-range id="fourth" min="0" max="100" color="secondary" pin="true"></ion-range>
+                        <ion-icon id="fourthIcon" size="small" slot="start" name="musical-notes"></ion-icon>
+                        <ion-icon id="fourthIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
+                    </ion-item>
+
+                    <div class="bar bar-header">
+                        <ion-item>
+
+                            <h3 class="title">
+                                Mood
+                            </h3>
+                            <ion-button item-left id="button5" size="small" color="success">Primary</ion-button>
+
+
+                        </ion-item>
+                    </div>
+                    <ion-item onchange="makeIconShake()">
+                        <ion-range id="fifth" min="0" max="100" color="secondary" pin="true"></ion-range>
+                        <ion-icon id="fifthIcon" size="small" slot="start" name="musical-notes"></ion-icon>
+                        <ion-icon id="fifthIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
+                    </ion-item>
                 </ion-list>
 
-                <ion-button onclick="activated()" text-center>Confirm</ion-button>
+                <ion-button id="nextStep"  onclick="activated()" text-center>Confirm</ion-button>
                 <div class="text-center">
                     <small>
                         © 2019 Copyright:

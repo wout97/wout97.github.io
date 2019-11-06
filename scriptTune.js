@@ -3,7 +3,9 @@
     var oldValue1 = document.getElementById("first").value;
     var oldValue2 = document.getElementById("second").value;
     var oldValue3 = document.getElementById("third").value;
-
+	var url_string = window.location.href;
+var url = new URL(url_string);
+var token = url.searchParams.get("token");
     setInterval(makeShake, 50);
 
 function makeShake()
@@ -73,14 +75,17 @@ else{
     var el2 = document.getElementById("thirdIcon2");
     el2.className = "md icon-large hydrated";
 }
+activated();
 }
 
     function makeIconShake(){
     }
    
    function activated(){
-    var el1 = document.getElementById("first").value;
-    var el2 = document.getElementById("second").value;
-    var el3 = document.getElementById("third").value;
-    alert("First selection: "+ el1 + " | Second selection: " + el2 + " | Third selection: " + el3);
-    }
+    var el1V = document.getElementById("first").value;
+    var el2V = document.getElementById("second").value;
+    var el3V = document.getElementById("third").value;
+    var el5V = document.getElementById("fifth").value;
+	var el4V = document.getElementById("fourth").value;
+	document.getElementById("nextStep").href ="final.html?" +"token="+ token  + "&el1=" + el1V + "&el2=" +el2V + "&el3=" +el3V +"&el4=" +el4V +"&el5=" +el5V ;
+}
