@@ -1,6 +1,6 @@
 
 //Authorization links
-var oAuthUrl="https://accounts.spotify.com/authorize?client_id=059f69ae51c445518b106f91e9ddaf9c&redirect_uri=https://wout97.github.io/index.html&scope=user-read-private%20user-read-email&response_type=token&state=123"
+var oAuthUrl="https://accounts.spotify.com/authorize?client_id=059f69ae51c445518b106f91e9ddaf9c&redirect_uri=https://wout97.github.io/index.html&scope=user-read-private%20user-read-emai%20playlist-read-privat%20playlist-read-collaborative&response_type=token&state=123"
 var dash="https://developer.spotify.com/dashboard/applications/059f69ae51c445518b106f91e9ddaf9c"
 var newToken="https://developer.spotify.com/console/get-playlists/?user_id=wizzler&limit=&offset="
 var url_string = window.location.href;
