@@ -5,7 +5,25 @@
     -moz-osx-font-smoothing: grayscale !important;
     -ms-font-smoothing: antialiased !important;
 }
+.speech-bubble {
+    position: relative;
+    background: #00aabb;
+    border-radius: .4em;
+}
 
+    .speech-bubble:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border: 14px solid transparent;
+        border-top-color: #00aabb;
+        border-bottom: 0;
+        margin-left: -14px;
+        margin-bottom: -14px;
+    }
 .custom_center {
     display: block;
     margin-left: auto;

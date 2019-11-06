@@ -27,7 +27,7 @@ function getTracksfromResponse(response, index){
 	var tracksresponse = callSpotifyAPI2(playlistUrl);
 	var trackList=[];
 	for (x in tracksresponse.tracks.items){
-		console.log(tracksresponse.tracks.items[x].track.name);
+		//console.log(tracksresponse.tracks.items[x].track.name);
 		trackList.push(tracksresponse.tracks.items[x].track.name)
 	}
 	return trackList;
@@ -106,6 +106,7 @@ function getClientId(){
 }
 //generate collapsible divs
 var coll = document.getElementsByClassName("collapsible");
+console.log("colls");
 var i;
 for (i = 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function() {
