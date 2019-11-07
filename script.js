@@ -12,7 +12,6 @@ var access_token = url_string.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
 var client_id = getClientId();
 
 
-
 //get playlists and generate html
 var playlists = getPlaylists();
 displayPlaylists(playlists);
