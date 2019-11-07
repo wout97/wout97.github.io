@@ -23,7 +23,7 @@ function search(){
 var searchBarValue = document.getElementById("searchBar").value;
 var searchString = "https://api.spotify.com/v1/search?q=" + searchBarValue + "&type=playlist";
 var responseSearch = callSpotifyAPI2(searchString);
-
+var tracksresponseCopy;
 console.log(responseSearch.playlists);
 playlistResponse = responseSearch.playlists;
 var array5 = [];
@@ -47,6 +47,7 @@ function getPlaylists() {
 function getTracksfromResponse(response2, index){
 	var playlistUrl = response2.items[index].href;
 	var tracksresponse = callSpotifyAPI2(playlistUrl);
+	tracksresponseCopy = tracksresponse;
 	var trackList=[];
 	for (x in tracksresponse.tracks.items){
 		//console.log(tracksresponse.tracks.items[x].track);
@@ -103,13 +104,21 @@ function getTracks(playlist, index2) {
     var trackItems = "";
     //var tracks = ["song 1 :" + playlist, "song 2 :" + playlist, "song 3 :" + playlist, "song 4 : " + playlist, "song 5 :" + playlist, "song 6 :" + playlist];
     var tracks = getTracksfromResponse(playlistResponse, index2);
-	console.log("adding = " + tracks);
+	
 	for (x in tracks) {
         trackItems += "<ion-item><ion-label>" + tracks[x] + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
     }
-
-
-    return " <ion-content fullscreen><ion-list>" + trackItems + "</ion-list><ion-button href='tune.html?choice="+ playlist + "&token="+ access_token +"'" + "onclick='activated(" + '"' + playlist + '"' + ")'>Confirm</ion-button> </ion-content>"
+	var seed;
+	if(tracksresponseCopy.tracks.items[0] !=null){
+		if(tracksresponseCopy.tracks.items[0].track.id != null){
+			seed =tracksresponseCopy.tracks.items[0].track.id;
+		}
+		else{
+		seed ="0c6xIDDpzE81m2q797ordA";
+		}
+	}
+	
+    return " <ion-content fullscreen><ion-list>" + trackItems + "</ion-list><ion-button href='tune.html?choice="+ playlist + "&token="+ access_token +"&seed=" +seed +"'" + "onclick='activated(" + '"' + playlist + '"' + ")'>Confirm</ion-button> </ion-content>"
 
 }
 

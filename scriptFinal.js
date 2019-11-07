@@ -4,7 +4,14 @@
 var url_string = window.location.href;
 var url = new URL(url_string);
 var token = url.searchParams.get("token");
-var requetsUrl= "https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_tracks=0c6xIDDpzE81m2q797ordA&min_energy=0.9&min_popularity=50&market=US";
+var accou = url.searchParams.get("ac");
+var dance = url.searchParams.get("da");
+var energy = url.searchParams.get("en");
+var instrumental = url.searchParams.get("in");
+var mood = url.searchParams.get("mo");
+var songs = url.searchParams.get("seed");
+
+var requetsUrl= "https://api.spotify.com/v1/recommendations?seed_tracks=" + songs + "&target_acousticness="+ accou/100 +"&target_danceability=" + dance/100 + "&target_energy=" + energy/100 + "&target_instrumentalness="+ instrumental/100;
 var response2 = callSpotifyAPI2(requetsUrl);
  getTracks(response2.tracks);
 
@@ -13,14 +20,12 @@ function getTracks(response) {
     var x;
     var trackItems = "";
     //var tracks = ["song 1 :" + playlist, "song 2 :" + playlist, "song 3 :" + playlist, "song 4 : " + playlist, "song 5 :" + playlist, "song 6 :" + playlist];
-	console.log("adding = ");
+	console.log("adding = " + response);
 	for (x in response) {
+		console.log("adding = " + response[x].name);
         trackItems += "<ion-item><ion-label>" + response[x].name + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
     }
-
-
-    document.getElementById("playlists2").innerHTML +=  " <ion-content fullscreen><ion-list>" + trackItems + "</ion-list> </ion-content>"
-
+    document.getElementById("playlists2").innerHTML +=  "<ion-list '>" + trackItems + "</ion-list>"
 }
 
 

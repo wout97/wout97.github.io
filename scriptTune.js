@@ -5,6 +5,7 @@
     var oldValue3 = document.getElementById("third").value;
 	var url_string = window.location.href;
 var url = new URL(url_string);
+var seed = url.searchParams.get("seed");
 var token = url.searchParams.get("token");
     setInterval(makeShake, 50);
 
@@ -87,5 +88,5 @@ activated();
     var el3V = document.getElementById("third").value;
     var el5V = document.getElementById("fifth").value;
 	var el4V = document.getElementById("fourth").value;
-	document.getElementById("nextStep").href ="final.html?" +"token="+ token  + "&el1=" + el1V + "&el2=" +el2V + "&el3=" +el3V +"&el4=" +el4V +"&el5=" +el5V ;
+	document.getElementById("nextStep").href ="final.html?" +"token="+ token  + "&in=" + el1V + "&=ac" +el2V + "&en=" +el3V +"&da=" +el4V +"&mo=" +el5V+"&seed="+ seed ;
 }
