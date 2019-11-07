@@ -20,10 +20,10 @@ function getTracks(response) {
     var x;
     var trackItems = "";
     //var tracks = ["song 1 :" + playlist, "song 2 :" + playlist, "song 3 :" + playlist, "song 4 : " + playlist, "song 5 :" + playlist, "song 6 :" + playlist];
-	console.log("adding = " + response);
+
 	for (x in response) {
-		console.log("adding = " + response[x].name);
-        trackItems += "<ion-item><ion-label>" + response[x].name + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
+		console.log(response[x] );
+        trackItems += "<ion-item><ion-label>" + response[x].name +" - "+ response[x].artists[0].name + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
     }
     document.getElementById("playlists2").innerHTML +=  "<ion-list '>" + trackItems + "</ion-list>"
 }
@@ -46,3 +46,25 @@ function httpGet(theUrl, token) {
     xmlHttp.send();
     return xmlHttp.responseText;
 }
+
+var audio = new Audio("https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86");
+
+$('#play-pause-button').on("click",function(){
+  if($(this).hasClass('fa-play'))
+   {
+     $(this).removeClass('fa-play');
+     $(this).addClass('fa-pause');
+     audio.play();
+   }
+  else
+   {
+     $(this).removeClass('fa-pause');
+     $(this).addClass('fa-play');
+     audio.pause();
+   }
+});
+
+audio.onended = function() {
+     $("#play-pause-button").removeClass('fa-pause');
+     $("#play-pause-button").addClass('fa-play');
+};
