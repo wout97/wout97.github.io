@@ -17,6 +17,12 @@ var playlists = getPlaylists();
 displayPlaylists(playlists);
 var playlistResponse;
 
+
+
+
+
+
+
 function search(){
 
 var searchBarValue = document.getElementById("searchBar").value;

@@ -14,17 +14,23 @@ var songs = url.searchParams.get("seed");
 var requetsUrl= "https://api.spotify.com/v1/recommendations?seed_tracks=" + songs + "&target_acousticness="+ accou/100 +"&target_danceability=" + dance/100 + "&target_energy=" + energy/100 + "&target_instrumentalness="+ instrumental/100;
 var response2 = callSpotifyAPI2(requetsUrl);
  getTracks(response2.tracks);
-
+var array;
 //generate track html for playlist
 function getTracks(response) {
     var x;
     var trackItems = "";
     //var tracks = ["song 1 :" + playlist, "song 2 :" + playlist, "song 3 :" + playlist, "song 4 : " + playlist, "song 5 :" + playlist, "song 6 :" + playlist];
-
+	var playlistArray = [];
 	for (x in response) {
-		console.log(response[x] );
-        trackItems += "<ion-item><ion-label>" + response[x].name +" - "+ response[x].artists[0].name + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
-    }
+		console.log(response[x].href );
+		var res =callSpotifyAPI2(response[x].href);
+		console.log();
+		playlistArray.push( res.preview_url);
+        trackItems += "<ion-item><ion-label>" + response[x].name +" - "+ response[x].artists[0].name + " </ion-label><button onclick='playAudio(" + x + ")' class='btn'><i class='fa fa-play'></i></button> </ion-item>";
+		
+   }
+   array = playlistArray;
+   console.log(playlistArray);
     document.getElementById("playlists2").innerHTML +=  "<ion-list '>" + trackItems + "</ion-list>"
 }
 
@@ -68,3 +74,13 @@ audio.onended = function() {
      $("#play-pause-button").removeClass('fa-pause');
      $("#play-pause-button").addClass('fa-play');
 };
+
+
+
+function playAudio(y){
+console.log("clicked");
+var audio = document.getElementById("audio");
+audio.src=array[y];
+audio.play();
+console.log(audio.src)
+}
