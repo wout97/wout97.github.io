@@ -16,17 +16,19 @@ var requetsUrl= "https://api.spotify.com/v1/recommendations?seed_tracks=" + song
 var response2 = callSpotifyAPI2(requetsUrl);
  getTracks(response2.tracks);
 var array;
+var uris;
 //generate track html for playlist
 function getTracks(response) {
     var x;
     var trackItems = "";
+	var uris2 =[];
     //var tracks = ["song 1 :" + playlist, "song 2 :" + playlist, "song 3 :" + playlist, "song 4 : " + playlist, "song 5 :" + playlist, "song 6 :" + playlist];
 	var playlistArray = [];
 	for (x in response) {
 		console.log(response[x].href );
 		var res =callSpotifyAPI2(response[x].href);
-		console.log();
 		playlistArray.push( res.preview_url);
+		uris2.push(response[x].uri.toString());
 		var disabled = "";
 		if (res.preview_url != null){
 			disabled = "<button color='green' onclick='playAudio(" + x + ")' class='btn bg-success '><i class='fa fa-play'></i></button>";
@@ -34,6 +36,8 @@ function getTracks(response) {
         trackItems += "<ion-item id="+ x+ " ><ion-label>" + response[x].name +" - "+ response[x].artists[0].name + " </ion-label> "+ disabled+" <button color='danger' onclick='deleteAudio(" + x + ")' class='btn btn-space bg-danger'><i class='fa fa-trash'></i></button> </ion-item>";
 		
    }
+   uris = uris2;
+   console.log(uris);
    array = playlistArray;
    console.log(playlistArray);
     document.getElementById("playlists2").innerHTML +=  "<ion-list '>" + trackItems + "</ion-list>"
@@ -93,10 +97,29 @@ console.log(audio);
 }
 
 function saveSongs(){
-	var name = "cool hci created playlist";
+	var name = "cool hci created playlist" + Math.random();
 	var description = "created with spotify recomender!";
 	var dataPlaylist = "{\"name\":\""+ name +"\",\"description\":\""+ description +"\",\"public\":false}";
 	console.log(dataPlaylist);
 	var urlPost = "https://api.spotify.com/v1/users/" + client +"/playlists";
-	console.log(callSpotifyAPIpost(urlPost, dataPlaylist));
+	var id = callSpotifyAPIpost(urlPost, dataPlaylist).id;
+	console.log(id);
+	var uriString = "[";
+	var addTracksUrl = "https://api.spotify.com/v1/playlists/" + id + "/tracks";
+
+	for(x in uris){
+		
+		if(x == 0){
+		uriString +='"' + uris[x] + '"';
+		}else{
+		uriString +=', "' + uris[x] + '"';
+		}
+	
+	}
+	uriString += "]"
+
+	var uriData= "{\"uris\": " + uriString+"}";
+	console.log(uriData);
+	console.log(callSpotifyAPIpost(addTracksUrl, uriData));
+
 }
