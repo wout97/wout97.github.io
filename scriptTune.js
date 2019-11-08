@@ -7,6 +7,7 @@
 var url = new URL(url_string);
 var seed = url.searchParams.get("seed");
 var token = url.searchParams.get("token");
+var client = url.searchParams.get("client");
     setInterval(makeShake, 50);
 
 function makeShake()
@@ -88,5 +89,5 @@ activated();
     var el3V = document.getElementById("third").value;
     var el5V = document.getElementById("fifth").value;
 	var el4V = document.getElementById("fourth").value;
-	document.getElementById("nextStep").href ="final.html?" +"token="+ token  + "&in=" + el1V + "&=ac" +el2V + "&en=" +el3V +"&da=" +el4V +"&mo=" +el5V+"&seed="+ seed ;
+	document.getElementById("nextStep").href ="final.html?" +"token="+ token  + "&in=" + el1V + "&=ac" +el2V + "&en=" +el3V +"&da=" +el4V +"&mo=" +el5V+"&seed="+ seed + "&client="+ client ;
 }

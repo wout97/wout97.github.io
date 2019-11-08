@@ -7,6 +7,7 @@ var token = url.searchParams.get("token");
 var accou = url.searchParams.get("ac");
 var dance = url.searchParams.get("da");
 var energy = url.searchParams.get("en");
+var client = url.searchParams.get("client");
 var instrumental = url.searchParams.get("in");
 var mood = url.searchParams.get("mo");
 var songs = url.searchParams.get("seed");
@@ -46,7 +47,13 @@ function callSpotifyAPI2(url){
 	var playlist_response = JSON.parse(response);
 	return playlist_response;
 }
-
+//Uses own token to get my playlists from spotifyAPI returns JSON response
+function callSpotifyAPIpost(url, dat){
+	var token2 = "Bearer " + token;
+	var response = httpPost(url, token2, dat);
+	var playlist_response = JSON.parse(response);
+	return playlist_response;
+}
 
 //Simple get request with auth
 function httpGet(theUrl, token) {
@@ -54,6 +61,16 @@ function httpGet(theUrl, token) {
     xmlHttp.open("GET", theUrl, false); // false for synchronous request
     xmlHttp.setRequestHeader('Authorization', token);
     xmlHttp.send();
+    return xmlHttp.responseText;
+}
+//Simple post request with auth
+function httpPost(theUrl, token, data) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", theUrl, false); // false for synchronous request
+    xmlHttp.setRequestHeader('Authorization', token);
+	xmlHttp.setRequestHeader("Content-Type", "application/json");
+	xmlHttp.setRequestHeader("accept", "application/json");
+    xmlHttp.send( data );
     return xmlHttp.responseText;
 }
 
@@ -76,6 +93,10 @@ console.log(audio);
 }
 
 function saveSongs(){
-	
-
+	var name = "cool hci created playlist";
+	var description = "created with spotify recomender!";
+	var dataPlaylist = "{\"name\":\""+ name +"\",\"description\":\""+ description +"\",\"public\":false}";
+	console.log(dataPlaylist);
+	var urlPost = "https://api.spotify.com/v1/users/" + client +"/playlists";
+	console.log(callSpotifyAPIpost(urlPost, dataPlaylist));
 }
