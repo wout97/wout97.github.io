@@ -26,7 +26,11 @@ function getTracks(response) {
 		var res =callSpotifyAPI2(response[x].href);
 		console.log();
 		playlistArray.push( res.preview_url);
-        trackItems += "<ion-item><ion-label>" + response[x].name +" - "+ response[x].artists[0].name + " </ion-label><button onclick='playAudio(" + x + ")' class='btn'><i class='fa fa-play'></i></button> </ion-item>";
+		var disabled = "";
+		if (res.preview_url != null){
+			disabled = "<button color='green' onclick='playAudio(" + x + ")' class='btn bg-success '><i class='fa fa-play'></i></button>";
+		}
+        trackItems += "<ion-item id="+ x+ " ><ion-label>" + response[x].name +" - "+ response[x].artists[0].name + " </ion-label> "+ disabled+" <button color='danger' onclick='deleteAudio(" + x + ")' class='btn btn-space bg-danger'><i class='fa fa-trash'></i></button> </ion-item>";
 		
    }
    array = playlistArray;
@@ -53,27 +57,6 @@ function httpGet(theUrl, token) {
     return xmlHttp.responseText;
 }
 
-var audio = new Audio("https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86");
-
-$('#play-pause-button').on("click",function(){
-  if($(this).hasClass('fa-play'))
-   {
-     $(this).removeClass('fa-play');
-     $(this).addClass('fa-pause');
-     audio.play();
-   }
-  else
-   {
-     $(this).removeClass('fa-pause');
-     $(this).addClass('fa-play');
-     audio.pause();
-   }
-});
-
-audio.onended = function() {
-     $("#play-pause-button").removeClass('fa-pause');
-     $("#play-pause-button").addClass('fa-play');
-};
 
 
 
@@ -83,4 +66,16 @@ var audio = document.getElementById("audio");
 audio.src=array[y];
 audio.play();
 console.log(audio.src)
+}
+
+function deleteAudio(z){
+console.log("deleted");
+document.getElementById(z).remove();
+console.log(audio);
+
+}
+
+function saveSongs(){
+	
+
 }

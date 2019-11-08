@@ -352,3 +352,7 @@ body {
         box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);
     }
 }
+
+.btn-space {
+    margin-left: 10px;
+}
