@@ -36,8 +36,9 @@ function getPlaylists() {
     playlistResponse = getUsersPlaylists();
 	//make array from response
 	var arrayPlaylist = [];
-    for (x in arrayPlaylist.items) {
-        array.push(playlistResponse.items[x].name);
+	var x;
+    for (x in playlistResponse.items) {
+        arrayPlaylist.push(playlistResponse.items[x].name);
     }
     return arrayPlaylist;
 }
@@ -82,7 +83,7 @@ function getHtmlTracks(playlist, indexPlaylist) {
     var x;
     var trackItems = "";
 	//get array of all songs and artists
-    var tracks = getTracksfromResponse(playlistResponse, index2);
+    var tracks = getTracksfromResponse(playlistResponse, indexPlaylist);
 	//create item for every track of playlist
     for (x in tracks) {
         trackItems += "<ion-item><ion-label>" + tracks[x] + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
