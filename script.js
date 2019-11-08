@@ -69,7 +69,7 @@ function getUsersPlaylists() {
 //generate html from playlist
 function displayPlaylists(playlists) {
 	//get element
-    document.getElementById("playlists").innerHTML = 
+    document.getElementById("playlists").innerHTML = "";
 	//loop over playlists and generate list of tracks
     var x;
     for (x in playlists) {
