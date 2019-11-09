@@ -70,14 +70,14 @@ function getUsersPlaylists() {
 //generate html from playlist
 function displayPlaylists(playlists) {
 	//get element
-    document.getElementById("playlists").innerHTML = "";
+    var element = document.getElementById("playlists");
 	//loop over playlists and generate list of tracks
     var x;
 	var innerHtml = "";
     for (x in playlists) {
 		innerHtml +=' <button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getHtmlTracks(playlists[x], x) + '</div>';
     }
-	 document.getElementById("playlists").innerHTML += innerHtml;
+	element.insertAdjacentHTML( 'beforeend', innerHtml );
 }
 
 
