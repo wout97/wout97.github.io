@@ -114,6 +114,28 @@ function getHtmlTracks(playlist, indexPlaylist) {
             seed = "0c6xIDDpzE81m2q797ordA";
         }
     }
+	 if (tracksresponseCopy.tracks.items[1] != null) {
+        if (tracksresponseCopy.tracks.items[1].track.id != null) {
+            seed +="," + tracksresponseCopy.tracks.items[1].track.id;
+        } else {
+            seed = "0c6xIDDpzE81m2q797ordA";
+        }
+    }
+
+	 if (tracksresponseCopy.tracks.items[2] != null) {
+        if (tracksresponseCopy.tracks.items[2].track.id != null) {
+            seed += ","+ tracksresponseCopy.tracks.items[2].track.id;
+        } else {
+            seed = "0c6xIDDpzE81m2q797ordA";
+        }
+    }
+		 if (tracksresponseCopy.tracks.items[3] != null) {
+        if (tracksresponseCopy.tracks.items[3].track.id != null) {
+            seed += ","+ tracksresponseCopy.tracks.items[3].track.id;
+        } else {
+            seed = "0c6xIDDpzE81m2q797ordA";
+        }
+    }
 
     return " <ion-list>" + trackItems + "</ion-list><ion-button href='tune.html?choice=" + playlist + "&token=" + access_token + "&seed=" + seed + "&client=" + client_id + "'" + "onclick='activated(" + '"' + playlist + '"' + ")'>Confirm</ion-button>"
 }
