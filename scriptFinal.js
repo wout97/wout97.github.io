@@ -138,5 +138,7 @@ function saveSongs(){
 	var uriData= "{\"uris\": " + uriString+"}";
 	//call spotify to add songs (uris) to previously created playlist
 	callSpotifyAPIpost(addTracksUrl, uriData);
+	alert('A new playlist is added to your spotify! :) ');
+	window.location.href = "index.html";
 
 }
