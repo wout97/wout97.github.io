@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -66,16 +67,18 @@
                     <!-- all the different sliders-->
                     <!-- slider for instrumentalness-->
                     <div class="bar bar-header">
+
                         <ion-item>
 
                             <h3 class="title">
                                 Instrumentalness
+
                             </h3>
                             <ion-button item-left id="button1" size="small" color="success">Primary</ion-button>
+</ion-item>
 
+</div>
 
-                        </ion-item>
-                    </div>
                     <ion-item onchange="makeIconShake()">
                         <ion-range id="first" min="0" max="100" color="secondary" pin="true"></ion-range>
                         <ion-icon id="firstIcon" size="small" slot="start" name="musical-notes"></ion-icon>

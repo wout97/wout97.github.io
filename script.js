@@ -73,10 +73,13 @@ function displayPlaylists(playlists) {
     document.getElementById("playlists").innerHTML = "";
 	//loop over playlists and generate list of tracks
     var x;
+	var innerHtml = "";
     for (x in playlists) {
-        document.getElementById("playlists").innerHTML += ' <button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getHtmlTracks(playlists[x], x) + '</div>'
+		innerHtml +=' <button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getHtmlTracks(playlists[x], x) + '</div>';
     }
+	 document.getElementById("playlists").innerHTML += innerHtml;
 }
+
 
 //generate Ion-list of tracks from a playlist
 function getHtmlTracks(playlist, indexPlaylist) {
