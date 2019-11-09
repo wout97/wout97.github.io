@@ -98,10 +98,14 @@ function displayPlaylists(playlists) {
     var x;
     for (x in playlists) {
 		console.log("new plalist adding...")
-        document.getElementById("playlists").innerHTML += ' <button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getTracks(playlists[x], x) + '</div>'
+        document.getElementById("playlists").innerHTML += '<div><button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getTracks(playlists[x], x) + '</div></div>'
 		console.log("done");
 		}
 }
+$('#playlists').on('show.bs.collapse', 'button.collapsible', function(e){
+	var selectedDiv = $(this).parent();
+	$('#playlists>div').exclude(selectedDiv).slideUp(500);
+})
 
 //generate track html for playlist
 function getTracks(playlist, index2) {
