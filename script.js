@@ -71,6 +71,7 @@ function getUsersPlaylists() {
 function displayPlaylists(playlists) {
 	//get element
     var element = document.getElementById("playlists");
+	while(element.firstChild){element.removeChild(element.firstChild);}
 	//loop over playlists and generate list of tracks
     var x;
 	var innerHtml = "";
