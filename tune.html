@@ -31,7 +31,6 @@
             <div class="container">
                 <img src="https://lh3.googleusercontent.com/zrHXaAED3EH2LMPfr27jaJTzNLVDFZ_VCbVDh4ETPol6xwDp6io6W-iK7Iup96sNPJBbACbyLcaMqsM42qDsvtYd3sz03-40HO4qTRTEx7BcvUCRcK7RyxBOvl4somx8AUuEW1-OgZxIu8wQEEJh-45-LP8LA3yDurkLSKZpslTfleZwoZtQT8WFrqTTm8jPjyfN3BwO_prSgnDvPZ0mht_O7_af-6jL9IJ6J6osGns0UQrvHIuUOYrHPVphIbw7TQiT86YSC5afMEChjY73nBHwLoWRcusRlZ_TgB24zZ3flns1woHbQLuECnPobcLA1qhCI9VXHs-Y6s17a0uuYI-wdE3EDmoHjBnqxgG0FQ-OV4fiGDqxfR8dIFW7l_SScbmR_5xg4TL2V20YJH40VgoTqeycgREq-pgjc7qeOsyBnka9cCNLyfAhKTET1b-QpWtt0YiQ3CFFJLuFzlgmUQ3_RTzu933ZCcvUG1ZTkuA0mLGMzs380_JL-Zo5weziHUTDBhaQ_NMFKDiVIjk1CCLTbk91lIB1mKwdV5jWGOohrGy1NprFxUKvWaM9MghHloplHFbco-qAlGwRt1NGTtlsQN2lkmEN2CJk9IUwLnUoaJAfWFGifz2eRqutIzGBd2pCbNxftG5yF4qNG5Zl61ZfpQReqd1KngZFhX1qCzNdmnQ-qkCIHXn2ymzNeYyDEfkZ4DLQaYw8I_E9RCmDKB6IlTrkeFH9QHTIxq-A95sZH-QylQ=s500-no" alt="logo spotify recomender" class="custom_center">
 
-
                 <!-- Horizontal Stepper-->
 
                 <div class="md-stepper-horizontal orange">
@@ -60,14 +59,12 @@
                         <div class="md-step-bar-right"></div>
                     </div>
                 </div>
-
-
-
                 <ion-text text-center>
                     <h2>Tune the parameters like you want them.</h2>
                 </ion-text>
                 <ion-list>
-
+                    <!-- all the different sliders-->
+                    <!-- slider for instrumentalness-->
                     <div class="bar bar-header">
                         <ion-item>
 
@@ -84,7 +81,7 @@
                         <ion-icon id="firstIcon" size="small" slot="start" name="musical-notes"></ion-icon>
                         <ion-icon id="firstIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
                     </ion-item>
-
+                    <!-- slider for accousticness-->
                     <div class="bar bar-header">
                         <ion-item>
 
@@ -97,7 +94,7 @@
                         <ion-icon id="secondIcon" size="small" slot="start" name="microphone"></ion-icon>
                         <ion-icon id="secondIcon2" size="large" slot="end" name="microphone"></ion-icon>
                     </ion-item>
-
+                    <!-- slider for energy-->
                     <div class="bar bar-header">
                         <ion-item>
                             <h3 class="title">  Energy</h3>
@@ -109,7 +106,7 @@
                         <ion-icon id="thirdIcon" class="pulse-button" size="small" slot="start" name="speedometer"></ion-icon>
                         <ion-icon id="thirdIcon2" size="large" slot="end" name="speedometer"></ion-icon>
                     </ion-item>
-
+                    <!-- slider for danceablitity-->
                     <div class="bar bar-header">
                         <ion-item>
 
@@ -126,7 +123,7 @@
                         <ion-icon id="fourthIcon" size="small" slot="start" name="musical-notes"></ion-icon>
                         <ion-icon id="fourthIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
                     </ion-item>
-
+                    <!-- slider for mood-->
                     <div class="bar bar-header">
                         <ion-item>
 
@@ -145,7 +142,7 @@
                     </ion-item>
                 </ion-list>
 
-                <ion-button id="nextStep"  onclick="activated()" text-center>Confirm</ion-button>
+                <ion-button id="nextStep" onclick="activated()" text-center>Confirm</ion-button>
                 <div class="text-center">
                     <small>
                         © 2019 Copyright:
@@ -160,6 +157,7 @@
 
 
 </body>
+<!-- link to js file-->
 <script src="scriptTune.js"></script>
 <script>
 
