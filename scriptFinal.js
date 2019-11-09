@@ -85,12 +85,28 @@ function httpPost(theUrl, token, data) {
 }
 
 
-
+var playingElement;
 //function to play audio, essentialy updates link in html 5 audio element and plays it
 function playAudio(y){
 var audio = document.getElementById("audio");
+var element = document.getElementById(y);
+var currentClass = element.children[1].children[0].className;
+if(currentClass == "fa fa-play"){
+if(playingElement!=null){
+playingElement.children[1].children[0].className = "fa fa-play";
+playingElement.children[1].className = "btn bg-success"
+}
+element.children[1].children[0].className = "fa fa-pause";
+element.children[1].className = "btn bg-warning"
 audio.src=array[y];
 audio.play();
+}else{
+element.children[1].children[0].className = "fa fa-play";
+element.children[1].className = "btn bg-success"
+audio.pause();
+}
+playingElement = element;
+
 }
 
 //delete song from list
