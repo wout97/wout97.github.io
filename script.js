@@ -52,8 +52,11 @@ function getTracksfromResponse(response2, index) {
     tracksresponseCopy = tracksresponse;
 	//make array from response
     var trackList = [];
+	
     for (x in tracksresponse.tracks.items) {
-        trackList.push(tracksresponse.tracks.items[x].track.name + " - " + tracksresponse.tracks.items[x].track.artists[0].name)
+		if(tracksresponse.tracks.items[x].track != null && tracksresponse.tracks.items[x].track.artists[0] !=null){
+        trackList.push(tracksresponse.tracks.items[x].track.name + " - " + tracksresponse.tracks.items[x].track.artists[0].name)}
+	
     }
     return trackList;
 }
@@ -74,14 +77,23 @@ function displayPlaylists(playlists) {
 	while(element.firstChild){element.removeChild(element.firstChild);}
 	//loop over playlists and generate list of tracks
     var x;
-	var innerHtml = "";
+	var innerHtml = '<div class="card"><ul class="list-group ">';
     for (x in playlists) {
-		innerHtml +=' <button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getHtmlTracks(playlists[x], x) + '</div>';
+		innerHtml +='<li style="font-size:2rem" class="list-group-item list-group-item-action list-group-flush " onclick="arrowToggle('+ x +')" data-toggle="collapse"  data-target="#demo' + x + '" >' + playlists[x] + "   " + '<span class="badge ">'+ "<i id='icon" +x+"' class='fa fa-angle-right'></i>" + '</span>' + '</li><div id="demo'+ x +'" class="collapse" >' + getHtmlTracks(playlists[x], x) + '</div>';
     }
+	innerHtml+='</ul></div>'
 	element.insertAdjacentHTML( 'beforeend', innerHtml );
 }
 
+function arrowToggle(x){
+	var iconel = document.getElementById("icon"+x);
+	if(iconel.className == "fa fa-angle-right"){
+		iconel.className = "fa fa-angle-down";
+	}else{
+		iconel.className = "fa fa-angle-right";
+	}
 
+}
 //generate Ion-list of tracks from a playlist
 function getHtmlTracks(playlist, indexPlaylist) {
     var x;
@@ -102,7 +114,8 @@ function getHtmlTracks(playlist, indexPlaylist) {
             seed = "0c6xIDDpzE81m2q797ordA";
         }
     }
-    return " <ion-content fullscreen><ion-list>" + trackItems + "</ion-list><ion-button href='tune.html?choice=" + playlist + "&token=" + access_token + "&seed=" + seed + "&client=" + client_id + "'" + "onclick='activated(" + '"' + playlist + '"' + ")'>Confirm</ion-button> </ion-content>"
+
+    return " <ion-list>" + trackItems + "</ion-list><ion-button href='tune.html?choice=" + playlist + "&token=" + access_token + "&seed=" + seed + "&client=" + client_id + "'" + "onclick='activated(" + '"' + playlist + '"' + ")'>Confirm</ion-button>"
 }
 
 //API call to spotify from given url
@@ -121,7 +134,7 @@ function getClientId() {
 }
 
 //hide all lists
-generateCollapsibleDivs()
+//generateCollapsibleDivs()
 //generate collapsible divs
 function generateCollapsibleDivs() {
 	//get element
