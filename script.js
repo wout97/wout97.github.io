@@ -102,9 +102,10 @@ function displayPlaylists(playlists) {
 		console.log("done");
 		}
 }
-$('#playlists').on('show.bs.collapse', 'button.collapsible', function(e){
+$('#playlists').on('show.bs.collapse', '*', function(e){
+	console.log('SLIDING!');
 	var selectedDiv = $(this).parent();
-	$('#playlists>div').exclude(selectedDiv).slideUp(500);
+	$('#playlists>div').not(selectedDiv).slideUp(500);
 })
 
 //generate track html for playlist
