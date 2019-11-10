@@ -1,12 +1,7 @@
+//link to our dashboard
+var dashboard = "https://developer.spotify.com/dashboard/applications/059f69ae51c445518b106f91e9ddaf9c"
 
-//Authorization links
-var oAuthUrl="https://accounts.spotify.com/authorize?client_id=059f69ae51c445518b106f91e9ddaf9c&redirect_uri=https://wout97.github.io/index.html&scope=user-read-private%20user-read-emai%20playlist-read-privat%20playlist-read-collaborative&response_type=token&state=123"
-var dash="https://developer.spotify.com/dashboard/applications/059f69ae51c445518b106f91e9ddaf9c"
-var newToken="https://developer.spotify.com/console/get-playlists/?user_id=wizzler&limit=&offset="
-
-
-
-
+//usefull global variables
 var url_string = window.location.href;
 var access_token = url_string.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
 var client_id = getClientId();
@@ -17,72 +12,146 @@ var playlists = getPlaylists();
 displayPlaylists(playlists);
 var playlistResponse;
 
-
-
-
-
-
-
-function search(){
-
-var searchBarValue = document.getElementById("searchBar").value;
-var searchString = "https://api.spotify.com/v1/search?q=" + searchBarValue + "&type=playlist";
-var responseSearch = callSpotifyAPI2(searchString);
-var tracksresponseCopy;
-console.log(responseSearch.playlists);
-playlistResponse = responseSearch.playlists;
-var array5 = [];
-for (x = 0; x < 5; x++) {
-		console.log(responseSearch.playlists.items[x].name);
-		array5.push(responseSearch.playlists.items[x].name);
-	}
-
-console.log(array5);
-displayPlaylists(array5);
-generateCollapsibleDivs()
+//search function calls API and display new information
+function search() {
+	//search
+    var searchBarValue = document.getElementById("searchBar").value;
+    var searchString = "https://api.spotify.com/v1/search?q=" + searchBarValue + "&type=playlist";
+    //call
+	var responseSearch = callSpotifyAPI(searchString);
+    playlistResponse = responseSearch.playlists;
+	//make array rom response
+    var arrayPlaylists = [];
+    for (x = 0; x < 5; x++) {
+        arrayPlaylists.push(responseSearch.playlists.items[x].name);
+    }
+	//display
+    displayPlaylists(arrayPlaylists);
+    generateCollapsibleDivs();
 }
 
 //Get array of user playlists
 function getPlaylists() {
-    var responseAPI = callSpotifyAPI("null");
-	playlistResponse = responseAPI;
-	return getArrayUserPlaylist(responseAPI);
+	//API call
+    playlistResponse = getUsersPlaylists();
+	//make array from response
+	var arrayPlaylist = [];
+	var x;
+    for (x in playlistResponse.items) {
+        arrayPlaylist.push(playlistResponse.items[x].name);
+    }
+    return arrayPlaylist;
 }
 
-function getTracksfromResponse(response2, index){
-	var playlistUrl = response2.items[index].href;
-	var tracksresponse = callSpotifyAPI2(playlistUrl);
-	tracksresponseCopy = tracksresponse;
-	var trackList=[];
-	for (x in tracksresponse.tracks.items){
-		//console.log(tracksresponse.tracks.items[x].track);
-		trackList.push(tracksresponse.tracks.items[x].track.name +" - "+ tracksresponse.tracks.items[x].track.artists[0].name )
-	}
-	return trackList;
+//return tracklist from playlists
+function getTracksfromResponse(response2, index) {
+	//get url of playlist
+    var playlistUrl = response2.items[index].href;
+	//API call to get tracks
+    var tracksresponse = callSpotifyAPI(playlistUrl);
+    tracksresponseCopy = tracksresponse;
+	//make array from response
+    var trackList = [];
+    for (x in tracksresponse.tracks.items) {
+        trackList.push(tracksresponse.tracks.items[x].track.name + " - " + tracksresponse.tracks.items[x].track.artists[0].name)
+    }
+    return trackList;
 }
 
-//Uses own token to get my playlists from spotifyAPI returns JSON response
-function callSpotifyAPI(url){
-	var user_id = client_id;
-	var authToken =access_token;
-	var token1 = "Bearer " + authToken;
-	var playlistUrl = "https://api.spotify.com/v1/users/" + user_id + "/playlists";
-	var response = httpGet(playlistUrl, token1);
-	var playlist_response = JSON.parse(response);
-	return playlist_response;
+//Uses token to get users playlists from spotifyAPI
+function getUsersPlaylists() {
+	//create token and url
+    var token1 = "Bearer " + access_token;
+    var playlistUrl = "https://api.spotify.com/v1/users/" + client_id + "/playlists";
+	//make API call
+    return JSON.parse(httpGet(playlistUrl, token1));
 }
 
-//Make trackPLaylist array from JSON response
-function getArrayUserPlaylist(response){
-	var array = [];
-	for (x in response.items) {
-		console.log(response.items[x].name);
-		array.push(response.items[x].name);
-	}
-	return array;
+//generate html from playlist
+function displayPlaylists(playlists) {
+	//get element
+    document.getElementById("playlists").innerHTML = "";
+	//loop over playlists and generate list of tracks
+    var x;
+    for (x in playlists) {
+<<<<<<< HEAD
+		console.log("new plalist adding...")
+        document.getElementById("playlists").innerHTML += '<div><button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getTracks(playlists[x], x) + '</div></div>'
+		console.log("done");
+		}
+=======
+        document.getElementById("playlists").innerHTML += ' <button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getHtmlTracks(playlists[x], x) + '</div>'
+    }
+>>>>>>> a47534f48b00b246d6badf9c692234f3a287bfb2
+}
+$('#playlists').on('show.bs.collapse', '*', function(e){
+	console.log('SLIDING!');
+	var selectedDiv = $(this).parent();
+	$('#playlists>div').not(selectedDiv).slideUp(500);
+})
+
+//generate Ion-list of tracks from a playlist
+function getHtmlTracks(playlist, indexPlaylist) {
+    var x;
+    var trackItems = "";
+	//get array of all songs and artists
+    var tracks = getTracksfromResponse(playlistResponse, indexPlaylist);
+	//create item for every track of playlist
+    for (x in tracks) {
+        trackItems += "<ion-item><ion-label>" + tracks[x] + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
+    }
+	//get seed for recomdation FOR NOW FIRST SONG IS SEED 
+	//TODO: Change seed!!!
+    var seed;
+    if (tracksresponseCopy.tracks.items[0] != null) {
+        if (tracksresponseCopy.tracks.items[0].track.id != null) {
+            seed = tracksresponseCopy.tracks.items[0].track.id;
+        } else {
+            seed = "0c6xIDDpzE81m2q797ordA";
+        }
+    }
+    return " <ion-content fullscreen><ion-list>" + trackItems + "</ion-list><ion-button href='tune.html?choice=" + playlist + "&token=" + access_token + "&seed=" + seed + "&client=" + client_id + "'" + "onclick='activated(" + '"' + playlist + '"' + ")'>Confirm</ion-button> </ion-content>"
 }
 
-//Simple get request with auth
+//API call to spotify from given url
+function callSpotifyAPI(url) {
+    var authToken1 = access_token;
+    var token2 = "Bearer " + authToken1;
+    var response = httpGet(url, token2);
+    var playlist_response = JSON.parse(response);
+    return playlist_response;
+}
+
+//get client ID from spotify
+function getClientId() {
+    var response = callSpotifyAPI("https://api.spotify.com/v1/me");
+    return response.id;
+}
+
+//hide all lists
+generateCollapsibleDivs()
+//generate collapsible divs
+function generateCollapsibleDivs() {
+	//get element
+    var coll = document.getElementsByClassName("collapsible");
+	//hide all tracks and add function to let it appear back
+    var i;
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            this.classList.toggle("active_collapsible");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                var lengthContent = content.children[0].children[0].children.length
+                content.style.maxHeight = (lengthContent * 54 + 64) + "px";
+            }
+        });
+    }
+}
+
+
+//Simple get request with auth token and given URL
 function httpGet(theUrl, token) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", theUrl, false); // false for synchronous request
@@ -91,79 +160,7 @@ function httpGet(theUrl, token) {
     return xmlHttp.responseText;
 }
 
-
-//generate html
-function displayPlaylists(playlists) {
-    document.getElementById("playlists").innerHTML = "";
-    var x;
-    for (x in playlists) {
-		console.log("new plalist adding...")
-        document.getElementById("playlists").innerHTML += '<div><button class="collapsible">' + playlists[x] + "   " + "<ion-icon name='musical-note'></ion-icon>" + '</button><div class="content" >' + getTracks(playlists[x], x) + '</div></div>'
-		console.log("done");
-		}
-}
-$('#playlists').on('show.bs.collapse', '*', function(e){
-	console.log('SLIDING!');
-	var selectedDiv = $(this).parent();
-	$('#playlists>div').not(selectedDiv).slideUp(500);
-})
-
-//generate track html for playlist
-function getTracks(playlist, index2) {
-    var x;
-    var trackItems = "";
-    //var tracks = ["song 1 :" + playlist, "song 2 :" + playlist, "song 3 :" + playlist, "song 4 : " + playlist, "song 5 :" + playlist, "song 6 :" + playlist];
-    var tracks = getTracksfromResponse(playlistResponse, index2);
-	
-	for (x in tracks) {
-        trackItems += "<ion-item><ion-label>" + tracks[x] + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
-    }
-	var seed;
-	if(tracksresponseCopy.tracks.items[0] !=null){
-		if(tracksresponseCopy.tracks.items[0].track.id != null){
-			seed =tracksresponseCopy.tracks.items[0].track.id;
-		}
-		else{
-		seed ="0c6xIDDpzE81m2q797ordA";
-		}
-	}
-	
-    return " <ion-content fullscreen><ion-list>" + trackItems + "</ion-list><ion-button href='tune.html?choice="+ playlist + "&token="+ access_token +"&seed=" +seed +"&client="+client_id+ "'" + "onclick='activated(" + '"' + playlist + '"' + ")'>Confirm</ion-button> </ion-content>"
-
-}
-
-//Uses own token to get my playlists from spotifyAPI returns JSON response
-function callSpotifyAPI2(url){
-	var authToken1 =access_token;
-	var token2 = "Bearer " + authToken1;
-	var response = httpGet(url, token2);
-	var playlist_response = JSON.parse(response);
-	return playlist_response;
-}
-
-function getClientId(){
-	var response = callSpotifyAPI2("https://api.spotify.com/v1/me");
-	return response.id;
-}
-//generate collapsible divs
-generateCollapsibleDivs()
-function generateCollapsibleDivs(){var coll = document.getElementsByClassName("collapsible");
-console.log("colls");
-var i;
-for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-        this.classList.toggle("active_collapsible");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-        } else {
-			var lengthContent = content.children[0].children[0].children.length
-            content.style.maxHeight = (lengthContent*54 + 64) + "px";
-        }
-    });
-}}
-
-
+//simple alert popup for debugging
 function activated(playlist) {
     alert("You have selected the " + playlist + " playlist")
 }
