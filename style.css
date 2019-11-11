@@ -176,49 +176,6 @@ body {
     }
 
 
-.collapsible {
-    background-color: #777;
-    color: white;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border-style: solid;
-    border-width: 5px;
-    text-align: left;
-    outline: none;
-    font-size: 2rem;
-    border-radius: 5px;
-}
-
-    .active_collapsible, .collapsible:hover {
-        background-color: #555;
-    }
-
-    .collapsible:after {
-        font-family: 'FontAwesome';
-        font-weight: 100;
-        content: "\f105";
-        color: white;
-        font-weight: bold;
-        float: right;
-        margin-left: 5px;
-    }
-
-.active_collapsible:after {
-    font-family: 'FontAwesome';
-    font-weight: 100;
-    content: "\f107";
-}
-
-.content {
-    padding: 0 18px;
-    max-height: 0;
-    overflow: hidden;
-    height: 1000px;
-    transition: max-height 0.2s ease-out;
-    background-color: #f1f1f1;
-}
-
 .icons {
     /* Start the shake animation and make the animation last for 0.5 seconds */
     animation: shake 0.5s;
@@ -356,3 +313,5 @@ body {
 .btn-space {
     margin-left: 10px;
 }
+
+

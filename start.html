@@ -18,7 +18,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
 </head>
@@ -69,7 +72,10 @@
 
                 <!--playlist div will be generated with js -->
                 <small style="padding:10px;"> suggested playlists</small>
-                <div class="playlists" id="playlists"><p>generating</p></div>
+                <div class="card" id="playlists">
+                    <ul class="list-group">
+                    </ul>
+                </div>
 
                 <!-- link to javascript file-->
                 <script src="script.js"></script>
@@ -88,13 +94,5 @@
         </ion-content>
 
 
-</ion-app>
-    <script>
-    </script>
+    </ion-app>
 </body>
-
-<style type="text/css">
-
-
-
-</style>
