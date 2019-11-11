@@ -63,7 +63,7 @@ function displayPlaylists(playlists) {
         playlists.map((playlist, i) => {
             getHtmlTracks(playlist).then((tracks) => {
                 playlistsContainer.append(
-                    `<li style="font-size:2rem" class="list-group-item list-group-item-action list-group-flush" onclick="arrowToggle('${ i }')" data-toggle="collapse"  data-target="#music-list-${ i }" >${ playlist.name }<span class="badge"><i id='icon${ i }' class='fa fa-angle-right'></i></span><div id="music-list-${ i }" class="collapse" >${ tracks }</div></li>`
+                    `<li style="font-size:2rem" class="list-group-item list-group-item-action list-group-flush" ><div style="width:100%;" onclick="arrowToggle('${ i }')" data-toggle="collapse"  data-target="#music-list-${ i }">${ playlist.name }<span class="badge float-right"><i id='icon${ i }' class='fa fa-angle-right'></i></span></div><div id="music-list-${ i }" class="collapse" >${ tracks }</div></li>`
                 );
             });
         })
