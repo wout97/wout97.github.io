@@ -9,6 +9,7 @@ var client_id;
 // Init
 $(() => {
     getClientId().then((id) => {
+        client_id = id;
         getPlaylists().then((playlists) => {
             displayPlaylists(playlists);
         });
@@ -98,12 +99,12 @@ function getHtmlTracks(playlist) {
             trackItems += "<ion-item><ion-label>" + trackString + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
         }
         //get seed for recommendation
-        var seed = tracks.filter((v) => v !== null).slice(0, 5).map((v) => v.id).join();
+        var seed = tracks.filter((v) => v !== null && v.track.id).slice(0, 5).map((v) => v.track.id).join();
         if(seed === ''){
             seed = '0c6xIDDpzE81m2q797ordA';
         }
     
-        return `<ion-list>${ trackItems }</ion-list><ion-button href='tune.html?choice=${ playlist }&token=${ access_token }&seed=${ seed }&client=${  client_id  }' onclick='activated("${ playlist }")'>Confirm</ion-button>`
+        return `<ion-list>${ trackItems }</ion-list><ion-button href='tune.html?choice=${ playlist.name }&token=${ access_token }&seed=${ seed }&client=${  client_id  }' onclick='activated("${ playlist }")'>Confirm</ion-button>`
     });
 }
 
