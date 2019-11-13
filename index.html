@@ -21,13 +21,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+ 
     <!-- We declare an Ionic app using the <ion-app/> element -->
     <ion-app fullscreen>
         <ion-content overflow-scroll="true">
             <div class="container">
                 <img class="custom_center" src="logo.gif"<!-- Horizontal Stepper-->
                 <ion-text text-center>
+                    <label>
+                        <span class="title">Confusing thing here</span>
+
+                        <a class="info" data-toggle="popover" data-placement="right" data-content="This is the helpful information that will appear to help users along their way. They'll love it." title="" data-original-title="Help here">Info</a>
+
+                    </label>
                     <h2>Are you ready to discover new songs?!</h2>
                 </ion-text>
                 <ion-card>
@@ -84,5 +90,19 @@
     var liveUrl = "https://accounts.spotify.com/authorize?client_id=059f69ae51c445518b106f91e9ddaf9c&redirect_uri=https://jeffreyquicken.codes/start.html&scope=user-read-private%20user-read-email%20playlist-read-private%20playlist-modify-public%20playlist-modify-public%20playlist-modify-private%20playlist-read-collaborative&response_type=token&state=123";
     linkel.href=liveUrl;
     }
+
+    $('.info').popover();
+
+
+$(':not(#anything)').on('click', function (e) {
+    $('.info').each(function () {
+        //the 'is' for buttons that trigger popups
+        //the 'has' for icons and other elements within a button that triggers a popup
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            $(this).popover('hide');
+            return;
+        }
+    });
+});
 </script>
 </html>

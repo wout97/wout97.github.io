@@ -23,13 +23,13 @@
 
 
 </head>
-<body>
+<body  >
 
     <!-- We declare an Ionic app using the <ion-app/> element -->
-    <ion-app fullscreen>
-        <ion-content overflow-scroll="true">
+    <ion-app fullscreen >
+        <ion-content overflow-scroll="true" >
             <!-- Cool thing, the Ionic CSS utilities could be used too -->
-            <div class="container">
+            <div class="container" onscroll="myFunction()">
                 <img src="https://lh3.googleusercontent.com/zrHXaAED3EH2LMPfr27jaJTzNLVDFZ_VCbVDh4ETPol6xwDp6io6W-iK7Iup96sNPJBbACbyLcaMqsM42qDsvtYd3sz03-40HO4qTRTEx7BcvUCRcK7RyxBOvl4somx8AUuEW1-OgZxIu8wQEEJh-45-LP8LA3yDurkLSKZpslTfleZwoZtQT8WFrqTTm8jPjyfN3BwO_prSgnDvPZ0mht_O7_af-6jL9IJ6J6osGns0UQrvHIuUOYrHPVphIbw7TQiT86YSC5afMEChjY73nBHwLoWRcusRlZ_TgB24zZ3flns1woHbQLuECnPobcLA1qhCI9VXHs-Y6s17a0uuYI-wdE3EDmoHjBnqxgG0FQ-OV4fiGDqxfR8dIFW7l_SScbmR_5xg4TL2V20YJH40VgoTqeycgREq-pgjc7qeOsyBnka9cCNLyfAhKTET1b-QpWtt0YiQ3CFFJLuFzlgmUQ3_RTzu933ZCcvUG1ZTkuA0mLGMzs380_JL-Zo5weziHUTDBhaQ_NMFKDiVIjk1CCLTbk91lIB1mKwdV5jWGOohrGy1NprFxUKvWaM9MghHloplHFbco-qAlGwRt1NGTtlsQN2lkmEN2CJk9IUwLnUoaJAfWFGifz2eRqutIzGBd2pCbNxftG5yF4qNG5Zl61ZfpQReqd1KngZFhX1qCzNdmnQ-qkCIHXn2ymzNeYyDEfkZ4DLQaYw8I_E9RCmDKB6IlTrkeFH9QHTIxq-A95sZH-QylQ=s500-no" alt="logo spotify recomender" class="custom_center">
 
                 <!-- Horizontal Stepper-->
@@ -66,48 +66,57 @@
                 <ion-list>
                     <!-- all the different sliders-->
                     <!-- slider for instrumentalness-->
-                    <div class="bar bar-header">
+              
+                    <ion-item class="bar bar-header">
 
-                        <ion-item>
 
-                            <h3 class="title">
-                                Instrumentalness
+                        <h3 class="title">
+                            Instrumentalness
+                            <a href="#" data-toggle="tooltip" data-placement="bottom"  data-container="body" title="Information about <b>instrumentalness</b>" ><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                        </h3>
+                 
 
-                            </h3>
-                            <ion-button item-left id="button1" size="small" color="success">Primary</ion-button>
 </ion-item>
 
-</div>
-
                     <ion-item onchange="makeIconShake()">
-                        <ion-range id="first" min="0" max="100" color="secondary" pin="true"></ion-range>
-                        <ion-icon id="firstIcon" size="small" slot="start" name="musical-notes"></ion-icon>
-                        <ion-icon id="firstIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
+                        <ion-range id="first" min="0" max="100" color="secondary" pin="true">
+                            <ion-icon id="firstIcon" size="small" slot="start" name="microphone"></ion-icon>
+                            <ion-icon id="firstIcon2" size="large" slot="end" name="microphone"></ion-icon>
+                        </ion-range>
                     </ion-item>
+                        
                     <!-- slider for accousticness-->
                     <div class="bar bar-header">
                         <ion-item>
 
-                            <h3 class="title">  Accousticness</h3>
-                            <ion-button id="button2" size="small" color="danger">Primary</ion-button>
+                            <h3 class="title">
+                                Accousticness
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Information about <b>accousticness</b>"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                            </h3>
+                            
+                            
                         </ion-item>
                     </div>
                     <ion-item>
-                        <ion-range id="second" min="0" max="100" color="secondary" pin="true"></ion-range>
-                        <ion-icon id="secondIcon" size="small" slot="start" name="microphone"></ion-icon>
-                        <ion-icon id="secondIcon2" size="large" slot="end" name="microphone"></ion-icon>
+                        <ion-range id="second" min="0" max="100" color="secondary" pin="true">
+                            <ion-icon id="secondIcon" size="small" slot="start" name="musical-notes"></ion-icon>
+                            <ion-icon id="secondIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
+                        </ion-range>
                     </ion-item>
                     <!-- slider for energy-->
                     <div class="bar bar-header">
                         <ion-item>
-                            <h3 class="title">  Energy</h3>
-                            <ion-button id="button3" size="small" color="warning">Primary</ion-button>
+                            <h3 class="title">
+                                Energy
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Information about <b>energy</b>"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                            </h3>
                         </ion-item>
                     </div>
                     <ion-item>
-                        <ion-range id="third" min="0" max="100" color="secondary" pin="true"></ion-range>
-                        <ion-icon id="thirdIcon" class="pulse-button" size="small" slot="start" name="speedometer"></ion-icon>
-                        <ion-icon id="thirdIcon2" size="large" slot="end" name="speedometer"></ion-icon>
+                        <ion-range id="third" min="0" max="100" color="secondary" pin="true">
+                            <ion-icon id="thirdIcon" class="pulse-button" size="small" slot="start" name="flash"></ion-icon>
+                            <ion-icon id="thirdIcon2" size="large" slot="end" name="flash"></ion-icon>
+                        </ion-range>
                     </ion-item>
                     <!-- slider for danceablitity-->
                     <div class="bar bar-header">
@@ -115,15 +124,17 @@
 
                             <h3 class="title">
                                 Danceability
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Information about <b>danceability</b>"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
                             </h3>
 
 
                         </ion-item>
                     </div>
                     <ion-item onchange="makeIconShake()">
-                        <ion-range id="fourth" min="0" max="100" color="secondary" pin="true"></ion-range>
-                        <ion-icon id="fourthIcon" size="small" slot="start" name="musical-notes"></ion-icon>
-                        <ion-icon id="fourthIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
+                        <ion-range id="fourth" min="0" max="100" color="secondary" pin="true">
+                            <ion-icon id="fourthIcon" size="small" slot="start" name="musical-note"></ion-icon>
+                            <ion-icon id="fourthIcon2" size="large" slot="end" name="musical-note"></ion-icon>
+                        </ion-range>
                     </ion-item>
                     <!-- slider for mood-->
                     <div class="bar bar-header">
@@ -131,15 +142,18 @@
 
                             <h3 class="title">
                                 Mood
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Information about<b> mood</b>"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+
                             </h3>
 
 
                         </ion-item>
                     </div>
                     <ion-item onchange="makeIconShake()">
-                        <ion-range id="fifth" min="0" max="100" color="secondary" pin="true"></ion-range>
-                        <ion-icon id="fifthIcon" size="small" slot="start" name="musical-notes"></ion-icon>
-                        <ion-icon id="fifthIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
+                        <ion-range id="fifth" min="0" max="100" color="secondary" pin="true">
+                            <ion-icon id="fifthIcon" size="small" slot="start" name="happy"></ion-icon>
+                            <ion-icon id="fifthIcon2" size="large" slot="end" name="happy"></ion-icon>
+                        </ion-range>
                     </ion-item>
                 </ion-list>
 

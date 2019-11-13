@@ -12,6 +12,8 @@ setInterval(makeShake, 50);
 var oldValue1 = document.getElementById("first").value;
 var oldValue2 = document.getElementById("second").value;
 var oldValue3 = document.getElementById("third").value;
+var oldValue4 = document.getElementById("fourth").value;
+var oldValue5 = document.getElementById("fifth").value;
 
 //function to make icon shake if sliders slides, and updates next url
 function makeShake() {
@@ -19,11 +21,15 @@ function makeShake() {
     var newValue1 = document.getElementById("first").value;
     var newValue2 = document.getElementById("second").value;
     var newValue3 = document.getElementById("third").value;
+	var newValue4 = document.getElementById("fourth").value;
+    var newValue5 = document.getElementById("fifth").value;
 
 	//check for every slider if value has been changed
     if (newValue1 != oldValue1) {
+	 $('[data-toggle="tooltip"]').tooltip("hide");
 
         if (newValue1 < oldValue1) {
+
             var el = document.getElementById("firstIcon");
             el.className = "md icon-small hydrated icons";
         } else {
@@ -31,17 +37,14 @@ function makeShake() {
             el2.className = "md icon-large hydrated icons";
         }
         oldValue1 = newValue1;
-        var el = document.getElementById("button1");
-        el.innerHTML = oldValue1;
     } else {
         var el = document.getElementById("firstIcon");
         el.className = "md icon-small hydrated"
         var el2 = document.getElementById("firstIcon2");
         el2.className = "md icon-large hydrated";
     }
-
-
     if (newValue2 != oldValue2) {
+	 $('[data-toggle="tooltip"]').tooltip("hide");
         if (newValue2 < oldValue2) {
             var el = document.getElementById("secondIcon");
             el.className = "md icon-small hydrated icons";
@@ -49,11 +52,7 @@ function makeShake() {
             var el2 = document.getElementById("secondIcon2");
             el2.className = "md icon-large hydrated icons";
         }
-
-
         oldValue2 = newValue2;
-        var el = document.getElementById("button2");
-        el.innerHTML = oldValue2;
     } else {
         var el = document.getElementById("secondIcon");
         el.className = "md icon-small hydrated"
@@ -62,6 +61,7 @@ function makeShake() {
     }
 
     if (newValue3 != oldValue3) {
+	 $('[data-toggle="tooltip"]').tooltip("hide");
         if (newValue3 < oldValue3) {
             var el = document.getElementById("thirdIcon");
             el.className = "md icon-small hydrated icons";
@@ -70,16 +70,46 @@ function makeShake() {
             el2.className = "md icon-large hydrated icons";
         }
         oldValue3 = newValue3;
-
-
-        var el = document.getElementById("button3");
-        el.innerHTML = oldValue3;
     } else {
         var el = document.getElementById("thirdIcon");
         el.className = "md icon-small hydrated"
         var el2 = document.getElementById("thirdIcon2");
         el2.className = "md icon-large hydrated";
     }
+	 if (newValue4 != oldValue4) {
+	  $('[data-toggle="tooltip"]').tooltip("hide");
+        if (newValue4 < oldValue4) {
+            var el = document.getElementById("fourthIcon");
+            el.className = "md icon-small hydrated icons";
+        } else {
+            var el2 = document.getElementById("fourthIcon2");
+            el2.className = "md icon-large hydrated icons";
+        }
+        oldValue4 = newValue4;
+    } else {
+        var el = document.getElementById("fourthIcon");
+        el.className = "md icon-small hydrated"
+        var el2 = document.getElementById("fourthIcon2");
+        el2.className = "md icon-large hydrated";
+    }
+		 if (newValue5 != oldValue5) {
+		 $('[data-toggle="tooltip"]').tooltip("hide");
+		 console.log('test');
+        if (newValue5 < oldValue5) {
+            var el = document.getElementById("fifthIcon");
+            el.className = "md icon-small hydrated icons";
+        } else {
+            var el2 = document.getElementById("fifthIcon2");
+            el2.className = "md icon-large hydrated icons";
+        }
+        oldValue5 = newValue5;
+    } else {
+        var el = document.getElementById("fifthIcon");
+        el.className = "md icon-small hydrated"
+        var el2 = document.getElementById("fifthIcon2");
+        el2.className = "md icon-large hydrated";
+    }
+	
 	//update url button
     activated();
 }
@@ -95,3 +125,17 @@ function activated() {
 }
 
 function makeIconShake() {}
+
+
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip({
+   html: "true"
+  });  
+});
+
+document.body.onscroll = function() {
+   console.log("Scrolling");
+}
+
+
+//$('[data-toggle="tooltip"]').tooltip();
