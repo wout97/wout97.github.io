@@ -31,6 +31,14 @@ function getTracks(response) {
 	for (x in response) {
 		//make an extra call to get preview url
 		var res =callSpotifyAPI2(response[x].href);
+		console.log(res);
+		var song_id = res.id;
+		var res2 =callSpotifyAPI2("https://api.spotify.com/v1/audio-features/"+ song_id);
+		console.log(res2);
+		var dancea = res2.danceability;
+		var accou = res2.acousticness;
+		var energya = res2.energy;
+		
 		playlistArray.push( res.preview_url);
 		//add track URI to list, to be able to store it later in a playlist
 		uris2.push(response[x].uri.toString());
@@ -39,7 +47,7 @@ function getTracks(response) {
 		if (res.preview_url != null){
 			disabled = "<button color='green' onclick='playAudio(" + x + ")' class='btn bg-success '><i class='fa fa-play'></i></button>";
 		}
-        trackItems += "<ion-item id="+ x+ " ><ion-label>" + response[x].name +" - "+ response[x].artists[0].name + " </ion-label> "+ disabled+" <button color='danger' onclick='deleteAudio(" + x + ")' class='btn btn-space bg-danger'><i class='fa fa-trash'></i></button> </ion-item>";
+        trackItems +='<div id='+ x+ ' ><div cla ss="container center"><i class="fas fa-guitar"></i> = '+ Math.round(accou*100) + '% <i class="fas fa-music"></i> = ' +  Math.round(dancea*100) +'%<i class="fas fa-bolt"></i> = '+Math.round(energya*100)+ "%</div><ion-item ><ion-label>" + response[x].name +" - "+ response[x].artists[0].name + " </ion-label> "+ disabled+" <button color='danger' onclick='deleteAudio(" + x + ")' class='btn btn-space bg-danger'><i class='fa fa-trash'></i></button>"+ " </ion-item></div>";
 		
    }
    //store uris globally
