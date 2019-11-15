@@ -68,10 +68,13 @@
                 <div class="example" style="margin:auto;max-width:300px">
                     <input id="searchBar" type="text" placeholder="Search.." name="search2">
                     <button onclick="search()" type="submit"><i class="fa fa-search"></i></button>
+                   
                 </div>
 
-                <!--playlist div will be generated with js -->
-                <small style="padding:10px;"> suggested playlists</small>
+                <!--playlist div will be generated with js 
+                <small style="padding:10px;"> suggested playlists</small>-->
+
+               <div hidden id="refresh" class="refresh"> Get your own playlists back <button onclick="reset()" type="submit"><i class="fa fa-refresh"></i></button></div>
                 <div class="card" id="playlists">
                     <ul class="list-group">
                     </ul>

@@ -6,6 +6,15 @@ var url_string = window.location.href;
 var access_token = url_string.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
 var client_id;
 
+function reset(){
+    getClientId().then((id) => {
+        client_id = id;
+        getPlaylists().then((playlists) => {
+            displayPlaylists(playlists);
+        });
+    });
+    document.getElementById("refresh").hidden = true;
+}
 // Init
 $(() => {
     getClientId().then((id) => {
@@ -27,6 +36,7 @@ function search() {
         //display
         displayPlaylists(playlistResponse);
     });
+    document.getElementById("refresh").hidden = false;
 }
 
 //return tracklist from playlists
