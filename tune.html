@@ -36,9 +36,9 @@
 
                 <div class="md-stepper-horizontal orange">
                     <div class="md-step done">
-                        <div class="md-step-circle"><span><a href=" start.html">1</a></span></div>
+                        <div class="md-step-circle"><span><a id="link">1</a></span></div>
                         <div class="md-step-title"></div>
-                        <div class="md-step-optional"><a href=" start.html">Pick</a></div>
+                        <div class="md-step-optional"><a id="link2">Pick</a></div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="md-step active ">
                         <div class="md-step-circle"><span>2</span></div>
                         <div class="md-step-title"></div>
-                        <div class="md-step-optional"><a href=" tune.html">Tune</a></div>
+                        <div class="md-step-optional"><a href="">Tune</a></div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                     </div>
@@ -62,6 +62,7 @@
                 </div>
                 <ion-text text-center>
                     <h2>Tune the parameters like you want them.</h2>
+                    <div id="refresh" class="refresh"> Get the original values back <button onclick="reset()" type="submit"><i class="fa fa-refresh"></i></button></div>
                 </ion-text>
                 <ion-list>
                     <!-- all the different sliders-->

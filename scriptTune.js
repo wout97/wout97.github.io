@@ -5,6 +5,12 @@ var seed = url.searchParams.get("seed");
 var token = url.searchParams.get("token");
 var client = url.searchParams.get("client");
 
+document.getElementById("link").href = "start.html#access_token="+ token +"&token_type=Bearer&expires_in=3600&state=123";
+document.getElementById("link2").href = "start.html#access_token="+ token +"&token_type=Bearer&expires_in=3600&state=123";
+getDefaultValues()
+
+
+
 //Check if sliders are changed
 setInterval(makeShake, 50);
 
@@ -15,6 +21,21 @@ var oldValue3 = document.getElementById("third").value;
 var oldValue4 = document.getElementById("fourth").value;
 var oldValue5 = document.getElementById("fifth").value;
 
+//global slider values
+var ogValue1 = oldValue1;
+var ogValue2 = oldValue2;
+var ogValue3 = oldValue3;
+var ogValue4 = oldValue4;
+var ogValue5 =oldValue5;
+
+function reset(){
+     document.getElementById("first").value= ogValue1;
+    document.getElementById("second").value =ogValue2;
+    document.getElementById("third").value =ogValue3;
+     document.getElementById("fourth").value =ogValue4;
+    document.getElementById("fifth").value =ogValue5;
+
+}
 //function to make icon shake if sliders slides, and updates next url
 function makeShake() {
 	//first get updated values
@@ -139,3 +160,42 @@ document.body.onscroll = function() {
 
 
 //$('[data-toggle="tooltip"]').tooltip();
+function getDefaultValues(){
+//"https://api.spotify.com/v1/audio-features/"
+var seeds =seed;
+var seedsSplitted = seeds.split(",");
+var instru = 0;
+var dancea = 0;
+var accou = 0;
+var energya = 0;
+for (x in seedsSplitted){
+    var urlfeatures = "https://api.spotify.com/v1/audio-features/" + seedsSplitted[x]
+    var responsefeat =callSpotifyAPI2(urlfeatures);
+    instru += responsefeat.instrumentalness;
+    dancea += responsefeat.danceability;
+    accou += responsefeat.acousticness;
+    energya += responsefeat.energy;
+}
+document.getElementById("first").value = instru*100/seedsSplitted.length;
+document.getElementById("second").value = accou*100/seedsSplitted.length;
+document.getElementById("third").value =energya*100/seedsSplitted.length;
+document.getElementById("fourth").value = dancea*100/seedsSplitted.length;
+document.getElementById("fifth").value=50;
+
+}
+
+
+function callSpotifyAPI2(url){
+	var token2 = "Bearer " + token;
+	var response = httpGet(url, token2);
+	var playlist_response = JSON.parse(response);
+	return playlist_response;
+}
+//Simple get request with auth
+function httpGet(theUrl, token) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", theUrl, false); // false for synchronous request
+    xmlHttp.setRequestHeader('Authorization', token);
+    xmlHttp.send();
+    return xmlHttp.responseText;
+}
