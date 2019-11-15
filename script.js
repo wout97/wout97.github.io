@@ -104,7 +104,7 @@ function getHtmlTracks(playlist) {
             seed = '0c6xIDDpzE81m2q797ordA';
         }
     
-        return `<ion-list>${ trackItems }</ion-list><ion-button href='tune.html?choice=${ playlist.name }&token=${ access_token }&seed=${ seed }&client=${  client_id  }' onclick='activated("${ playlist }")'>Confirm</ion-button>`
+        return `<ion-list>${ trackItems }</ion-list><ion-button href='tune.html?choice=${ playlist.name }&token=${ access_token }&seed=${ seed }&client=${  client_id  }' >Confirm</ion-button>`
     });
 }
 
@@ -124,7 +124,3 @@ function getClientId() {
     return callSpotifyAPI("https://api.spotify.com/v1/me", true).then((data) => data.id);
 }
 
-//simple alert popup for debugging
-function activated(playlist) {
-    alert("You have selected the " + playlist + " playlist")
-}
