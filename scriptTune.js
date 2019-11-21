@@ -1,13 +1,16 @@
+import Cookies from 'js-cookie'
+
 //fetch parameters from URL
 var url_string = window.location.href;
 var url = new URL(url_string);
 var seed = url.searchParams.get("seed");
 var token = url.searchParams.get("token");
 var client = url.searchParams.get("client");
+var songIDs = Cookies.get('selectedSongs');
 
 document.getElementById("link").href = "start.html#access_token="+ token +"&token_type=Bearer&expires_in=3600&state=123";
 document.getElementById("link2").href = "start.html#access_token="+ token +"&token_type=Bearer&expires_in=3600&state=123";
-getDefaultValues()
+getDefaultValues();
 
 
 
@@ -152,6 +155,7 @@ $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip({
    html: "true"
   });  
+  Console.log("song IDs: " + songIDs);
 });
 
 document.body.onscroll = function() {
@@ -161,27 +165,27 @@ document.body.onscroll = function() {
 
 //$('[data-toggle="tooltip"]').tooltip();
 function getDefaultValues(){
-//"https://api.spotify.com/v1/audio-features/"
-var seeds =seed;
-var seedsSplitted = seeds.split(",");
-var instru = 0;
-var dancea = 0;
-var accou = 0;
-var energya = 0;
-for (x in seedsSplitted){
-    var urlfeatures = "https://api.spotify.com/v1/audio-features/" + seedsSplitted[x]
-    var responsefeat =callSpotifyAPI2(urlfeatures);
-    instru += responsefeat.instrumentalness;
-    dancea += responsefeat.danceability;
-    accou += responsefeat.acousticness;
-    energya += responsefeat.energy;
-}
-document.getElementById("first").value = instru*100/seedsSplitted.length;
-document.getElementById("second").value = accou*100/seedsSplitted.length;
-document.getElementById("third").value =energya*100/seedsSplitted.length;
-document.getElementById("fourth").value = dancea*100/seedsSplitted.length;
-document.getElementById("fifth").value=50;
-
+    //"https://api.spotify.com/v1/audio-features/"
+    var seeds =seed;
+    Console.log("song IDs: " + songIDs);
+    var seedsSplitted = seeds.split(",");
+    var instru = 0;
+    var dancea = 0;
+    var accou = 0;
+    var energya = 0;
+    for (x in seedsSplitted){
+        var urlfeatures = "https://api.spotify.com/v1/audio-features/" + seeds;
+        var responsefeat =callSpotifyAPI2(urlfeatures);
+        instru += responsefeat.instrumentalness;
+        dancea += responsefeat.danceability;
+        accou += responsefeat.acousticness;
+        energya += responsefeat.energy;
+    }
+    document.getElementById("first").value = instru*100/seedsSplitted.length;
+    document.getElementById("second").value = accou*100/seedsSplitted.length;
+    document.getElementById("third").value =energya*100/seedsSplitted.length;
+    document.getElementById("fourth").value = dancea*100/seedsSplitted.length;
+    document.getElementById("fifth").value=50;
 }
 
 
@@ -193,6 +197,7 @@ function callSpotifyAPI2(url){
 }
 //Simple get request with auth
 function httpGet(theUrl, token) {
+    Console.log("song IDs: " + songIDs);
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", theUrl, false); // false for synchronous request
     xmlHttp.setRequestHeader('Authorization', token);

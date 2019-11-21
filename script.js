@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 //link to our dashboard
 var dashboard = "https://developer.spotify.com/dashboard/applications/059f69ae51c445518b106f91e9ddaf9c"
 
@@ -110,6 +111,11 @@ function getHtmlTracks(playlist) {
         }
         //get seed for recommendation
         var seed = tracks.filter((v) => v !== null && v.track.id).slice(0, 5).map((v) => v.track.id).join();
+        // save selected songs as cookies
+        // First create a string of all the selected song ID's
+        var songIDs = tracks.filter((v) => v != null && v.track.id).map(v => v.track.id).join(',');
+        Cookies.set('selectedSongs', songIDs);
+        console.log("set cookie selectedSongs: " + songIDs);
         if(seed === ''){
             seed = '0c6xIDDpzE81m2q797ordA';
         }
