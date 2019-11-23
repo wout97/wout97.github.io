@@ -115,7 +115,7 @@ function getHtmlTracks(playlist) {
             seed = '0c6xIDDpzE81m2q797ordA';
         }
     
-        return `<ion-list>${ trackItems }</ion-list><ion-button href='tune.html?choice=${ playlist.name }&token=${ access_token }&seed=${ seed }&client=${  client_id  }' >Confirm</ion-button>`
+        return `<ion-list>${ trackItems }</ion-list><ion-button href='tune.html?choice=${ playlist.id }&token=${ access_token }&seed=${ seed }&client=${  client_id  }' >Confirm</ion-button>`
     });
 }
 

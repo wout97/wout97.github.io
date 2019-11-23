@@ -3,6 +3,7 @@
 var url_string = window.location.href;
 var url = new URL(url_string);
 var token = url.searchParams.get("token");
+var playlistID = url.searchParams.get("choice");
 var accou = url.searchParams.get("ac");
 var dance = url.searchParams.get("da");
 var energy = url.searchParams.get("en");
@@ -135,9 +136,18 @@ function saveSongs(){
 	
 	//create new playlist
 	var id = callSpotifyAPIpost(urlPost, dataPlaylist).id;
+	saveSongs(pID);
+}
+
+function addToSelectedPlaylist(){
+	saveSongs(playlistID);
+}
+
+//create playlist and save songs to it
+function saveSongs(pID){
 	//create data for nex call
 	var uriString = "[";
-	var addTracksUrl = "https://api.spotify.com/v1/playlists/" + id + "/tracks";
+	var addTracksUrl = "https://api.spotify.com/v1/playlists/" + pID + "/tracks";
 	for(x in uris){
 		if(x == 0){
 		uriString +='"' + uris[x] + '"';
