@@ -31,7 +31,7 @@ function getTracks(response) {
 	for (x in response) {
 		//make an extra call to get preview url
 		var res =callSpotifyAPI2(response[x].href);
-		console.log(res);
+		//console.log(res);
 		var song_id = res.id;
 		var res2 =callSpotifyAPI2("https://api.spotify.com/v1/audio-features/"+ song_id);
 		console.log(res2);
@@ -125,10 +125,14 @@ document.getElementById(z+"1000").remove();
 //create playlist and save songs to it
 function saveSongs(){
 	//create all data for Post call
-	var name = "cool hci created playlist" + Math.random();
+	var playlistName = document.getElementById("playlistName").value;
+	var name = playlistName;// + Math.random();
 	var description = "created with spotify recomender!";
 	var dataPlaylist = "{\"name\":\""+ name +"\",\"description\":\""+ description +"\",\"public\":false}";
 	var urlPost = "https://api.spotify.com/v1/users/" + client +"/playlists";
+	
+	console.log(playlistName);
+	
 	//create new playlist
 	var id = callSpotifyAPIpost(urlPost, dataPlaylist).id;
 	//create data for nex call

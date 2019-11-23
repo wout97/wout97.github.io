@@ -40,10 +40,16 @@
                     Your browser does not support the audio element.
                 </audio>
                 <!-- div will be generated in js-->
-                <div class="playlists2" id="playlists2">
-
+                <ion-item>
+                    <ion-label><b>Playlist name:</b></ion-label>
+                    <ion-input id="playlistName" clear-input value="Cool HCI playlist"></ion-input>
+                  </ion-item>
+                <div class="playlists2" id="playlists2">  
+                      
                 </div>
                 <!-- button to save the songs to new playlist-->
+                
+                
                 <ion-button onclick="saveSongs()">Save songs to new playlist</ion-button>
                 <!-- button to start over-->
                 <ion-button href="feedback.html">Start over</ion-button>

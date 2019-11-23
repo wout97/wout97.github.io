@@ -1,12 +1,9 @@
-//import Cookies from 'js-cookie'
-
 //fetch parameters from URL
 var url_string = window.location.href;
 var url = new URL(url_string);
 var seed = url.searchParams.get("seed");
 var token = url.searchParams.get("token");
 var client = url.searchParams.get("client");
-//var songIDs = Cookies.get('selectedSongs');
 var songIDs = "testIDS"
 
 document.getElementById("link").href = "start.html#access_token="+ token +"&token_type=Bearer&expires_in=3600&state=123";
@@ -156,7 +153,6 @@ $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip({
    html: "true"
   });  
-  console.log("song IDs: " + songIDs);
 });
 
 document.body.onscroll = function() {
@@ -168,7 +164,6 @@ document.body.onscroll = function() {
 function getDefaultValues(){
     //"https://api.spotify.com/v1/audio-features/"
     var seeds =seed;
-    console.log("song IDs: " + songIDs);
     var seedsSplitted = seeds.split(",");
     var instru = 0;
     var dancea = 0;
@@ -198,7 +193,6 @@ function callSpotifyAPI2(url){
 }
 //Simple get request with auth
 function httpGet(theUrl, token) {
-    console.log("song IDs: " + songIDs);
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", theUrl, false); // false for synchronous request
     xmlHttp.setRequestHeader('Authorization', token);
