@@ -11,6 +11,8 @@ var client = url.searchParams.get("client");
 var instrumental = url.searchParams.get("in");
 var mood = url.searchParams.get("mo");
 var songs = url.searchParams.get("seed");
+//RANDOM NUMBER FOR GROUP A OR B
+var GroupAOrB = Math.floor(Math.random() * 2);
 
 //make a spotify call for recomendations with url parameters
 var requetsUrl= "https://api.spotify.com/v1/recommendations?seed_tracks=" + songs + "&target_acousticness="+ accou/100 +"&target_danceability=" + dance/100 + "&target_energy=" + energy/100 + "&target_instrumentalness="+ instrumental/100;
@@ -28,27 +30,38 @@ function getTracks(response) {
     var trackItems = "";
 	var uris2 =[];
 	var playlistArray = [];
+	var popularityArray = [];
 	//iterate over every song
 	for (x in response) {
 		//make an extra call to get preview url
 		var res =callSpotifyAPI2(response[x].href);
 		//console.log(res);
+		var popularity = res.popularity;
+		popularityArray.push(res);}
+	//SORT ON POPULARITY in GROUP A
+
+	if(GroupAOrB == 1){
+	popularityArray.sort(function(a, b){return b.popularity - a.popularity});
+
+}
+	
+	
+	for (x in popularityArray){
+		var res = popularityArray[x]
 		var song_id = res.id;
 		var res2 =callSpotifyAPI2("https://api.spotify.com/v1/audio-features/"+ song_id);
-		console.log(res2);
 		var dancea = res2.danceability;
 		var accou = res2.acousticness;
 		var energya = res2.energy;
-		
 		playlistArray.push( res.preview_url);
 		//add track URI to list, to be able to store it later in a playlist
-		uris2.push(response[x].uri.toString());
+		uris2.push(res.uri.toString());
 		//check if there is a preview url, if there is add a playbutton
 		var disabled = "";
 		if (res.preview_url != null){
 			disabled = "<button color='green' onclick='playAudio(" + x + ")' class='btn bg-success '><i class='fa fa-play'></i></button>";
 		}
-        trackItems +='<div id='+ x+1000+ ' ><div cla ss="container center"><i class="fas fa-guitar"></i> = '+ Math.round(accou*100) + '% <i class="fas fa-music"></i> = ' +  Math.round(dancea*100) +'%<i class="fas fa-bolt"></i> = '+Math.round(energya*100)+ "%</div><ion-item id="+ x+ "><ion-label>" + response[x].name +" - "+ response[x].artists[0].name + " </ion-label> "+ disabled+" <button color='danger' onclick='deleteAudio(" + x + ")' class='btn btn-space bg-danger'><i class='fa fa-trash'></i></button>"+ " </ion-item></div>";
+        trackItems +='<div id='+ x+1000+ ' ><div cla ss="container center"><i class="fas fa-guitar"></i> = '+ Math.round(accou*100) + '% <i class="fas fa-music"></i> = ' +  Math.round(dancea*100) +'%<i class="fas fa-bolt"></i> = '+Math.round(energya*100)+ "%</div><ion-item id="+ x+ "><ion-label>" + res.name +" - "+ res.artists[0].name + " </ion-label> "+ disabled+" <button color='danger' onclick='deleteAudio(" + x + ")' class='btn btn-space bg-danger'><i class='fa fa-trash'></i></button>"+ " </ion-item></div>";
 		
    }
    //store uris globally
@@ -162,6 +175,5 @@ function saveSongs(pID){
 	//call spotify to add songs (uris) to previously created playlist
 	callSpotifyAPIpost(addTracksUrl, uriData);
 	alert('A new playlist is added to your spotify! :) ');
-	window.location.href = "feedback.html";
-
+	window.location.href = "feedback.html" + "?group="+GroupAOrB;
 }
