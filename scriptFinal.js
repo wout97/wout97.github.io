@@ -124,7 +124,7 @@ document.getElementById(z+"1000").remove();
 }
 
 //create playlist and save songs to it
-function saveSongs(){
+function saveSongsToNewPlaylist(){
 	//create all data for Post call
 	var playlistName = document.getElementById("playlistName").value;
 	var name = playlistName;// + Math.random();
@@ -136,7 +136,7 @@ function saveSongs(){
 	
 	//create new playlist
 	var id = callSpotifyAPIpost(urlPost, dataPlaylist).id;
-	saveSongs(pID);
+	saveSongs(id);
 }
 
 function addToSelectedPlaylist(){
@@ -145,6 +145,7 @@ function addToSelectedPlaylist(){
 
 //create playlist and save songs to it
 function saveSongs(pID){
+
 	//create data for nex call
 	var uriString = "[";
 	var addTracksUrl = "https://api.spotify.com/v1/playlists/" + pID + "/tracks";
