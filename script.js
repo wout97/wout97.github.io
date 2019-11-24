@@ -4,49 +4,71 @@ var dashboard = "https://developer.spotify.com/dashboard/applications/059f69ae51
 
 //usefull global variables
 var url_string = window.location.href;
-var access_token = url_string.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1];
+var access_token = url_string.match(/access_token\=([\w-]*)/)[1];
 var client_id;
 
 function reset(){
     getClientId().then((id) => {
         client_id = id;
         getPlaylists().then((playlists) => {
-            displayPlaylists(playlists);
+            displayPlaylists(playlists, "");
         });
     });
-    document.getElementById("refresh").hidden = true;
+    $("#your-playlists-label").css('visibility', 'visible');;
 }
 // Init
 $(() => {
+    $(document).on("click", "button.searchbar-clear-button", () => {$("#searchBar").val("");search();});
+
+    $('#playlists').on('show.bs.collapse', '[id^="music-list"]', function(e){
+        const selectedList = $(e.target).closest('li');
+        $('#playlists li').not(selectedList).slideUp(800);
+    });
+    $('#playlists').on('hide.bs.collapse', '[id^="music-list"]', function(e){
+        const selectedList = $(e.target).closest('li');
+        $('#playlists li').not(selectedList).slideDown(500);
+    });
+
     getClientId().then((id) => {
         client_id = id;
         getPlaylists().then((playlists) => {
-            displayPlaylists(playlists);
+            displayPlaylists(playlists, "");
         });
     });
 });
 
 //search function calls API and display new information
+var lastQuery = "";
 function search() {
 	//search
     var searchBarValue = $("#searchBar").val();
-    var searchString = "https://api.spotify.com/v1/search?q=" + searchBarValue + "&type=playlist";
+    if(searchBarValue == "") {
+        if(lastQuery != ""){
+            reset();
+            lastQuery = "";
+        }
+        return;
+    }
+    var searchString = "https://api.spotify.com/v1/search?q=" + searchBarValue + "&type=playlist&limit=10&market=from_token";
     //call
+    lastQuery = searchBarValue;
 	callSpotifyAPI(searchString).then((responseSearch) => {
-        var playlistResponse = responseSearch.playlists.items;
-        //display
-        displayPlaylists(playlistResponse);
+        if(searchBarValue == lastQuery) {
+            var playlistResponse = responseSearch.playlists.items;
+            //display
+            displayPlaylists(playlistResponse, searchBarValue);
+        }
     });
-    document.getElementById("refresh").hidden = false;
+    $("#your-playlists-label").css('visibility', 'hidden');;
 }
 
 //return tracklist from playlists
-function getTracksfromResponse(playlist) {
+function getTracksfromPlaylist(playlist) {
 	//get url of playlist
     var playlistUrl = playlist.href;
     //API call to get tracks
     return callSpotifyAPI(playlistUrl).then((tracksresponse) => {
-        return tracksresponse.tracks.items;
+        return tracksresponse.tracks.items.filter((trackData) => trackData.track);
     });
 }
 
@@ -64,59 +86,70 @@ function getPlaylists() {
 }
 
 //generate html from playlist
-function displayPlaylists(playlists) {
+function displayPlaylists(playlists, queryString) {
     //get element
     var playlistsContainer = $('#playlists ul');
     playlistsContainer.empty();
 
 	//loop over playlists and generate list of tracks
-    Promise.all(
+    return Promise.all(
         playlists.map((playlist, i) => {
-            getHtmlTracks(playlist).then((tracks) => {
-                playlistsContainer.append(
-                    `<li style="font-size:2rem" class="list-group-item list-group-item-action list-group-flush" ><div style="width:100%;" onclick="arrowToggle('${ i }')" data-toggle="collapse"  data-target="#music-list-${ i }">${ playlist.name }<span class="badge float-right"><i id='icon${ i }' class='fa fa-angle-right'></i></span></div><div id="music-list-${ i }" class="collapse" >${ tracks }</div></li>`
-                );
+            getTracksfromPlaylist(playlist).then((tracks) => {
+                if(lastQuery == queryString) {
+                    var htmlTracks = getHtmlTracks(tracks);
+                    var seed = getSeed(tracks);
+                    playlistsContainer.append(
+`<li style="font-size:2rem" class="list-group-item list-group-item-action list-group-flush" >
+    <div style="width:100%;" onclick="arrowToggle('${ i }')" data-toggle="collapse" data-target="#music-list-${ i }">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="col-5">${ playlist.name }</h4>
+            <span class="badge col-2">
+                <i id='icon${ i }' class='fa fa-angle-down'></i>
+            </span>
+            <div class="col-5">
+                <ion-button class="float-right" href='tune.html?choice=${ playlist.id }&token=${ access_token }&seed=${ seed }&client=${  client_id  }' >Confirm</ion-button>
+            </div>
+        </div>
+    </div>
+    <div id="music-list-${ i }" style="max-height:300px;overflow:auto;" class="collapse" >
+        ${ htmlTracks }
+    </div>
+</li>`
+                    );
+                }
             });
         })
-    ).then(() => {
-        // hide other playlists when selecting a playlist
-        $('#playlists').on('show.bs.collapse', '[id^="music-list"]', function(e){
-            const selectedList = $(e.target).closest('li');
-            $('#playlists li').not(selectedList).slideUp(500);
-        });
-        $('#playlists').on('hide.bs.collapse', '[id^="music-list"]', function(e){
-            const selectedList = $(e.target).closest('li');
-            $('#playlists li').not(selectedList).slideDown(500);
-        });
-    });
+    );
 }
 
 function arrowToggle(x){
 	var iconel = document.getElementById("icon"+x);
-	if(iconel.className == "fa fa-angle-right"){
-		iconel.className = "fa fa-angle-down";
+	if(iconel.className == "fa fa-angle-down"){
+		iconel.className = "fa fa-angle-up";
 	}else{
-		iconel.className = "fa fa-angle-right";
+		iconel.className = "fa fa-angle-down";
 	}
 
 }
-//generate Ion-list of tracks from a playlist
-function getHtmlTracks(playlist) {
-	//get array of all songs and artists
-    return getTracksfromResponse(playlist).then((tracks) => {
-        var trackItems = "";
-        for (const i in tracks) {
-            const trackString = tracks[i].track.name + " - " + tracks[i].track.artists[0].name;
-            trackItems += "<ion-item><ion-label>" + trackString + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
-        }
-        //get seed for recommendation
-        var seed = tracks.filter((v) => v !== null && v.track.id).slice(0, 5).map((v) => v.track.id).join();
-        if(seed === ''){
-            seed = '0c6xIDDpzE81m2q797ordA';
-        }
-    
-        return `<ion-list>${ trackItems }</ion-list><ion-button href='tune.html?choice=${ playlist.id }&token=${ access_token }&seed=${ seed }&client=${  client_id  }' >Confirm</ion-button>`
-    });
+//generate Ion-list from tracks
+function getHtmlTracks(tracks) {
+    var trackItems = "";
+    for (const i in tracks) {
+        const trackString = tracks[i].track.name + " - " + tracks[i].track.artists[0].name;
+        trackItems += "<ion-item><ion-label>" + trackString + " </ion-label>  <ion-checkbox slot='end' value='pepperoni' checked></ion-checkbox>  </ion-item>"
+    }
+    return `<ion-list>${ trackItems }</ion-list>`;
+}
+function getSeed(tracks) {
+    var seed = tracks
+        .filter((v) => v !== null && v.track.id)
+        .slice(0, 5)
+        .map((v) => v.track.id)
+        .join();
+    if(seed === ''){
+        seed = '0c6xIDDpzE81m2q797ordA';
+    }
+    return seed;
 }
 
 //API call to spotify from given url

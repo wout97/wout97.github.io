@@ -2,26 +2,21 @@
 <html>
 <head>
     <title>Spotify Recomender app</title>
-</html> <!-- Import the Ionic CSS -->
-<link href="https://unpkg.com/@ionic/core@latest/css/ionic.bundle.css" rel="stylesheet">
-<!-- Import Ionic -->
-<script src="https://unpkg.com/@ionic/core@latest/dist/ionic.js"></script>
-<!-- Import the Ionic icons -->
-<script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
-<!-- Import the fontawesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Import custom css -->
-<link rel="stylesheet" href="style.css">
-<!-- Import custom js -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Import Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+    <!-- Import the fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Import custom css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Import custom js -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
 </head>
@@ -61,20 +56,18 @@
                 </div>
 
                 <ion-text text-center>
-                    <h2>Pick the playlist you like:</h2>
+                    <h3>Pick a playlist</h3>
+                    <h5 class="text-muted"><small>to use as a base for new recommendations</small></h5>
                 </ion-text>
 
                 <!-- Searchbar with cancel button always shown -->
-                <div class="example" style="margin:auto;max-width:300px">
-                    <input id="searchBar" type="text" placeholder="Search.." name="search2">
-                    <button onclick="search()" type="submit"><i class="fa fa-search"></i></button>
-                   
+                <div class="example" style="margin:auto;max-width:350px">
+                    <ion-searchbar id="searchBar" oninput="search()" placeholder="Search playlists on Spotify"></ion-searchbar>
                 </div>
 
-                <!--playlist div will be generated with js 
-                <small style="padding:10px;"> suggested playlists</small>-->
+                <!--playlist div will be generated with js -->
+                <small id="your-playlists-label" style="padding:10px;"> Your playlists</small>
 
-               <div hidden id="refresh" class="refresh"> Get your own playlists back <button onclick="reset()" type="submit"><i class="fa fa-refresh"></i></button></div>
                 <div class="card" id="playlists">
                     <ul class="list-group">
                     </ul>
@@ -99,3 +92,4 @@
 
     </ion-app>
 </body>
+</html> 
