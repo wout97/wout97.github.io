@@ -19,6 +19,9 @@ var response2 = callSpotifyAPI2(requetsUrl);
 //display tracks from response
 getTracks(response2.tracks);
 
+$(() => {
+	
+});
 
 var array;
 var uris;

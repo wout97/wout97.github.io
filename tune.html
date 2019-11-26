@@ -1,27 +1,37 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Page Title</title>
-</html> <!-- Import the Ionic CSS -->
-<link href="https://unpkg.com/@ionic/core@latest/css/ionic.bundle.css" rel="stylesheet">
-<!-- Import Ionic -->
-<script src="https://unpkg.com/@ionic/core@latest/dist/ionic.js"></script>
-<!-- Import the Ionic icons -->
-<script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
-<!-- Import the fontawesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Import custom css -->
-<link rel="stylesheet" href="style.css">
-<!-- Import custom js -->
-<script src="http:https:https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Spotify Recommender app</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Import Ionic -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+    <!-- Import the fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Import custom css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Import custom js -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 
-
+    <script src="services.js"></script>
+    <script>
+        var clientId = '059f69ae51c445518b106f91e9ddaf9c';
+        var scopes = [
+            'user-read-private',
+            'user-read-email',
+            'playlist-read-private', 
+            'playlist-modify-public', 
+            'playlist-modify-private', 
+            'playlist-read-collaborative'];
+        Spotify.init(clientId, scopes);
+    </script>
+    <script src="scriptTune.js"></script>
 </head>
 <body  >
 
@@ -36,9 +46,9 @@
 
                 <div class="md-stepper-horizontal orange">
                     <div class="md-step done">
-                        <div class="md-step-circle"><span><a id="link">1</a></span></div>
+                        <div class="md-step-circle"><span><a href='start.html'>1</a></span></div>
                         <div class="md-step-title"></div>
-                        <div class="md-step-optional"><a id="link2">Pick</a></div>
+                        <div class="md-step-optional"><a href='start.html'>Pick</a></div>
                         <div class="md-step-bar-left"></div>
                         <div class="md-step-bar-right"></div>
                     </div>
@@ -61,101 +71,12 @@
                     </div>
                 </div>
                 <ion-text text-center>
-                    <h2>Tune the parameters like you want them.</h2>
-                    <div id="refresh" class="refresh"> Get the original values back <button onclick="reset()" type="submit"><i class="fa fa-refresh"></i></button></div>
+                    <h3>Tune features</h3>
+                    <h5 class="text-muted"><small>to customize the style of your new recommendations</small></h5>
+                    <div id="refresh" class="refresh"> Restore values to features of selected songs <button onclick="reset()" type="submit"><i class="fa fa-refresh"></i></button></div>
                 </ion-text>
-                <ion-list>
-                    <!-- all the different sliders-->
-                    <!-- slider for instrumentalness-->
-
-                    <ion-item class="bar bar-header">
-
-
-                        <h3 class="title">
-                            Instrumentalness
-                            <a href="#" data-toggle="tooltip" data-placement="bottom"  data-container="body" title="Predicts whether a track contains <b>no vocals</b>. Rapped, sung or spoken word tracks are clearly 'vocal'. A higher number results in less vocal elements." ><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-                        </h3>
-
-
-</ion-item>
-
-                    <ion-item onchange="makeIconShake()">
-                        <ion-range id="first" min="0" max="100" color="secondary" pin="true">
-                            <ion-icon id="firstIcon" size="small" slot="start" name="microphone"></ion-icon>
-                            <ion-icon id="firstIcon2" size="large" slot="end" name="microphone"></ion-icon>
-                        </ion-range>
-                    </ion-item>
-
-                    <!-- slider for accousticness-->
-                    <div class="bar bar-header">
-                        <ion-item>
-
-                            <h3 class="title">
-                                Accousticness
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Predicts whether a track is <b>acoustic</b>. A higher number results in acoustic results"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-                            </h3>
-
-
-                        </ion-item>
-                    </div>
-                    <ion-item>
-                        <ion-range id="second" min="0" max="100" color="secondary" pin="true">
-                            <ion-icon id="secondIcon" size="small" slot="start" name="musical-notes"></ion-icon>
-                            <ion-icon id="secondIcon2" size="large" slot="end" name="musical-notes"></ion-icon>
-                        </ion-range>
-                    </ion-item>
-                    <!-- slider for energy-->
-                    <div class="bar bar-header">
-                        <ion-item>
-                            <h3 class="title">
-                                Energy
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Predicts whether a track has high energy. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. "><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-                            </h3>
-                        </ion-item>
-                    </div>
-                    <ion-item>
-                        <ion-range id="third" min="0" max="100" color="secondary" pin="true">
-                            <ion-icon id="thirdIcon" class="pulse-button" size="small" slot="start" name="flash"></ion-icon>
-                            <ion-icon id="thirdIcon2" size="large" slot="end" name="flash"></ion-icon>
-                        </ion-range>
-                    </ion-item>
-                    <!-- slider for danceablitity-->
-                    <div class="bar bar-header">
-                        <ion-item>
-
-                            <h3 class="title">
-                                Danceability
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Predicts wheter a track is danceable. Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A higher number results in more danceable tracks "><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-                            </h3>
-
-
-                        </ion-item>
-                    </div>
-                    <ion-item onchange="makeIconShake()">
-                        <ion-range id="fourth" min="0" max="100" color="secondary" pin="true">
-                            <ion-icon id="fourthIcon" size="small" slot="start" name="musical-note"></ion-icon>
-                            <ion-icon id="fourthIcon2" size="large" slot="end" name="musical-note"></ion-icon>
-                        </ion-range>
-                    </ion-item>
-                    <!-- slider for mood-->
-                    <div class="bar bar-header">
-                        <ion-item>
-
-                            <h3 class="title">
-                                Mood
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" data-container="body" title="Predicts wheter a track is positive. A higher number results in positive tracks. "><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-
-                            </h3>
-
-
-                        </ion-item>
-                    </div>
-                    <ion-item onchange="makeIconShake()">
-                        <ion-range id="fifth" min="0" max="100" color="secondary" pin="true">
-                            <ion-icon id="fifthIcon" size="small" slot="start" name="happy"></ion-icon>
-                            <ion-icon id="fifthIcon2" size="large" slot="end" name="happy"></ion-icon>
-                        </ion-range>
-                    </ion-item>
+                <ion-list id='tune-list'>
+                    <!-- will be filled with all feature sliders -->
                 </ion-list>
 
                 <ion-button id="nextStep" onclick="activated()" text-center>Confirm</ion-button>
@@ -170,15 +91,5 @@
 
         </ion-content>
     </ion-app>
-
-
 </body>
-<!-- link to js file-->
-<script src="scriptTune.js"></script>
-<script>
-
-
-</script>
-
-<style type="text/css">
-</style>
+</html>
