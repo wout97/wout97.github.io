@@ -66,7 +66,7 @@ function getTracks(response) {
 		if (res.preview_url != null){
 			disabled = "<button color='green' onclick='playAudio(" + x + ")' class='btn bg-success '><i class='fa fa-play'></i></button>";
 		}
-        trackItems +='<div id='+ x+1000+ ' ><div cla ss="container center"><i class="fas fa-guitar"></i> = '+ Math.round(accou*100) + '% <i class="fas fa-music"></i> = ' +  Math.round(dancea*100) +'%<i class="fas fa-bolt"></i> = '+Math.round(energya*100)+ "%</div><ion-item id="+ x+ "><ion-label>" + res.name +" - "+ res.artists[0].name + " </ion-label> <div id='chart"+x+"'></div>"+ disabled+" <button color='danger' onclick='deleteAudio(" + x + ")' class='btn btn-space bg-danger'><i class='fa fa-trash'></i></button>"+ " </ion-item></div>";
+        trackItems +='<div id='+ x+1000+ ' ><div cla ss="container center"><i class="fas fa-guitar"></i> = '+ Math.round(accou*100) + '% <i class="fas fa-music"></i> = ' +  Math.round(dancea*100) +'%<i class="fas fa-bolt"></i> = '+Math.round(energya*100)+ "%</div><ion-item id="+ x+ "><ion-label>" + res.name +" - "+ res.artists[0].name + " </ion-label> "+ disabled+" <button  onclick='showgraph(" + x + ")' class='btn btn-space bg-warning'><i class='fas fa-chart-bar'></i></button><button color='danger' onclick='deleteAudio(" + x + ")' class='btn btn-space bg-danger'><i class='fa fa-trash'></i></button>"+ " </ion-item><div hidden =true id='chart"+x+"'></div></div>";
 
         attributeList.push([accou, dancea, energya]);
 
@@ -88,6 +88,10 @@ function draw(){
   }
 
 }
+function showgraph(x){
+  var bool = document.getElementById("chart"+x).hidden;
+  document.getElementById("chart"+x).hidden = !bool;
+}
 
 
    function drawChart(id, acc, dnc, enrgy) {
@@ -107,8 +111,8 @@ function draw(){
                       2]);
 
      var options = {
-       width: $(window).width()*0.15,
-       height: $(window).height()*0.15,
+       width: $(window).width()*0.3,
+       height: $(window).height()*0.3,
        bar: {groupWidth: "80%"},
        legend: { position: "none" },
      };
