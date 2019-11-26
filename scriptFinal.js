@@ -1,5 +1,7 @@
 // JavaScript source code
 //get parameters from url
+google.charts.load("current", {packages:['corechart']});
+
 var url_string = window.location.href;
 var url = new URL(url_string);
 var token = url.searchParams.get("token");
@@ -13,6 +15,9 @@ var mood = url.searchParams.get("mo");
 var songs = url.searchParams.get("seed");
 //RANDOM NUMBER FOR GROUP A OR B
 var GroupAOrB = Math.floor(Math.random() * 2);
+
+//LIST with attributes
+var attributeList = [];
 
 //make a spotify call for recomendations with url parameters
 var requetsUrl= "https://api.spotify.com/v1/recommendations?seed_tracks=" + songs + "&target_acousticness="+ accou/100 +"&target_danceability=" + dance/100 + "&target_energy=" + energy/100 + "&target_instrumentalness="+ instrumental/100;
@@ -44,8 +49,8 @@ function getTracks(response) {
 	popularityArray.sort(function(a, b){return b.popularity - a.popularity});
 
 }
-	
-	
+
+
 	for (x in popularityArray){
 		var res = popularityArray[x]
 		var song_id = res.id;
@@ -61,9 +66,14 @@ function getTracks(response) {
 		if (res.preview_url != null){
 			disabled = "<button color='green' onclick='playAudio(" + x + ")' class='btn bg-success '><i class='fa fa-play'></i></button>";
 		}
-        trackItems +='<div id='+ x+1000+ ' ><div cla ss="container center"><i class="fas fa-guitar"></i> = '+ Math.round(accou*100) + '% <i class="fas fa-music"></i> = ' +  Math.round(dancea*100) +'%<i class="fas fa-bolt"></i> = '+Math.round(energya*100)+ "%</div><ion-item id="+ x+ "><ion-label>" + res.name +" - "+ res.artists[0].name + " </ion-label> "+ disabled+" <button color='danger' onclick='deleteAudio(" + x + ")' class='btn btn-space bg-danger'><i class='fa fa-trash'></i></button>"+ " </ion-item></div>";
-		
+        trackItems +='<div id='+ x+1000+ ' ><div cla ss="container center"><i class="fas fa-guitar"></i> = '+ Math.round(accou*100) + '% <i class="fas fa-music"></i> = ' +  Math.round(dancea*100) +'%<i class="fas fa-bolt"></i> = '+Math.round(energya*100)+ "%</div><ion-item id="+ x+ "><ion-label>" + res.name +" - "+ res.artists[0].name + " </ion-label> <div id='chart"+x+"'></div>"+ disabled+" <button color='danger' onclick='deleteAudio(" + x + ")' class='btn btn-space bg-danger'><i class='fa fa-trash'></i></button>"+ " </ion-item></div>";
+
+        attributeList.push([accou, dancea, energya]);
+
+
+
    }
+
    //store uris globally
    uris = uris2;
    array = playlistArray;
@@ -71,7 +81,40 @@ function getTracks(response) {
     document.getElementById("playlists2").innerHTML +=  "<ion-list '>" + trackItems + "</ion-list>"
 }
 
+google.charts.setOnLoadCallback(draw);
+function draw(){
+  for (i=0;i<attributeList.length; i++ ){
+    drawChart(i, attributeList[i][0], attributeList[i][1] , attributeList[i][2]);
+  }
 
+}
+
+
+   function drawChart(id, acc, dnc, enrgy) {
+     var data = google.visualization.arrayToDataTable([
+       ["Attribute", "Value", { role: "style" } ],
+       ["Accousticness", acc, "#b87333"],
+       ["Danceability", dnc, "silver"],
+       ["Energy", enrgy, "gold"],
+     ]);
+
+     var view = new google.visualization.DataView(data);
+     view.setColumns([0, 1,
+                      { calc: "stringify",
+                        sourceColumn: 1,
+                        type: "string",
+                        role: "annotation" },
+                      2]);
+
+     var options = {
+       width: 300,
+       height: 100,
+       bar: {groupWidth: "80%"},
+       legend: { position: "none" },
+     };
+     var chart = new google.visualization.ColumnChart(document.getElementById("chart" + id));
+     chart.draw(view, options);
+}
 //spotify call fron url
 function callSpotifyAPI2(url){
 	var token2 = "Bearer " + token;
@@ -144,9 +187,9 @@ function saveSongsToNewPlaylist(){
 	var description = "created with spotify recomender!";
 	var dataPlaylist = "{\"name\":\""+ name +"\",\"description\":\""+ description +"\",\"public\":false}";
 	var urlPost = "https://api.spotify.com/v1/users/" + client +"/playlists";
-	
+
 	console.log(playlistName);
-	
+
 	//create new playlist
 	var id = callSpotifyAPIpost(urlPost, dataPlaylist).id;
 	saveSongs(id);
@@ -168,7 +211,7 @@ function saveSongs(pID){
 		}else{
 		uriString +=', "' + uris[x] + '"';
 		}
-	
+
 	}
 	uriString += "]"
 	var uriData= "{\"uris\": " + uriString+"}";
