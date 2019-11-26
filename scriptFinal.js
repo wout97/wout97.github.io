@@ -107,8 +107,8 @@ function draw(){
                       2]);
 
      var options = {
-       width: 300,
-       height: 100,
+       width: $(window).width()*0.15,
+       height: $(window).height()*0.15,
        bar: {groupWidth: "80%"},
        legend: { position: "none" },
      };
