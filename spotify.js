@@ -1,7 +1,8 @@
-function AudioFeature(key, title, icon, description) {
+function AudioFeature(key, title, icon, color, description) {
     this.key = key;
     this.title = title;
     this.icon = icon;
+    this.color = color;
     this.description = description;
 }
 Spotify = {
@@ -13,11 +14,11 @@ Spotify = {
     _redirectPath: null,
 
     audioFeatures: {
-        acousticness: new AudioFeature('acousticness', 'Acousticness', 'musical-notes', 'Predicts whether a track is <b>acoustic</b>. A higher number results in acoustic results.'),
-        danceability: new AudioFeature('danceability', 'Danceability', 'musical-note', 'Predicts wheter a track is danceable. Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A higher number results in more danceable tracks.'),
-        energy: new AudioFeature('energy', 'Energy', 'flash', 'Predicts whether a track has high energy. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale.'),
-        instrumentalness: new AudioFeature('instrumentalness', 'Instrumentalness', 'microphone', "Predicts whether a track contains <b>no vocals</b>. Rapped, sung or spoken word tracks are clearly 'vocal'. A higher number results in less vocal elements."),
-        valence: new AudioFeature('valence', 'Mood', 'happy', 'Predicts wheter a track is positive. A higher number results in positive tracks.')
+        acousticness: new AudioFeature('acousticness', 'Acousticness', 'musical-notes', '#b87333', 'Predicts whether a track is <b>acoustic</b>. A higher number results in acoustic results.'),
+        danceability: new AudioFeature('danceability', 'Danceability', 'musical-note', 'silver', 'Predicts wheter a track is danceable. Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A higher number results in more danceable tracks.'),
+        energy: new AudioFeature('energy', 'Energy', 'flash', 'gold', 'Predicts whether a track has high energy. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale.'),
+        instrumentalness: new AudioFeature('instrumentalness', 'Instrumentalness', 'microphone', 'purple', "Predicts whether a track contains <b>no vocals</b>. Rapped, sung or spoken word tracks are clearly 'vocal'. A higher number results in less vocal elements."),
+        valence: new AudioFeature('valence', 'Mood', 'happy', 'orange', 'Predicts wheter a track is positive. A higher number results in positive tracks.')
     },
 
     init: (clientId, scopes, redirectPath) => {
@@ -128,6 +129,12 @@ Spotify = {
                 Spotify.call(`users/${ id }/playlists`).then(playlistData => playlistData.items).then(resolve, reject);
             });
         });
+    },
+    getTracks: (ids) => {
+        var params = {
+            ids: ids.join(',')
+        }
+        return Spotify.call('tracks', params).then((data) => data.tracks);
     },
     getAudioFeatures: (trackIds) => {
         return Spotify.call('audio-features/', {

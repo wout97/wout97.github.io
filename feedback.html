@@ -36,7 +36,7 @@
                         <ion-card-subtitle>Human Computer Interaction (Team 5)</ion-card-subtitle>
                     </ion-card-header>
                 </ion-card>
-                    <iframe scrolling="no"  onload="this.width=screen.width;this.height=screen.height*3;" src="https://docs.google.com/forms/d/e/1FAIpQLSeZuW7LCbux9nAgrhJgz4ZbAy7S9JoyxMBYV5IibZ3CIyMdtQ/viewform?embedded=true"  frameborder="0" align="middle" >Laden…</iframe>
+                    <iframe scrolling="no" id="Iframe"  onload="this.width=screen.width;this.height=screen.height*3;"   frameborder="0" align="middle" >Laden…</iframe>
 
                 </ion-card>
                 </script>
@@ -56,18 +56,19 @@
 </body>
 <!-- simple script to change redirect adress according to url, wout97 = testing, jeffreyquicken = live-->
 <script>
-    var url_string = window.location.href;
-    var linkel = document.getElementById("nextLink");
-    if(url_string.includes("wout97")){
-    console.log("wout97 found");
-    var testUrl = "https://accounts.spotify.com/authorize?client_id=059f69ae51c445518b106f91e9ddaf9c&redirect_uri=https://wout97.github.io/start&scope=user-read-private%20user-read-email%20playlist-read-private%20playlist-modify-public%20playlist-modify-private%20playlist-read-collaborative&response_type=token&state=123";
-    linkel.href=testUrl;
-    console.log(linkel.href);
-    }else{
-    console.log("not found");
-    var liveUrl = "https://accounts.spotify.com/authorize?client_id=059f69ae51c445518b106f91e9ddaf9c&redirect_uri=https://jeffreyquicken.codes/start.html&scope=user-read-private%20user-read-email%20playlist-read-private%20playlist-modify-public%20playlist-modify-public%20playlist-modify-private%20playlist-read-collaborative&response_type=token&state=123";
-    linkel.href=liveUrl;
-    }
+   var url_string = window.location.href;
+    var url = new URL(url_string);
+var group = url.searchParams.get("group");
+var feedbackUrl;
+   if (group ==1 ){
+       //URL 1
+       feedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeZuW7LCbux9nAgrhJgz4ZbAy7S9JoyxMBYV5IibZ3CIyMdtQ/viewform?embedded=true";
+   }
+   else{
+       //URL 2
+    feedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLScSj6CBeE6_mPsNzHoqwSvLcQKD-KQbh2uuNE1wIFqCTfZQ7w/viewform?usp=sf_link"
+   }
+   document.getElementById("Iframe").src = feedbackUrl;
 
 </script>
 </html>
