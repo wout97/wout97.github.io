@@ -3,7 +3,7 @@ var audioFeatures = [
     Spotify.audioFeatures.acousticness,
     Spotify.audioFeatures.energy,
     Spotify.audioFeatures.danceability,
-    Spotify.audioFeatures.mood
+    Spotify.audioFeatures.valence
 ];
 var originalFeatureValues = audioFeatures.map(() => 0.5);
 var oldSliderValues = audioFeatures.map(() => 50);
@@ -20,6 +20,7 @@ $(() => {
 function initializeFeatures(trackIds) {
     // initialize sliders
     $('#tune-list').empty();
+    var tuneListContent = "";
     audioFeatures.forEach((feature, i) => {
         $('#tune-list').append(`
 <ion-item class="bar bar-header">
@@ -37,7 +38,7 @@ function initializeFeatures(trackIds) {
 </ion-item>`
         );
     });
-    $('#tune-list').append(`<script>$('[data-toggle="tooltip"]').tooltip({html:true});setInterval(makeIconShake, 50);</script>`);
+    $('#tune-list').append(`<script>$('[data-toggle="tooltip"]').tooltip({html:true});setInterval(makeIconShake, 50);reset();</script>`);
 
     // initialize original audio features
     originalFeatureValues = audioFeatures.map(() => 0);

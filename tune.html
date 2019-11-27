@@ -29,7 +29,8 @@
             'playlist-modify-public', 
             'playlist-modify-private', 
             'playlist-read-collaborative'];
-        Spotify.init(clientId, scopes);
+        var redirectPath = 'start.html';
+        Spotify.init(clientId, scopes, redirectPath);
     </script>
     <script src="scriptTune.js"></script>
 </head>
@@ -79,7 +80,7 @@
                     <!-- will be filled with all feature sliders -->
                 </ion-list>
 
-                <ion-button id="nextStep" onclick="activated()" text-center>Confirm</ion-button>
+                <ion-button id="nextStep" onclick="navigateToFinal()" text-center>Confirm</ion-button>
                 <div class="text-center">
                     <small>
                         © 2019 Copyright:

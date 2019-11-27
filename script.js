@@ -30,19 +30,21 @@ var lastQuery = "";
 function search() {
 	//search
     var searchBarValue = $("#searchBar").val();
-    if(searchBarValue == "") {
-        if(lastQuery != ""){
-            reset();
-            lastQuery = "";
+    if(lastQuery != searchBarValue) {
+        lastQuery = searchBarValue;
+        switch(searchBarValue) {
+            case "":
+                reset();
+                break;
+            // add cases for easter eggs :D
+            default:
+                Spotify.searchPlaylists(searchBarValue, 10).then((playlists) => {
+                    displayPlaylists(playlists, searchBarValue);
+                });
+                $("#your-playlists-label").css('visibility', 'hidden');
+                break;
         }
-        return;
     }
-    //call
-    lastQuery = searchBarValue;
-    Spotify.searchPlaylists(searchBarValue, 10).then((playlists) => {
-        displayPlaylists(playlists, searchBarValue);
-    });
-    $("#your-playlists-label").css('visibility', 'hidden');;
 }
 
 //generate html from playlist
@@ -92,6 +94,7 @@ function navigateToTune(selectedPlaylistId) {
         .map((i, elem) => $(elem).val())
         .get();
     Cookies.set('tracks', selectedTracks.join(','));
+    Cookies.set('playlist', selectedPlaylistId);
     window.location = 'tune.html';
 }
 
