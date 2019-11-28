@@ -150,3 +150,9 @@ function saveSongsToSelectedPlaylist(){
 		window.location.href = "feedback.html";
 	});
 }
+
+window.addEventListener("resize", resize);
+
+function resize() {
+	recommendedTracks.forEach((track, i) => drawChart(i));
+}
