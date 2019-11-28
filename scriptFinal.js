@@ -82,7 +82,7 @@ function drawChart(index) {
 					2]);
 
 	var options = {
-		width: Math.min($(window).width()*0.85 , 700),
+		width: Math.min($(window).width()*0.95 , 700),
 		height: $(window).height()*0.3,
 		bar: {groupWidth: "80%"},
 		legend: { position: "none" },
