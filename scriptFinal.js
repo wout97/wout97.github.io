@@ -43,9 +43,9 @@ $(() => {
 	</div>
 	<ion-item>
 		<ion-label>${ track.name } - ${ track.artists[0].name }</ion-label>
-		${ track.preview_url?`<button id='play${ i }' color='green' onclick='playAudio(${ i })' class='btn bg-success'><i class='fa fa-play'></i></button>`:'' }
-		<button  onclick='toggleGraph(${ i })' class='btn btn-space bg-warning'><i class='fas fa-chart-bar'></i></button>
-		<button color='danger' onclick='deleteAudio(${ i })' class='btn btn-space bg-danger'>
+		${ track.preview_url?`<button id='play${ i }' color='green' onclick='playAudio(${ i })' class='btn btn-sm  bg-success'><i class='fa fa-play'></i></button>`:'' }
+		<button  onclick='toggleGraph(${ i })' class='btn btn-sm btn-space bg-info'><i class='fas fa-chart-bar'></i></button>
+		<button color='danger' onclick='deleteAudio(${ i })' class='btn btn-sm btn-space bg-danger'>
 			<i class='fa fa-trash'></i>
 		</button>
 	</ion-item>
@@ -82,7 +82,7 @@ function drawChart(index) {
 					2]);
 
 	var options = {
-		width: $(window).width()*0.5,
+		width: $(window).width()*0.7,
 		height: $(window).height()*0.3,
 		bar: {groupWidth: "80%"},
 		legend: { position: "none" },
