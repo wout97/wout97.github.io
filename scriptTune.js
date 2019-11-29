@@ -20,7 +20,6 @@ $(() => {
 function initializeFeatures(trackIds) {
     // initialize sliders
     $('#tune-list').empty();
-    var tuneListContent = "";
     audioFeatures.forEach((feature, i) => {
         $('#tune-list').append(`
 <ion-item class="bar bar-header">

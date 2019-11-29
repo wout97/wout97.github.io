@@ -25,8 +25,10 @@ $(() => {
 	audioFeatures = targetFeatureTuples.map((tuple) => tuple[0]);
 	var seeds = getRandomSample(trackIds, 5);
 
-	Spotify.getRecommendations(seeds, targetFeatureTuples).then((simpleTracks) => {
+	Spotify.getRecommendations(seeds, targetFeatureTuples, 50).then((simpleTracks) => {
+		
 		Spotify.getTracks(simpleTracks.map((t) => t.id)).then((tracks) => {
+			tracks = tracks.filter((track) => track.preview_url);
 			if(groupNr == 1) {
 				tracks.sort((t1, t2) => t2.popularity - t1.popularity);
 			}
@@ -36,13 +38,9 @@ $(() => {
 				featuresOfTracks = featuresData;
 				tracks.forEach((track, i) => {
 					var features = featuresData.audio_features[i];
-					var hidden = "";
-					if(track.preview_url == null){hidden = "hidden";
-						console.log(track.preview_url);
-					};
 					
 					$('#recommendations').append(`
-<div id='track${ i }' ${ hidden }>
+<div id='track${ i }'>
 	<div class="container center">
 		${ audioFeatures.map((feature) => `<ion-label color='medium' title="${ feature.title }"><ion-icon item-start size="small" slot="start" name="${ feature.icon }"></ion-icon>=${ Math.round(features[feature.key]*100) }%</ion-label>`).join(' ') }
 	</div>

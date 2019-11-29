@@ -141,12 +141,13 @@ Spotify = {
             ids: trackIds.join(',')
         });
     },
-    getRecommendations: (seeds, targetFeatureTuples) => {
+    getRecommendations: (seeds, targetFeatureTuples, count) => {
         if(seeds.length > 5) {
             throw new Error("Cannot get Spotify recommendations based on more seeds than 5.");
         }
         var params = {};
         params.seed_tracks = seeds.join(',');
+        params.limit = count;
         targetFeatureTuples.forEach((featureTuple) => {
             var feature = featureTuple[0];
             var target = featureTuple[1];
