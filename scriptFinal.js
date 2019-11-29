@@ -36,9 +36,9 @@ $(() => {
 				featuresOfTracks = featuresData;
 				tracks.forEach((track, i) => {
 					var features = featuresData.audio_features[i];
-					var hidden = false;
-					if(track.preview_url){hidden = true};
-				
+					var hidden = true;
+					if(track.preview_url){hidden = false};
+					console.log(track.preview_url);
 					$('#recommendations').append(`
 <div id='track${ i }' hidden='${ hidden }'>
 	<div class="container center">
