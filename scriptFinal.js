@@ -28,7 +28,7 @@ $(() => {
 	Spotify.getRecommendations(seeds, targetFeatureTuples, 50).then((simpleTracks) => {
 		
 		Spotify.getTracks(simpleTracks.map((t) => t.id)).then((tracks) => {
-			tracks = tracks.filter((track) => track.preview_url);
+			tracks = tracks.filter((track) => track.preview_url).slice(20);
 			if(groupNr == 1) {
 				tracks.sort((t1, t2) => t2.popularity - t1.popularity);
 			}
