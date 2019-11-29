@@ -36,13 +36,13 @@ $(() => {
 				featuresOfTracks = featuresData;
 				tracks.forEach((track, i) => {
 					var features = featuresData.audio_features[i];
-					var hidden = false;
-					if(track.preview_url == null){hidden = true
+					var hidden = "";
+					if(track.preview_url == null){hidden = "hidden";
 						console.log(track.preview_url);
 					};
 					
 					$('#recommendations').append(`
-<div id='track${ i }' hidden='${ hidden }'>
+<div id='track${ i }' ${ hidden }>
 	<div class="container center">
 		${ audioFeatures.map((feature) => `<ion-label color='medium' title="${ feature.title }"><ion-icon item-start size="small" slot="start" name="${ feature.icon }"></ion-icon>=${ Math.round(features[feature.key]*100) }%</ion-label>`).join(' ') }
 	</div>
