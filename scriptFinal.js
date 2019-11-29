@@ -36,8 +36,11 @@ $(() => {
 				featuresOfTracks = featuresData;
 				tracks.forEach((track, i) => {
 					var features = featuresData.audio_features[i];
+					var hidden = false;
+					if(track.preview_url){hidden = true};
+				
 					$('#recommendations').append(`
-<div id='track${ i }'>
+<div id='track${ i }' hidden='${ hidden }'>
 	<div class="container center">
 		${ audioFeatures.map((feature) => `<ion-label color='medium' title="${ feature.title }"><ion-icon item-start size="small" slot="start" name="${ feature.icon }"></ion-icon>=${ Math.round(features[feature.key]*100) }%</ion-label>`).join(' ') }
 	</div>
