@@ -1,6 +1,21 @@
 google.charts.load("current", {packages:['corechart']});
 var groupNr = Math.floor(Math.random() * 2);
 
+var startMoment = new Date();
+var startTimeHour = startMoment.getHours();
+var startTimeMinutes = startMoment.getMinutes();
+var startTimeSeconds = startMoment.getSeconds();
+
+function TimeDifference(){
+var endMoment = new Date();
+var endTimeHour = endMoment.getHours();
+var endTimeMinutes = endMoment.getMinutes();
+var endTimeSeconds = endMoment.getSeconds();
+console.log("Hours= " + (endTimeHour - startTimeHour)  + " Minutes= "+(endTimeMinutes - startTimeMinutes) + " Seconds= " + (endTimeSeconds - startTimeSeconds) );
+var timeDiff = (endTimeHour - startTimeHour)*60*60 +(endTimeMinutes - startTimeMinutes)*60 +  (endTimeSeconds - startTimeSeconds);
+return timeDiff;
+}
+
 var recommendedTracks;
 var selectedTracks;
 var featuresOfTracks;
@@ -143,14 +158,14 @@ function saveSongsToNewPlaylist(){
 	
 	Spotify.createPlaylist(playlistName, description, selectedTracks).then(() => {
 		alert('A new playlist is added to your spotify! :) ');
-		window.location.href = "feedback.html";
+		window.location.href = "feedback.html" + "?timediff" +  TimeDifference();
 	});
 }
 
 function saveSongsToSelectedPlaylist(){
 	Spotify.saveTracksToPlaylist(selectedPlaylistId, selectedTracks).then(() => {
 		alert('The tracks have been added to your playlist! :) ');
-		window.location.href = "feedback.html";
+		window.location.href = "feedback.html"+ "?timediff" +  TimeDifference();
 	});
 }
 
