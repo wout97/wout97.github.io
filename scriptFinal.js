@@ -7,6 +7,7 @@ var startTimeMinutes = startMoment.getMinutes();
 var startTimeSeconds = startMoment.getSeconds();
 var timesAudioIsPlayed = 0;
 var timesAudioIsdeleted = 0;
+var timesGraphClicked = 0;
 
 function TimeDifference(){
 var endMoment = new Date();
@@ -81,6 +82,7 @@ $(() => {
 });
 
 function toggleGraph(index){
+	timesGraphClicked +=1;
 	$('#chart' + index).slideToggle(500);
 }
 
@@ -162,14 +164,14 @@ function saveSongsToNewPlaylist(){
 	
 	Spotify.createPlaylist(playlistName, description, selectedTracks).then(() => {
 		alert('A new playlist is added to your spotify! :) ');
-		window.location.href = "feedback.html" + "?timediff=" +  TimeDifference()+"&group=" + groupNr +"&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted;
+		window.location.href = "feedback.html" + "?timediff=" +  TimeDifference()+"&group=" + groupNr +"&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeGraph"+timesGraphClicked;
 	});
 }
 
 function saveSongsToSelectedPlaylist(){
 	Spotify.saveTracksToPlaylist(selectedPlaylistId, selectedTracks).then(() => {
 		alert('The tracks have been added to your playlist! :) ');
-		window.location.href = "feedback.html"+ "?timediff=" +  TimeDifference()+ "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted;
+		window.location.href = "feedback.html"+ "?timediff=" +  TimeDifference()+ "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeDeleted"+timesGraphClicked;
 	});
 }
 
