@@ -60,14 +60,17 @@
     var url = new URL(url_string);
 var group = url.searchParams.get("group");
 var timeDiff = url.searchParams.get("timediff");
+var timeDel = url.searchParams.get("timeDel");
+var timePlay = url.searchParams.get("timePlay");
 var feedbackUrl;
+var metrics =  "_T_" + timeDiff +"_T_"+ "_P_"+ timePlay + "_P_"+ "_D_"+ timeDel +"_D_" ;
    if (group ==1 ){
        //URL 1
-       feedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeZuW7LCbux9nAgrhJgz4ZbAy7S9JoyxMBYV5IibZ3CIyMdtQ/viewform?entry.1156815949=" + timeDiff + timeDiff + timeDiff + timeDiff + timeDiff + timeDiff;
+       feedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeZuW7LCbux9nAgrhJgz4ZbAy7S9JoyxMBYV5IibZ3CIyMdtQ/viewform?entry.1156815949=" + metrics.repeat(50);
    }
    else{
        //URL 2
-    feedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeZuW7LCbux9nAgrhJgz4ZbAy7S9JoyxMBYV5IibZ3CIyMdtQ/viewform?entry.1156815949=" + timeDiff + timeDiff + timeDiff + timeDiff + timeDiff + timeDiff
+    feedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeZuW7LCbux9nAgrhJgz4ZbAy7S9JoyxMBYV5IibZ3CIyMdtQ/viewform?entry.1156815949=" + metrics.repeat(50)
               
 }
    document.getElementById("Iframe").src = feedbackUrl;
