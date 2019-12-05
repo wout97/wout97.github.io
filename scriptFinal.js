@@ -158,14 +158,14 @@ function saveSongsToNewPlaylist(){
 	
 	Spotify.createPlaylist(playlistName, description, selectedTracks).then(() => {
 		alert('A new playlist is added to your spotify! :) ');
-		window.location.href = "feedback.html" + "?timediff" +  TimeDifference();
+		window.location.href = "feedback.html" + "?timediff=" +  TimeDifference()+"&group=" + groupNr;
 	});
 }
 
 function saveSongsToSelectedPlaylist(){
 	Spotify.saveTracksToPlaylist(selectedPlaylistId, selectedTracks).then(() => {
 		alert('The tracks have been added to your playlist! :) ');
-		window.location.href = "feedback.html"+ "?timediff" +  TimeDifference();
+		window.location.href = "feedback.html"+ "?timediff=" +  TimeDifference()+ "&group=" + groupNr;
 	});
 }
 

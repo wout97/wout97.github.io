@@ -59,17 +59,17 @@
    var url_string = window.location.href;
     var url = new URL(url_string);
 var group = url.searchParams.get("group");
+var timeDiff = url.searchParams.get("timediff");
 var feedbackUrl;
    if (group ==1 ){
        //URL 1
-       feedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeZuW7LCbux9nAgrhJgz4ZbAy7S9JoyxMBYV5IibZ3CIyMdtQ/viewform?embedded=true";
+       feedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLScSj6CBeE6_mPsNzHoqwSvLcQKD-KQbh2uuNE1wIFqCTfZQ7w/viewform?usp=pp_url&entry.1156815949=" + timeDiff + timeDiff + timeDiff + timeDiff + timeDiff + timeDiff;
    }
    else{
        //URL 2
-    feedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLScSj6CBeE6_mPsNzHoqwSvLcQKD-KQbh2uuNE1wIFqCTfZQ7w/viewform?usp=sf_link"
+    feedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLScSj6CBeE6_mPsNzHoqwSvLcQKD-KQbh2uuNE1wIFqCTfZQ7w/viewform?usp=pp_url&entry.1156815949=" + timeDiff + timeDiff + timeDiff + timeDiff + timeDiff + timeDiff
    }
    document.getElementById("Iframe").src = feedbackUrl;
-
 </script>
 </html>
 
