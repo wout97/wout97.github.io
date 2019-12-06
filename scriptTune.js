@@ -1,12 +1,12 @@
 var url_string = window.location.href;
 var url = new URL(url_string);
 
-var groupNr = parseInt(url.searchParams.get("group")) || -1;
+var groupNr = parseInt(url.searchParams.get("group"));
 var timeSpent = parseInt(url.searchParams.get("timediff")) || 0;
 var timesAudioIsdeleted = parseInt(url.searchParams.get("timeDel")) || 0;
 var timesAudioIsPlayed = parseInt(url.searchParams.get("timePlay")) || 0;
 var timesGraphClicked = parseInt(url.searchParams.get("timeGraph")) || 0;
-var timesRetune = parseInt(url.searchParams.get("timeRetune")) || -1;
+var timesRetune = parseInt(url.searchParams.get("timeRetune"));
 timesRetune +=1;
 
 
