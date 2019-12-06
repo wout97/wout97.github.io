@@ -7,7 +7,7 @@ var startTimeSeconds = startMoment.getSeconds();
 
 var url_string = window.location.href;
 var url = new URL(url_string);
-var groupNr = parseInt(url.searchParams.get("group")) || -1;
+var groupNr = parseInt(url.searchParams.get("group"));
 var timeSpent = parseInt(url.searchParams.get("timediff")) || 0;
 var timesAudioIsdeleted = parseInt(url.searchParams.get("timeDel")) || 0;
 var timesAudioIsPlayed = parseInt(url.searchParams.get("timePlay")) || 0;
@@ -17,8 +17,7 @@ var timesRetune = parseInt(url.searchParams.get("timeRetune")) || 0;
 if(groupNr == -1 || groupNr == NaN){
 groupNr = Math.floor(Math.random() * 2);
 }
-console.log(groupNr);
-
+console.log("GR" + groupNr);
 function TimeDifference(){
 var endMoment = new Date();
 var endTimeHour = endMoment.getHours();

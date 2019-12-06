@@ -11,7 +11,7 @@ timesRetune +=1;
 if (groupNr == NaN){
     groupNr = -1;
 }
-
+console.log("GN=" + groupNr)
 
 var audioFeatures = [
     Spotify.audioFeatures.instrumentalness,
