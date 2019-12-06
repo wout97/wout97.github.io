@@ -14,7 +14,7 @@ var timesAudioIsPlayed = parseInt(url.searchParams.get("timePlay")) || 0;
 var timesGraphClicked = parseInt(url.searchParams.get("timeGraph")) || 0;
 var timesRetune = parseInt(url.searchParams.get("timeRetune")) || 0;
 
-if(groupNr == -1){
+if(groupNr == -1 || groupNr == NaN){
 groupNr = Math.floor(Math.random() * 2);
 }
 
