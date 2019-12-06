@@ -12,6 +12,7 @@ var timeSpent = parseInt(url.searchParams.get("timediff")) || 0;
 var timesAudioIsdeleted = parseInt(url.searchParams.get("timeDel")) || 0;
 var timesAudioIsPlayed = parseInt(url.searchParams.get("timePlay")) || 0;
 var timesGraphClicked = parseInt(url.searchParams.get("timeGraph")) || 0;
+var timesRetune = parseInt(url.searchParams.get("timeRetune")) || 0;
 
 if(groupNr == -1){
 groupNr = Math.floor(Math.random() * 2);
@@ -173,19 +174,19 @@ function saveSongsToNewPlaylist(){
 	
 	Spotify.createPlaylist(playlistName, description, selectedTracks).then(() => {
 		alert('A new playlist is added to your spotify! :) ');
-		window.location.href = "feedback.html" + "?timediff=" +  (TimeDifference() + timeSpent) +"&group=" + groupNr +"&timePlay=" + timesAudioIsPlayed +  + "&timeDel=" + timesAudioIsdeleted +"&timeGraph="+timesGraphClicked;
+		window.location.href = "feedback.html" + "?timediff=" +  (TimeDifference() + timeSpent) +"&group=" + groupNr +"&timePlay=" + timesAudioIsPlayed +  + "&timeDel=" + timesAudioIsdeleted +"&timeGraph="+timesGraphClicked+"&timeRetune=" + timesRetune;
 	});
 }
 
 function saveSongsToSelectedPlaylist(){
 	Spotify.saveTracksToPlaylist(selectedPlaylistId, selectedTracks).then(() => {
 		alert('The tracks have been added to your playlist! :) ');
-		window.location.href = "feedback.html"+ "?timediff=" +  (TimeDifference() + timeSpent) + "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeGraph="+timesGraphClicked;
+		window.location.href = "feedback.html"+ "?timediff=" +  (TimeDifference() + timeSpent) + "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeGraph="+timesGraphClicked +"&timeRetune=" + timesRetune;
 	});
 }
 
 function goback(){
-	window.location.href = "tune.html"+ "?timediff=" +  (TimeDifference() + timeSpent) + "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeGraph="+timesGraphClicked;
+	window.location.href = "tune.html"+ "?timediff=" +  (TimeDifference() + timeSpent) + "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeGraph="+timesGraphClicked +"&timeRetune=" + timesRetune;
 
 
 }
