@@ -1,13 +1,22 @@
 google.charts.load("current", {packages:['corechart']});
-var groupNr = Math.floor(Math.random() * 2);
 
 var startMoment = new Date();
 var startTimeHour = startMoment.getHours();
 var startTimeMinutes = startMoment.getMinutes();
 var startTimeSeconds = startMoment.getSeconds();
-var timesAudioIsPlayed = 0;
-var timesAudioIsdeleted = 0;
-var timesGraphClicked = 0;
+
+var url_string = window.location.href;
+var url = new URL(url_string);
+var groupNr = url.searchParams.get("group") || -1;
+var timeSpent = url.searchParams.get("timediff") || 0;
+var timesAudioIsdeleted = url.searchParams.get("timeDel") || 0;
+var timesAudioIsPlayed = url.searchParams.get("timePlay") || 0;
+var timesGraphClicked = url.searchParams.get("timeGraph") || 0;
+
+if(groupNr == -1){
+groupNr = Math.floor(Math.random() * 2);
+}
+
 
 function TimeDifference(){
 var endMoment = new Date();
@@ -132,13 +141,13 @@ function getRandomSample(list, count) {
 
 var currentlyPlaying = null;
 function playAudio(index){
-	timesAudioIsPlayed += 1;
 	if(currentlyPlaying != null) {
 		$('#audio').trigger('pause');
 		$('#play' + currentlyPlaying).removeClass('bg-warning').addClass('bg-success').find('i').removeClass('fa-pause').addClass('fa-play');
 	}
 	if(index != currentlyPlaying) {
 		currentlyPlaying = index;
+		timesAudioIsPlayed += 1;
 		$('#audio').find('source').attr('src', recommendedTracks[index].preview_url);
 		$('#audio').trigger('load').trigger('play');
 		$('#play' + index).removeClass('bg-success').addClass('bg-warning').find('i').removeClass('fa-play').addClass('fa-pause');
@@ -164,15 +173,21 @@ function saveSongsToNewPlaylist(){
 	
 	Spotify.createPlaylist(playlistName, description, selectedTracks).then(() => {
 		alert('A new playlist is added to your spotify! :) ');
-		window.location.href = "feedback.html" + "?timediff=" +  TimeDifference()+"&group=" + groupNr +"&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeGraph"+timesGraphClicked;
+		window.location.href = "feedback.html" + "?timediff=" +  (TimeDifference() + timeSpent) +"&group=" + groupNr +"&timePlay=" + timesAudioIsPlayed +  + "&timeDel=" + timesAudioIsdeleted +"&timeGraph"+timesGraphClicked;
 	});
 }
 
 function saveSongsToSelectedPlaylist(){
 	Spotify.saveTracksToPlaylist(selectedPlaylistId, selectedTracks).then(() => {
 		alert('The tracks have been added to your playlist! :) ');
-		window.location.href = "feedback.html"+ "?timediff=" +  TimeDifference()+ "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeDeleted"+timesGraphClicked;
+		window.location.href = "feedback.html"+ "?timediff=" +  (TimeDifference() + timeSpent) + "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeDeleted"+timesGraphClicked;
 	});
+}
+
+function goback(){
+	window.location.href = "tune.html"+ "?timediff=" +  (TimeDifference() + timeSpent) + "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeDeleted"+timesGraphClicked;
+
+
 }
 
 window.addEventListener("resize", resize);
