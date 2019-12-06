@@ -1,11 +1,11 @@
 var url_string = window.location.href;
 var url = new URL(url_string);
 
-var groupNr = url.searchParams.get("group") || -1;
-var timeSpent = url.searchParams.get("timediff") || 0;
-var timesAudioIsdeleted = url.searchParams.get("timeDel") || 0;
-var timesAudioIsPlayed = url.searchParams.get("timePlay") || 0;
-var timesGraphClicked = url.searchParams.get("timeGraph") || 0;
+var groupNr = parseInt(url.searchParams.get("group")) || -1;
+var timeSpent = parseInt(url.searchParams.get("timediff")) || 0;
+var timesAudioIsdeleted = parseInt(url.searchParams.get("timeDel")) || 0;
+var timesAudioIsPlayed = parseInt(url.searchParams.get("timePlay")) || 0;
+var timesGraphClicked = parseInt(url.searchParams.get("timeGraph")) || 0;
 
 var audioFeatures = [
     Spotify.audioFeatures.instrumentalness,
@@ -93,5 +93,5 @@ function makeIconShake() {
 function navigateToFinal() {
     selectedFeatures = audioFeatures.map((feature, i) => feature.key + '=' + oldSliderValues[i]/100);
     Cookies.set('features', selectedFeatures.join(','));
-    window.location = 'final.html' + "?timediff=" +  (timeSpent) + "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeDeleted"+timesGraphClicked;
+    window.location = 'final.html' + "?timediff=" +  (timeSpent) + "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeGraph="+timesGraphClicked;
 }
