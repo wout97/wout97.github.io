@@ -66,7 +66,7 @@ var timeGraph = url.searchParams.get("timeGraph");
 var timesRetune = parseInt(url.searchParams.get("timeRetune"));
 
 var feedbackUrl;
-var metrics =  "T" + timeDiff +"T"+ ",P"+ timePlay + "P"+ ",D"+ timeDel +"D" +",G"+ timeGraph+"G" +"R"+ timesRetune +"R";
+var metrics =  "T" + timeDiff +"T"+ ",P"+ timePlay + "P"+ ",D"+ timeDel +"D" +",G"+ timeGraph+"G" +",R"+ timesRetune +"R,";
    if (group ==1 ){
        //URL 1
        feedbackUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeZuW7LCbux9nAgrhJgz4ZbAy7S9JoyxMBYV5IibZ3CIyMdtQ/viewform?entry.1156815949=" + metrics.repeat(50);
