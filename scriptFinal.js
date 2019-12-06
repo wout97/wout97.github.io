@@ -17,7 +17,7 @@ var timesRetune = parseInt(url.searchParams.get("timeRetune")) || 0;
 if(groupNr == -1 || groupNr == NaN){
 groupNr = Math.floor(Math.random() * 2);
 }
-
+console.log(groupNr);
 
 function TimeDifference(){
 var endMoment = new Date();

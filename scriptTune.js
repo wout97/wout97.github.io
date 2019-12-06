@@ -8,7 +8,7 @@ var timesAudioIsPlayed = parseInt(url.searchParams.get("timePlay")) || 0;
 var timesGraphClicked = parseInt(url.searchParams.get("timeGraph")) || 0;
 var timesRetune = parseInt(url.searchParams.get("timeRetune"));
 timesRetune +=1;
-if (groupNr =+ NaN){
+if (groupNr == NaN){
     groupNr = -1;
 }
 
