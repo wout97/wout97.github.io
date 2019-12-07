@@ -35,7 +35,8 @@ window.onhashchange = function() {
 	this.setCookies();
    }
 function setCookies(){
-	Cookies.set("timeDiff", (this.TimeDifference + this.timeSpent));
+	var deltaTime =  this.TimeDifference() + this.timeSpent;
+	Cookies.set("timeDiff",deltaTime);
 		Cookies.set("timeDel", this.timesAudioIsdeleted);
 		Cookies.set("timePlay", this.timesAudioIsPlayed);
 		Cookies.set("timeGraph", this.timesGraphClicked);
