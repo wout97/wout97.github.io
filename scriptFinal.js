@@ -116,6 +116,7 @@ $(() => {
 
 function toggleGraph(index){
 	timesGraphClicked +=1;
+	setCookies();
 	$('#chart' + index).slideToggle(500);
 }
 
@@ -184,6 +185,7 @@ function playAudio(index){
 //delete song from list
 function deleteAudio(index){
 	timesAudioIsdeleted +=1;
+	setCookies();
 	$('#track' + index).slideUp(500);
 	var indexInSelectedTracks = selectedTracks.indexOf(recommendedTracks[index]);
 	selectedTracks.splice(indexInSelectedTracks, 1);
@@ -218,6 +220,9 @@ function goback(){
 }
 
 window.addEventListener("resize", resize);
+
+const interval = setInterval(function() {
+	setCookies();  }, 5000);
 
 function resize() {
 	recommendedTracks.forEach((track, i) => drawChart(i));
