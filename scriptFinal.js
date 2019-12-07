@@ -11,7 +11,7 @@ var groupNr = parseInt(Cookies.get("group"));
 var timeSpent = checkIfNull(parseInt(Cookies.get("timediff")));
 var timesAudioIsdeleted = checkIfNull(parseInt(Cookies.get("timeDel")));
 var timesAudioIsPlayed =checkIfNull(parseInt(Cookies.get("timePlay")));
-var timesGraphClicked = CheckIfNull(parseInt(Cookies.get("timeGraph")));
+var timesGraphClicked = checkIfNull(parseInt(Cookies.get("timeGraph")));
 var timesRetune = checkIfNull(parseInt(Cookies.get("timeRetune")));
 
 
