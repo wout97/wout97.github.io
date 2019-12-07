@@ -30,8 +30,6 @@ Cookies.set("group", groupNr);
 }
 
 window.onhashchange = function() {
-	this.console.log("back button pressed, updating Cookies");
-	alert("back button pressed, updating Cookies");
 	this.setCookies();
    }
 function setCookies(){
