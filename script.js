@@ -1,7 +1,17 @@
 //import Cookies from 'js-cookie'
 //link to our dashboard
-var dashboard = "https://developer.Spotify.com/dashboard/applications/059f69ae51c445518b106f91e9ddaf9c"
+var dashboard = "https://developer.Spotify.com/dashboard/applications/059f69ae51c445518b106f91e9ddaf9c";
 
+deletePreviousCookies();
+function deletePreviousCookies(){
+    Cookies.set("timeDiff",0);
+    Cookies.set("timeDel", 0);
+    Cookies.set("timePlay", 0);
+    Cookies.set("timeGraph", 0);
+    Cookies.set("timeretune", 0);
+    Cookies.set("group", -1)
+
+}
 
 // Init
 $(() => {
