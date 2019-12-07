@@ -6,7 +6,7 @@ var url = new URL(url_string);
 //var timesAudioIsdeleted = parseInt(url.searchParams.get("timeDel")) || 0;
 //var timesAudioIsPlayed = parseInt(url.searchParams.get("timePlay")) || 0;
 //var timesGraphClicked = parseInt(url.searchParams.get("timeGraph")) || 0;
-var timesRetune = checkIfNull(parseInt(cookies.get("timeRetune")));
+var timesRetune = checkIfNull(parseInt(Cookies.get("timeRetune")));
 
 function checkIfNull(parameterToCheck){
 if(parameterToCheck == null || isNaN(parameterToCheck)){

@@ -7,12 +7,12 @@ var startTimeSeconds = startMoment.getSeconds();
 
 var url_string = window.location.href;
 var url = new URL(url_string);
-var groupNr = parseInt(cookies.get("group"));
-var timeSpent = checkIfNull(parseInt(cookies.get("timediff")));
-var timesAudioIsdeleted = checkIfNull(parseInt(cookies.get("timeDel")));
-var timesAudioIsPlayed =checkIfNull(parseInt(cookies.get("timePlay")));
-var timesGraphClicked = CheckIfNull(parseInt(cookies.get("timeGraph")));
-var timesRetune = checkIfNull(parseInt(cookies.get("timeRetune")));
+var groupNr = parseInt(Cookies.get("group"));
+var timeSpent = checkIfNull(parseInt(Cookies.get("timediff")));
+var timesAudioIsdeleted = checkIfNull(parseInt(Cookies.get("timeDel")));
+var timesAudioIsPlayed =checkIfNull(parseInt(Cookies.get("timePlay")));
+var timesGraphClicked = CheckIfNull(parseInt(Cookies.get("timeGraph")));
+var timesRetune = checkIfNull(parseInt(Cookies.get("timeRetune")));
 
 
 function checkIfNull(parameterToCheck){
@@ -26,20 +26,20 @@ else{
 
 if(groupNr == -1 || isNaN(groupNr) ||groupNr == null){
 groupNr = Math.floor(Math.random() * 2);
-cookies.set("group", groupNr);
+Cookies.set("group", groupNr);
 }
 
 window.onhashchange = function() {
-	this.console.log("back button pressed, updating cookies");
-	alert("back button pressed, updating cookies");
+	this.console.log("back button pressed, updating Cookies");
+	alert("back button pressed, updating Cookies");
 	this.setCookies();
    }
 function setCookies(){
-	cookies.set("timeDiff", (this.TimeDifference + this.timeSpent));
-		cookies.set("timeDel", this.timesAudioIsdeleted);
-		cookies.set("timePlay", this.timesAudioIsPlayed);
-		cookies.set("timeGraph", this.timesGraphClicked);
-		cookies.set("timeretune", this.timesRetune);
+	Cookies.set("timeDiff", (this.TimeDifference + this.timeSpent));
+		Cookies.set("timeDel", this.timesAudioIsdeleted);
+		Cookies.set("timePlay", this.timesAudioIsPlayed);
+		Cookies.set("timeGraph", this.timesGraphClicked);
+		Cookies.set("timeretune", this.timesRetune);
 
 }
 function TimeDifference(){
