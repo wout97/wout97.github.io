@@ -1,17 +1,22 @@
 var url_string = window.location.href;
 var url = new URL(url_string);
 
-var groupNr = parseInt(url.searchParams.get("group"));
-var timeSpent = parseInt(url.searchParams.get("timediff")) || 0;
-var timesAudioIsdeleted = parseInt(url.searchParams.get("timeDel")) || 0;
-var timesAudioIsPlayed = parseInt(url.searchParams.get("timePlay")) || 0;
-var timesGraphClicked = parseInt(url.searchParams.get("timeGraph")) || 0;
-var timesRetune = parseInt(url.searchParams.get("timeRetune"));
-timesRetune +=1;
-if (isNaN(groupNr)){
-    groupNr = -1;
+//var groupNr = parseInt(url.searchParams.get("group"));
+//var timeSpent = parseInt(url.searchParams.get("timediff")) || 0;
+//var timesAudioIsdeleted = parseInt(url.searchParams.get("timeDel")) || 0;
+//var timesAudioIsPlayed = parseInt(url.searchParams.get("timePlay")) || 0;
+//var timesGraphClicked = parseInt(url.searchParams.get("timeGraph")) || 0;
+var timesRetune = checkIfNull(parseInt(cookie.get("timeRetune")));
+
+function checkIfNull(parameterToCheck){
+if(parameterToCheck == null || isNaN(parameterToCheck)){
+	return -1;
 }
-console.log("GN=" + groupNr)
+else{
+	return parameterToCheck;
+}
+}
+timesRetune +=1;
 
 var audioFeatures = [
     Spotify.audioFeatures.instrumentalness,
@@ -99,5 +104,5 @@ function makeIconShake() {
 function navigateToFinal() {
     selectedFeatures = audioFeatures.map((feature, i) => feature.key + '=' + oldSliderValues[i]/100);
     Cookies.set('features', selectedFeatures.join(','));
-    window.location = 'final.html' + "?timediff=" +  (timeSpent) + "&group=" + groupNr+ "&timePlay=" + timesAudioIsPlayed + "&timeDel=" + timesAudioIsdeleted +"&timeGraph="+timesGraphClicked+"&timeRetune=" + timesRetune ;
+    window.location = 'final.html';
 }
