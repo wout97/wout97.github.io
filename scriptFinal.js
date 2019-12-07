@@ -7,12 +7,12 @@ var startTimeSeconds = startMoment.getSeconds();
 
 var url_string = window.location.href;
 var url = new URL(url_string);
-var groupNr = parseInt(cookie.get("group"));
-var timeSpent = checkIfNull(parseInt(cookie.get("timediff")));
-var timesAudioIsdeleted = checkIfNull(parseInt(cookie.get("timeDel")));
-var timesAudioIsPlayed =checkIfNull(parseInt(cookie.get("timePlay")));
-var timesGraphClicked = CheckIfNull(parseInt(cookie.get("timeGraph")));
-var timesRetune = checkIfNull(parseInt(cookie.get("timeRetune")));
+var groupNr = parseInt(cookies.get("group"));
+var timeSpent = checkIfNull(parseInt(cookies.get("timediff")));
+var timesAudioIsdeleted = checkIfNull(parseInt(cookies.get("timeDel")));
+var timesAudioIsPlayed =checkIfNull(parseInt(cookies.get("timePlay")));
+var timesGraphClicked = CheckIfNull(parseInt(cookies.get("timeGraph")));
+var timesRetune = checkIfNull(parseInt(cookies.get("timeRetune")));
 
 
 function checkIfNull(parameterToCheck){
@@ -26,7 +26,7 @@ else{
 
 if(groupNr == -1 || isNaN(groupNr) ||groupNr == null){
 groupNr = Math.floor(Math.random() * 2);
-cookie.set("group", groupNr);
+cookies.set("group", groupNr);
 }
 
 window.onhashchange = function() {
@@ -35,11 +35,11 @@ window.onhashchange = function() {
 	this.setCookies();
    }
 function setCookies(){
-	cookie.set("timeDiff", (this.TimeDifference + this.timeSpent));
-		cookie.set("timeDel", this.timesAudioIsdeleted);
-		cookie.set("timePlay", this.timesAudioIsPlayed);
-		cookie.set("timeGraph", this.timesGraphClicked);
-		cookie.set("timeretune", this.timesRetune);
+	cookies.set("timeDiff", (this.TimeDifference + this.timeSpent));
+		cookies.set("timeDel", this.timesAudioIsdeleted);
+		cookies.set("timePlay", this.timesAudioIsPlayed);
+		cookies.set("timeGraph", this.timesGraphClicked);
+		cookies.set("timeretune", this.timesRetune);
 
 }
 function TimeDifference(){
