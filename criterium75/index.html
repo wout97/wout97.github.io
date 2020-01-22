@@ -23,97 +23,43 @@
 </head>
 
 <body>
-   
-    <button hidden="true" class="request-button">Request permissions</button>
-    <button hidden="true" class="show-button">Show notification</button>
-    <div class="container">
-        
-        <h1 class="display-1 text-center">Focat</h1>
-   <div class="row">
-        <div class="col-12 ">
-      <div class="text-center"  hidden="true" id="notToHide" >
-        <div hidden="true" id="quote"style="border:solid;border-radius:2%;"> <h3  class="text-center" id="quoteText" style="font-family: 'Pacifico', cursive; ">  "The art of reading and studying consists in remembering the essentials and forgetting what is not essential"</h3>
-        </div>
-        <p> <h1 style="font-family: 'VT323', monospace; font-size: 5em;" id="timerStart"></h1></p>
-        <button type="button" style="margin:10px;" onclick="giveUp()"class="btn btn-light btn-sm">I hate kittens</button>
-        
-        </div> <!-- Timer -->
-        </div>
-      </div>
-      <div class="text-center">
-        Sofie is <kbd id="statusSofie" style="background-color: #a278b5;">Studying</kbd>
-        Wout is <kbd id="statusWout" > Studying</kbd></div>
-        <div id="toHide">
-            <div class="row">
-                <div class="col-12 ">
-                        <h3 class="text-center">Progress Of The Day   </h3>
-                        <h3 class="text-center"><kbd id="progressOfTheDay">?/8 hours</kbd></h3>
-                        <div class="progress">
-                            <div id="progressBar" class="progress-bar  progress-bar-purple" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-                        </div>
-            </div> <!-- col-12-->
-            </div> <!-- row-->
-        
+
+    <div class="container text-center">
+        <h1 class="display-1 text-center">Criterium 75</h1>        
       <div class="row">
         <div class="col-12 ">
- 
-         
-      
-        <div class="panel panel-default background-light-purple " id="timerSection">
-            <div class="panel-heading background-light-purple text-center"><h3>Timer</h3></div>
-            <div class="panel-body background-light-purple text-center">
-                <!-- Progress bar 1 -->
-                <span id="timerBox" class="dot">
-                <img onclick=minus() class="animal" id="animal" src="https://lh3.googleusercontent.com/9cN6QlJzucqSLVww0z6JNtw5BlDiZTkHM8rNIlSnKNpmp8OqQLVpY9Vzv6B5adWHoGOAdvAxUexkx9NmGzuNOVmi9RtgefnvbLtNm1R-pRiPR3h-SYf2HuVEQb287A-dfbvtFuguwVCWSl8EkecYg8NULRVUzpwCqAtAn-j14CPraC_vb47WcMqcJAgW-Z8k88I1xi8DSOruYl_LT4SdoJhI0Q8aZ6TpA_cPdL9-9ufO89450o4Owabh-NEuy2BzmPAOGzLXR8rKImFYnYPeKH2ZJ-QM-5XLmAUtAJZle9ONWk-_6ZD49e3m3X1NsRBrl5sw1bq1Rd4_Dq4fMIajFSitl3mYdlm9UpCMxqD73cgmx9Ju6PPaoyxBj-rNCx0mhdJUZm6GS5zkl5bb9WCCWdUbUhs1VZ0jvQXW2TwJ_9-WSINBgMnl3Oi5AycAiPRCFJzN31gMv5YXM5qIXHBeCzpiqlAQo9KtsSpasIavyyhLwLM6ZBmw1VDWJdUBY3A6pU_qsMPaXui4FIWta_rCBycrAEuvbv_6AOslqHJGKcs_YLkqEY8E9pPyKM9wmhRN9H3H2nEkrt3scMWbYSuCCjmYrp9VhYjmS06DmhV_fDcxjotqbT8jWDllXz-_stDEENaVsGZg9dxeMCxxRWkY4BqF1GWezfH9nShOqLGPUQPVBECwqGIsoAX6TEeswUrT316DIHUr2V4ExJKLAY3U6nL4ynAbbNEPby5gCPfMuek6be9Law=s512-no">
-                </span>
-                <p id="underImage">New kitten</p>
-                <!-- END -->
-             </div><!-- panel body -->
-            
-             <div id="toHide2" class="slidecontainer text-center" style="font-size: 24px">
-                <input type="range" min="0" max="120" value="5" class="slider" id="myRange">
-                <p  style="font-family: 'VT323', monospace; " ><span class="display-5" id="demo">0 hour(s) and 10 minute(s).</span></p>
-                <i class="fas fa-cat fa-lg" style="color:#8bbabb" id="icon1"></i>
-                <i class="fas fa-child fa-lg" style="color:#8bbabb" id="icon2"></i>
-                <i class="fas fa-paw fa-lg" style="color:#8bbabb" id="icon3"></i>
-
-            </div><!-- books/rangeslider -->
-            
-            <div class="text-center"><button style=" margin-bottom: 10px; margin-top: 10px;" data-toggle="" data-target="#timerSection" type="button" onclick=startFocus() id="startButton" class="btn btn-info text-center">Start focussing!</button>
-</div>
-         
-        </div> <!-- panel -->
+            <h1 style="font-family: 'VT323', monospace; font-size: 5em;" >Leaderboard</h1>
+           <!-- <div class = "text-center" style="font-family: 'VT323', monospace;"> -->
+                <div class="col-xs-4 ">
+                    <p style="font-family: 'VT323',monospace; font-size:2em">RANK</p>
+                    <p style="font-family: 'VT323',monospace; font-size:1.5em">1</p style="font-size:2em">
+                    <p style="font-family: 'VT323',monospace; font-size:1.5em">2</p style="font-size:2em">
+                    <p style="font-family: 'VT323',monospace; font-size:1.5em">3</p style="font-size:1.5em">
+                </div>
+                <div class="col-xs-4 ">
+                    <p style="font-family: 'VT323',monospace; font-size:2em">NAME</p>
+                    <p style="font-family: 'VT323',monospace; font-size:1.5em">WOUT</p style="font-size:2em">
+                    <p style="font-family: 'VT323',monospace; font-size:1.5em">SOFIE</p style="font-size:2em">
+                    <p style="font-family: 'VT323',monospace; font-size:1.5em">BILLIE</p style="font-size:1.5em">
+                </div>
+               
+                <div class="col-xs-4 ">
+                    <p style="font-family: 'VT323',monospace; font-size:2em">SCORE</p>
+                    <p style="font-family: 'VT323',monospace; font-size:1.5em">123 132</p style="font-size:2em">
+                    <p style="font-family: 'VT323',monospace; font-size:1.5em">111 000</p style="font-size:2em">
+                    <p style="font-family: 'VT323',monospace; font-size:1.5em">000 101</p style="font-size:1.5em">
+                </div>
+               
+       
     </div><!-- col-12 -->
+    <button>Add Highscore</button>
     </div><!-- row -->
    
-    <div class="row">
-        <div class="col-12">
-               
-                <div class="panel panel-default background-light-purple " id="historySection">
-                    <div class="panel-heading background-light-purple text-center"><h3><button onclick=clicky(-7) class="btn"><i class="fas fa-calendar-minus"></i></button>History <button onclick=clicky(7) class="btn"><i class="fas fa-calendar-plus"></i></button></h3></div>
-                    <div class="panel-body background-light-purple text-center">
-                    <div class="chart background-light-purple" id="chart"></div></div>
-                </div>
-        </div><!-- col-12 -->
-    </div><!-- row -->
-    <div class="row">
-        <div class="col-12">
-               
-                <div class="panel panel-default background-light-purple " id="historySection">
-                    <div class="panel-heading background-light-purple text-center"><h3>Earned gifs</h3> </div>
-                    <div class="panel-body background-light-purple text-center" id="cats">
-
-                    </div>
-                    
-                </div>
-        </div><!-- col-12 -->
-    </div><!-- row -->
-    
-    </div><!-- To hide -->
+   
 </div> <!--Main Container-->
       
 </body>
-</body>
+
 <script src="script.js"></script>
 
 </html>
