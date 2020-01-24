@@ -43,7 +43,10 @@ function updateHighScore2(imageUrl){
     var xhr = new XMLHttpRequest()
     xhr.open('GET',url)
     xhr.send();
-    getHighScores();
+  getHighScores();
+  getHighScores();
+  getHighScores();
+
 }
 toggleEveryImageOff();
 function toggleEveryImageOff(){
