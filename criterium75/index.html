@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.5/push.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap&effect=outline" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -16,7 +15,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/64edab8c67.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="stylesheet.css" type="text/css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
 
 
@@ -25,39 +23,97 @@
 <body>
 
     <div class="container text-center">
-        <h1 class="display-1 text-center">Criterium 75</h1>        
+        <h1 class="font-effect-outline display-1 text-center" style="color: #e8b417" >Criterium 75</h1>  
+        <img src="background.png" width="100%">
+        <h1 class="text-center" style="font-family: 'VT323', monospace; font-size: 5em;" >Leaderboard</h1>      
       <div class="row">
-        <div class="col-12 ">
-            <h1 style="font-family: 'VT323', monospace; font-size: 5em;" >Leaderboard</h1>
+        
+        <div id="imageDiv" class="col-xs-12 ">
+           
+        </div i>
+
+        <div class="col-xs-12 ">
+          
            <!-- <div class = "text-center" style="font-family: 'VT323', monospace;"> -->
-                <div class="col-xs-4 ">
-                    <p style="font-family: 'VT323',monospace; font-size:2em">RANK</p>
-                    <p style="font-family: 'VT323',monospace; font-size:1.5em">1</p style="font-size:2em">
-                    <p style="font-family: 'VT323',monospace; font-size:1.5em">2</p style="font-size:2em">
-                    <p style="font-family: 'VT323',monospace; font-size:1.5em">3</p style="font-size:1.5em">
+                <div class="col-xs-3 ">
+                    <p style="color:	black; font-family: 'VT323', monospace; font-size: 2em;">RANK </p>
+                    <p onclick=toggleImage(1) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="Een.png"></p>
+      
+                    <p onclick=toggleImage(2) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="Twee.png"></p>
+                    <p onclick=toggleImage(3) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="Drie.png"></p >
                 </div>
                 <div class="col-xs-4 ">
-                    <p style="font-family: 'VT323',monospace; font-size:2em">NAME</p>
-                    <p style="font-family: 'VT323',monospace; font-size:1.5em">WOUT</p style="font-size:2em">
-                    <p style="font-family: 'VT323',monospace; font-size:1.5em">SOFIE</p style="font-size:2em">
-                    <p style="font-family: 'VT323',monospace; font-size:1.5em">BILLIE</p style="font-size:1.5em">
-                </div>
-               
-                <div class="col-xs-4 ">
-                    <p style="font-family: 'VT323',monospace; font-size:2em">SCORE</p>
-                    <p style="font-family: 'VT323',monospace; font-size:1.5em">123 132</p style="font-size:2em">
-                    <p style="font-family: 'VT323',monospace; font-size:1.5em">111 000</p style="font-size:2em">
-                    <p style="font-family: 'VT323',monospace; font-size:1.5em">000 101</p style="font-size:1.5em">
+                    <p style="color:	black; font-family: 'VT323', monospace; font-size: 2em;">NAME</p>
+                    <p onclick=toggleImage(1) id="name1" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">WOUT</p>
+                    <p onclick=toggleImage(2) id="name2" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">SOFIE</p >
+                    <p onclick=toggleImage(3) id="name3" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">BILLIE</p>
                 </div>
                
-       
-    </div><!-- col-12 -->
-    <button>Add Highscore</button>
+                <div class="col-xs-5 ">
+                    <p style="color:black; font-family: 'VT323', monospace; font-size: 2em;">SCORE</p>
+                    <p  onclick=toggleImage(1) class="rounded" id="score1" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">123 132</p>
+                    <p onclick=toggleImage(2) class="rounded" id="score2" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">111 000</p>
+                    <p onclick=toggleImage(3) class="rounded" id="score3" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">000 101</p >
+                </div>
+               
+               
+    </div><!-- col-12 onclick="addHighScore()" -->
+
+    <button type="button"   data-toggle="modal" data-target="#myModal" class="btn btn-secondary btn-lg btn-block">Add new score</button>
+    <div class="col-xs-12 " id="addHighScoreSection">    
+    </div>
+
+     <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+         
+          <h4 class="modal-title">Add HighScore</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" action="/action_page.php">
+        
+                <div class="form-group">
+                  <label class="control-label col-xs-2" for="email">Name:</label>
+                  <div class="col-xs-10">
+                    <input type="name" class="form-control" id="nameForm" placeholder="Enter name" name="name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-xs-2" for="pwd">Score:</label>
+                  <div class="col-xs-10">          
+                    <input type="number" class="form-control" id="scoreForm" placeholder="Enter Score" name="score">
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2" for="email">Pass:</label>
+                    <div class="col-xs-10">
+                      <input type="password" class="form-control" id="passForm" placeholder="Enter password" name="name">
+                    </div>
+                  </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input">
+                    <label class="custom-file-label">Choose picture</label>
+                  </div>
+                
+              </form>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" onclick=updateHighScore() class="btn btn-light btn-lg btn-block" >Update</button>
+          </div>
+      </div>
+    </div>
+  </div>
+   
     </div><!-- row -->
+    
    
    
 </div> <!--Main Container-->
-<input type="file" name="myFile">
+
 
 </body>
 
