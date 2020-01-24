@@ -1,13 +1,12 @@
 const staticCacheName = 'site-static';
 const assets = [
-  '/',
   'index.html',
   'app.js',
   'js/script.js',
-  '/style/stylesheet.css',
-  '/img/Een.png',
-  '/img/Twee.png',
-  '/img/Drie.png',
+  'style/stylesheet.css',
+  'img/Een.png',
+  'img/Twee.png',
+  'img/Drie.png',
   'https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css',
   'https://fonts.googleapis.com/css?family=Orbitron&display=swap&effect=outline',
   'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js',
