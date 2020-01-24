@@ -1,4 +1,6 @@
 getHighScores();
+var intervalID = setInterval(function(){getHighScores();}, 10000);
+
 function getHighScores(){
     url = "https://script.google.com/macros/s/AKfycby4ye5SAwlhUdfKUeUBhZvz1HW2qBnjt42FiKwJN1rR/dev?type=getHighScores&pass=Secret";
     var xhr = new XMLHttpRequest()
@@ -44,9 +46,6 @@ function updateHighScore2(imageUrl){
     xhr.open('GET',url)
     xhr.send();
   getHighScores();
-  getHighScores();
-  getHighScores();
-
 }
 toggleEveryImageOff();
 function toggleEveryImageOff(){
