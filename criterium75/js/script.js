@@ -3,7 +3,7 @@ getHighScores("Secret");
 function getHighScores(password){
     url = "https://script.google.com/macros/s/AKfycby4ye5SAwlhUdfKUeUBhZvz1HW2qBnjt42FiKwJN1rR/dev?type=getHighScores&pass="+ password +"";
     var xhr = new XMLHttpRequest()
-    xhr.open('GET',url)
+    xhr.open('GET',url, false)
     xhr.onreadystatechange = function()
     {if (xhr.readyState == 4 ){
         displayHighScores(JSON.parse(xhr.responseText));
@@ -42,7 +42,7 @@ function updateHighScore2(imageUrl){
 
     url = "https://script.google.com/macros/s/AKfycby4ye5SAwlhUdfKUeUBhZvz1HW2qBnjt42FiKwJN1rR/dev?type=addHighScore&name="+ name +"&score="+ score +"&time=" + time + "&image=" + image + "&deleteHash="+ deleteHash +"&extra="+ extra +"&pass="+pass;
     var xhr = new XMLHttpRequest()
-    xhr.open('GET',url)
+    xhr.open('GET',url, false)
     xhr.send();
     getHighScores();
 }
