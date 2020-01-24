@@ -1,5 +1,4 @@
 getHighScores("Secret");
-
 function getHighScores(password){
     url = "https://script.google.com/macros/s/AKfycby4ye5SAwlhUdfKUeUBhZvz1HW2qBnjt42FiKwJN1rR/dev?type=getHighScores&pass="+ password +"";
     var xhr = new XMLHttpRequest()
@@ -14,8 +13,6 @@ function getHighScores(password){
 function displayHighScores(response){
     console.log((response));
     htmlString = "";
-   
-
     for (var i=0;i<3;i++){
         document.getElementById("name"+ (i+1)).innerHTML = response[i*3];
         document.getElementById("score"+ (i+1)).innerHTML = response[i*3+1];
@@ -29,7 +26,9 @@ function displayHighScores(response){
 }
 function updateHighScore(){
     $('#myModal').modal('hide');
-    fireImigur();
+    window.setTimeout(function() {    fireImigur()},50);
+
+
 }
 function updateHighScore2(imageUrl){
     var name =document.getElementById("nameForm").value;
