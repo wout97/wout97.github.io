@@ -1,6 +1,6 @@
-getHighScores("Secret");
-function getHighScores(password){
-    url = "https://script.google.com/macros/s/AKfycby4ye5SAwlhUdfKUeUBhZvz1HW2qBnjt42FiKwJN1rR/dev?type=getHighScores&pass="+ password +"";
+getHighScores();
+function getHighScores(){
+    url = "https://script.google.com/macros/s/AKfycby4ye5SAwlhUdfKUeUBhZvz1HW2qBnjt42FiKwJN1rR/dev?type=getHighScores&pass=Secret";
     var xhr = new XMLHttpRequest()
     xhr.open('GET',url)
     xhr.onreadystatechange = function()
