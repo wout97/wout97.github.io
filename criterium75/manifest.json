@@ -1,0 +1,51 @@
+{
+    "name": "Criterium 75 - official leaderboard",
+    "short_name": "Criterium 75",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#c9bed6",
+    "theme_color": "#cfa9fc",
+    "orientation": "portrait-primary",
+    "icons": [
+      {
+        "src": "img/icon-72x72.png",
+        "type": "image/png",
+        "sizes": "72x72"
+      },
+      {
+        "src": "img/icon-72x72.png",
+        "type": "image/png",
+        "sizes": "96x96"
+      },
+      {
+        "src": "img/icon-72x72.png",
+        "type": "image/png",
+        "sizes": "128x128"
+      },
+      {
+        "src": "img/icon-72x72.png",
+        "type": "image/png",
+        "sizes": "144x144"
+      },
+      {
+        "src": "img/icon-72x72.png",
+        "type": "image/png",
+        "sizes": "152x152"
+      },
+      {
+        "src": "img/icon-72x72.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "img/icon-72x72.png",
+        "type": "image/png",
+        "sizes": "384x384"
+      },
+      {
+        "src": "img/icon-72x72.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ]
+  }
