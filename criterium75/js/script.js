@@ -1,5 +1,5 @@
 getHighScores();
-var intervalID = setInterval(function(){getHighScores();}, 10000);
+var intervalID = setInterval(function(){console.log("polling...");getHighScores();}, 10000);
 
 function getHighScores(){
     url = "https://script.google.com/macros/s/AKfycby4ye5SAwlhUdfKUeUBhZvz1HW2qBnjt42FiKwJN1rR/dev?type=getHighScores&pass=Secret";
