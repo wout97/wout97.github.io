@@ -11,13 +11,16 @@ function getHighScores(){
     }};
     xhr.send();
 }
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 function displayHighScores(response){
     console.log((response));
     htmlString = "";
     for (var i=0;i<3;i++){
         document.getElementById("name"+ (i+1)).innerHTML = response[i*3];
-        document.getElementById("score"+ (i+1)).innerHTML = response[i*3+1];
+        document.getElementById("score"+ (i+1)).innerHTML = numberWithCommas(response[i*3+1]);
         if (response[i*3+2].includes("https")){
         htmlString += ' <img  onclick=toggleImage(' + (i+1) + ') style="display:none" src=' + response[i*3+2] + ' id="image' + (i+1) + '"   width="100%" alt="image_score_' + (i+1) + '">'}
         else{
