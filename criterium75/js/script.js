@@ -106,3 +106,24 @@ function fireImigur(){
     var fileName = $(this).val().split("\\").pop();
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
   });
+
+
+  function changeTimeFrame(timeFrame){
+      if (timeFrame == 0){
+        document.getElementById("btnAllTime").className = "btn btn-primary btn-xs disabled";
+        document.getElementById("btnLastYear").className = "btn btn-primary btn-xs";
+        document.getElementById("btnLastMonth").className = "btn btn-primary btn-xs";
+      }else if(timeFrame == 1){
+        document.getElementById("btnAllTime").className = "btn btn-primary btn-xs";
+        document.getElementById("btnLastYear").className = "btn btn-primary btn-xs disabled";
+        document.getElementById("btnLastMonth").className = "btn btn-primary btn-xs";
+      }else{
+        document.getElementById("btnAllTime").className = "btn btn-primary btn-xs";
+        document.getElementById("btnLastYear").className = "btn btn-primary btn-xs";
+        document.getElementById("btnLastMonth").className = "btn btn-primary btn-xs disabled";
+      }
+  }
+  function personalBest(){
+
+    
+  }

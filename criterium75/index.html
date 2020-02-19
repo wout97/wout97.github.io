@@ -29,12 +29,17 @@
     <div class="container text-center">
         <h1 class="font-effect-outline display-1 text-center" style="color: #e8b417" >Criterium 75</h1>  
         <img src="img/background.png" width="100%">
-        <h1 class="text-center" style="font-family: 'VT323', monospace; font-size: 5em;" >Leaderboard</h1>      
+        <h1 class="text-center" style="font-family: 'VT323', monospace; font-size: 5em;" >Leaderboard 
+          
+      </h1>   
+        <button type="button"   id="btnAllTime" onclick=changeTimeFrame(0) class="btn btn-primary btn-xs disabled">All time</button>
+        <button type="button" id="btnLastYear" onclick=changeTimeFrame(1) class="btn btn-primary btn-xs ">Last year</button>
+        <button type="button"  id="btnLastMonth" onclick=changeTimeFrame(2) class="btn btn-primary btn-xs ">Last month</button>
       <div class="row">
         
         <div id="imageDiv" class="col-xs-12 ">
            
-        </div i>
+        </div>
 
         <div class="col-xs-12 ">
           
@@ -42,15 +47,18 @@
                 <div class="col-xs-3 ">
                     <p style="color:	black; font-family: 'VT323', monospace; font-size: 2em;">RANK </p>
                     <p onclick=toggleImage(1) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="img/Een.png"></p>
-      
                     <p onclick=toggleImage(2) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="img/Twee.png"></p>
                     <p onclick=toggleImage(3) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="img/Drie.png"></p >
+                    <p onclick=toggleImage(4) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="img/Drie.png"></p >
+                    <p onclick=toggleImage(5) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="img/Drie.png"></p >
                 </div>
                 <div class="col-xs-4 ">
                     <p style="color:	black; font-family: 'VT323', monospace; font-size: 2em;">NAME</p>
                     <p onclick=toggleImage(1) id="name1" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">player 1</p>
                     <p onclick=toggleImage(2) id="name2" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">player 2</p >
                     <p onclick=toggleImage(3) id="name3" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">player 3</p>
+                    <p onclick=toggleImage(4) id="name4" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">player 4</p>
+                    <p onclick=toggleImage(5) id="name5" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">player 5</p>
                 </div>
                
                 <div class="col-xs-5 ">
@@ -58,12 +66,57 @@
                     <p  onclick=toggleImage(1) class="rounded" id="score1" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">000.000</p>
                     <p onclick=toggleImage(2) class="rounded" id="score2" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">000.000</p>
                     <p onclick=toggleImage(3) class="rounded" id="score3" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">000.000</p >
+                    <p onclick=toggleImage(4) class="rounded" id="score4" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">000.000</p >
+                    <p onclick=toggleImage(5) class="rounded" id="score5" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">000.000</p >
                 </div>
                
                
     </div><!-- col-12 onclick="addHighScore()" -->
 
     <button type="button"   data-toggle="modal" data-target="#myModal" class="btn btn-secondary btn-lg btn-block">Add new score</button>
+    <label class="switch">
+      <input type="checkbox">
+      <span class="slider round"></span>
+    </label><h5>Toggle Personal Scores</h5>
+    <div class="col-xs-12" hidden=True>
+      <h1 class="text-center" style="font-family: 'VT323', monospace; font-size: 5em;" >Personal HighScore</h1>   
+
+      <!-- <div class = "text-center" style="font-family: 'VT323', monospace;"> -->
+           <div class="col-xs-3 ">
+               <p style="color:	black; font-family: 'VT323', monospace; font-size: 2em;">RANK </p>
+               <p onclick=toggleImage(1) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="img/Een.png"></p>
+               <p onclick=toggleImage(2) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="img/Twee.png"></p>
+               <p onclick=toggleImage(3) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="img/Drie.png"></p >
+               <p onclick=toggleImage(4) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="img/Drie.png"></p >
+               <p onclick=toggleImage(5) style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px "><img width=30px src="img/Drie.png"></p >
+           </div>
+           <div class="col-xs-4 ">
+               <p style="color:	black; font-family: 'VT323', monospace; font-size: 2em;">NAME</p>
+               <p onclick=toggleImage(1) id="name1" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">player 1</p>
+               <p onclick=toggleImage(2) id="name2" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">player 2</p >
+               <p onclick=toggleImage(3) id="name3" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">player 3</p>
+               <p onclick=toggleImage(4) id="name4" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">player 4</p>
+               <p onclick=toggleImage(5) id="name5" style="font-family: 'VT323', monospace; font-size: 1.5em; height:30px ">player 5</p>
+           </div>
+          
+           <div class="col-xs-5 ">
+               <p style="color:black; font-family: 'VT323', monospace; font-size: 2em;">SCORE</p>
+               <p  onclick=toggleImage(1) class="rounded" id="score1" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">000.000</p>
+               <p onclick=toggleImage(2) class="rounded" id="score2" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">000.000</p>
+               <p onclick=toggleImage(3) class="rounded" id="score3" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">000.000</p >
+               <p onclick=toggleImage(4) class="rounded" id="score4" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">000.000</p >
+               <p onclick=toggleImage(5) class="rounded" id="score5" style="font-family: 'VT323', monospace; font-size: 1.5em;border-style: solid;background-color: aliceblue; height:30px ">000.000</p >
+           </div>
+          
+          
+</div><!-- col-12 -->
+
+
+
+
+
+
+
     <div class="col-xs-12 " id="addHighScoreSection">    
     </div>
 
