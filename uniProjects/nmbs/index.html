@@ -5,14 +5,10 @@
 <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"> </script>
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene stats embedded arjs='trackingMethod: best;'>
-      <a-assets>
-        <a-asset-item id="smiley" src="./scene.gltf"></a-asset-item>
-  </a-assets>
 
       <a-marker preset="hiro">
      
-          
-        <a-entity gltf-model="#smiley" rotation= "180 0 0" scale="0.2 0.2 0.2">
+        <a-box id="leftBumper" rotation="0 0 0" position='-1 0.05 0' depth="1.95" height="0.1" width="0.1" material='opacity: 0.9; side:double; color:blue;'></a-box>
         </a-entity>
 
 
@@ -20,9 +16,16 @@
 
       <a-entity camera></a-entity>
 
+      <a-camera-static/>
+
     </a-scene>
 
 
-
+ <!-- add some info at the bottom of the page -->
+ <div>
+  <span id="myText" style='z-index: 1; color: white; position: fixed; left: 50px; bottom: 10px; background-color: #444444;'>Some text:
+  <button>Button 1</button><button>Button 2</button>
+  </span>
+</div>
   </body>
 </html>
