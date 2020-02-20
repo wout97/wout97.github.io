@@ -80,31 +80,6 @@ function move(directionX, directionY){
 
 }
 
-AFRAME.registerComponent('vidhandler', {
-  init: function () {
-    console.log("entre a init");
-    this.toggle = false;
-    document.querySelector("#vid").pause(); //reference to the video
-  },
-  tick:function(){  
-    console.log("entre a tick");
-   if(document.querySelector("#hiro-marker").object3D.visible == true){
-     if(!this.toggle){
-       this.toggle = true;
-       document.querySelector("#vid").play();
-     }
-   }else{
-     this.toggle = false;
-     document.querySelector("#vid").pause();
-   }
-  }
-});
 
-      window.addEventListener('click', function () {
-      
-      console.log("entre a click");
-      var v = document.querySelector('#vid');
-      v.play();
-      });
   </script>
 </html>
