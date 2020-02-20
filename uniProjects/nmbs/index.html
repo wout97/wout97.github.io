@@ -30,8 +30,8 @@
 
          
         
-          <a-sphere id="Latern" color="tomato" position='0 2 0' radius="0.5"></a-sphere>
-          <a-box src="#texture" position='0 0 0' depth="0.25" height="3" width="0.25"></a-box>
+          <a-sphere id="Latern" color="tomato" position='-0.25 2 -0.25' radius="0.5"></a-sphere>
+          <a-box src="#texture" position='-0.25 0 -0.25' depth="0.25" height="3" width="0.25"></a-box>
         </a-entity>
       </a-marker>
       <a-entity camera></a-entity>
@@ -44,7 +44,7 @@
 
   <div style="text-align:center;width:100%;">
     <button class="button button2" id="btnUp" onclick="move(0,-0.1,0)">UP</button><br><br>
-    <button class="button button2" id="btnLeft" onclick="move(-0.1,0)">LEFT</button>
+    <button class="button button2" id="btnLeft" onclick="move(-0.1,0,0)">LEFT</button>
     <button class="button button2" id="btnFly" onclick="move(0,0,0.1)">FLY</button>
     <button  class="button button2" id="btnRight" onclick="move(0.1,0,0)">RIGHT</button><br><br>
     <button  class="button button2" id="btnDown" onclick="move(0,0.1,0)">DOWN</button>
