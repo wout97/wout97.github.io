@@ -1,0 +1,138 @@
+  <!doctype HTML>
+<html>
+<script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+<script src="https://raw.githack.com/jeromeetienne/AR.js/2.2.0/aframe/build/aframe-ar.js"></script>
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+  <body style='margin : 0px; overflow: hidden;'>
+    <a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false'>
+      <a-assets>
+        <video id="penguin-sledding" src="./video.mp4"></video>
+      </a-assets>
+      <a-assets>
+        <img id="my-image" src="./picture.png">
+      </a-assets>
+      <a-assets>
+        <img id="texture" src="./texture.jpg">
+      </a-assets>
+      <a-marker preset="kanji">
+        <!-- Using the asset management system. -->
+        <a-image src="#my-image"  scale="1.5 1.5 1.5" position='0 1.5 0'></a-image>
+
+        <a-box id="myBox" material='opacity: 0.8;' position='0 0 0' material='color: yellow;'> </a-box>
+          </a-entity>
+        </a-marker>
+      <a-marker preset="hiro">
+        <a-plane  rotation="-90 0 0" color="#CCC" height="0.7" width="0.7"></a-plane>
+      <!-- Using the asset management system. -->
+      
+        <!-- Using the asset management system. -->
+        <!--<a-video src="#penguin-sledding" width="1.5" height="1.5" position="0 0 -0.1"></a-video>-->
+       
+
+         
+        
+          <a-sphere id="Latern"  color="tomato" position='0 3 0' radius="0.5"></a-sphere>
+          <a-box src="#texture" scale="0.15 3 0.15" position="0 1.5 0"> </a-box>
+        </a-entity>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
+
+ <!-- -->
+ <div>
+  <span id="myText" style='z-index: 1; color: white; position: fixed; width: 100%; left:0px; bottom: 10px; background-color: #444444; opacity: 50%'>Move the square 
+
+  <div style="text-align:center;width:100%;">
+    <button class="button button2" id="btnUp" onclick="move(0,-0.1,0)">UP</button><br><br>
+    <button class="button button2" id="btnLeft" onclick="move(-0.1,0,0)">LEFT</button>
+    <button class="button button2" id="btnFly" onclick="move(0,0,0.1)">FLY</button>
+    <button  class="button button2" id="btnRight" onclick="move(0.1,0,0)">RIGHT</button><br><br>
+    <button  class="button button2" id="btnDown" onclick="move(0,0.1,0)">DOWN</button>
+  </div>
+  
+  <button  class="button button1" id="btnColor" onclick="changeColor()"> Change color</button>
+</span>
+</div>
+  </body>
+  <script>
+
+
+
+ var myBoxPosition = {};
+  myBoxPosition.x = 0;
+  myBoxPosition.y = 0;
+  myBoxPosition.z = 0;
+
+var ballElement = document.getElementById("myBox")
+var laternEl = document.getElementById("Latern")
+var Color = 1
+function changeColor(){
+  if(Color == 1){
+    laternEl.setAttribute('color', 'green');
+    Color =2
+  }else if(Color == 2){
+    laternEl.setAttribute('color', 'orange');
+    Color =3
+  }else{
+    laternEl.setAttribute('color', 'red');
+    Color =1
+  }
+}
+
+function move(directionX, directionY, directionZ){
+  console.log("Button clicked, direction :" + directionX +" : "+ directionY + " : " + directionZ)
+  i = 0;
+  document.getElementById("btnUp").disabled = true;
+  document.getElementById("btnDown").disabled = true;
+  document.getElementById("btnRight").disabled = true;
+  document.getElementById("btnLeft").disabled = true;
+  document.getElementById("btnFly").disabled = true;
+  var idInterval = setInterval(() => {
+  myBoxPosition.x += directionX;
+  myBoxPosition.y += directionY;
+  myBoxPosition.z += directionZ;
+  ballElement.setAttribute('position', myBoxPosition.x + ' ' + myBoxPosition.z + ' ' + myBoxPosition.y + ' ');
+  ballElement.setAttribute('color', 'green');
+  if(i == 3){
+    i=0
+    ballElement.setAttribute('color', 'yellow');
+    document.getElementById("btnUp").disabled = false;
+    document.getElementById("btnDown").disabled = false;
+    document.getElementById("btnRight").disabled = false;
+    document.getElementById("btnLeft").disabled = false;
+    document.getElementById("btnFly").disabled = false;
+    clearInterval(idInterval)
+  }
+  i +=1
+}, 150);
+
+}
+
+
+  </script>
+  <style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+ 
+  cursor: pointer;
+}
+
+
+
+.button2 {
+  background-color: white; 
+  color: black; 
+  border-radius: 4px;
+  border: 2px solid #008CBA;
+  
+}
+    </style>
+</html>
