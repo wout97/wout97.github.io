@@ -4,14 +4,11 @@
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"> </script>
   <body style='margin : 0px; overflow: hidden;'>
-    <a-scene stats embedded arjs='trackingMethod: best;'>
-
+    <a-scene  embedded vr-mode-ui="enabled: false" arjs='trackingMethod: best; debugUIEnabled: false;'>
       <a-marker preset="hiro">
-     
-        <a-box id="leftBumper" rotation="0 0 0" position='-1 0.05 0' depth="1.95" height="0.1" width="0.1" material='opacity: 0.9; side:double; color:blue;'></a-box>
-        </a-entity>
-
-
+        
+        <a-sphere id="mySphere" position='0 0 0' color="yellow" radius="0.08"></a-sphere>
+        <a-animation attribute="rotation" dur="7000" to="0 360 0" easing="linear" repeat="indefinite"></a-animation>
       </a-marker>
 
       <a-entity camera></a-entity>
@@ -21,17 +18,36 @@
     </a-scene>
 
 
- <!-- add some info at the bottom of the page -->
+ <!-- -->
  <div>
-  <span id="myText" style='z-index: 1; color: white; position: fixed; left: 50px; bottom: 10px; background-color: #444444;'>Some text:
-  <button onclick=helloworld()>Button 1</button><button>Button 2</button>
-  </span>
+  <span id="myText" style='z-index: 1; color: white; position: fixed; width: 100%; left:0px; bottom: 10px; background-color: #444444;'>Move the ball 
+  <div style="text-align:center;width:100%;">
+    <button onclick="move(0,-0.1)">UP</button><br><br>
+    <button onclick="move(0.1,0)">LEFT</button>
+    <button onclick="move(-0.1,0)">RIGHT</button><br><br>
+    <button onclick="move(0,0.1)">DOWN</button>
+  </div>
+  
+</span>
 </div>
   </body>
   <script>
-function helloworld(){
-  console.log("Button 1 clicked")
-}
+ var mySpherePosition = {};
+  mySpherePosition.x = 0;
+  mySpherePosition.y = 0;
+  mySpherePosition.z = 0;
 
+var ballElement = document.getElementById("mySphere")
+
+function move(directionX, directionY){
+  console.log("Button clicked, direction :" + directionX +" : "+ directionY)
+
+  mySpherePosition.x += directionX;
+  mySpherePosition.y += directionY;
+  ballElement.setAttribute('position', mySpherePosition.x + ' ' + 0 + ' ' + mySpherePosition.y + ' ');
+  ballElement.setAttribute('color', 'green');
+
+
+}
   </script>
 </html>
