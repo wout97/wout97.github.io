@@ -16,22 +16,23 @@
       </a-assets>
       <a-marker preset="kanji">
         <!-- Using the asset management system. -->
-        <a-image src="#my-image"  position='0 1 0'></a-image>
+        <a-image src="#my-image"  scale="1.5 1.5 1.5" position='0 1.5 0'></a-image>
 
-        <a-box id="myBox" position='0 0 0' material='color: yellow;'> </a-box>
+        <a-box id="myBox" material='opacity: 0.2;' position='0 0 0' material='color: yellow;'> </a-box>
           </a-entity>
         </a-marker>
       <a-marker preset="hiro">
+        <a-plane  rotation="-90 0 0" color="#CCC" height="0.5" width="0.5"></a-plane>
       <!-- Using the asset management system. -->
-      <a-image src="#my-image"></a-image>
+      <a-image scale="0.5 0.5 0.5" src="#my-image"></a-image>
         <!-- Using the asset management system. -->
         <!--<a-video src="#penguin-sledding" width="1.5" height="1.5" position="0 0 -0.1"></a-video>-->
        
 
          
         
-          <a-sphere id="Latern" color="tomato" position='-0.25 2 -0.25' radius="0.5"></a-sphere>
-          <a-box src="#texture" position='-0.25 0 -0.25' depth="0.25" height="3" width="0.25"></a-box>
+          <a-sphere id="Latern"  color="tomato" position='0.5 2 0.5' radius="0.5"></a-sphere>
+          <a-box src="#texture" position="0.5 0.8 0.5" depth="0.25" height="3" width="0.25"></a-box>
         </a-entity>
       </a-marker>
       <a-entity camera></a-entity>
