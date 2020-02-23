@@ -1,12 +1,19 @@
-  <!doctype HTML>
+<!doctype HTML>
 <html>
-<script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+<!-- loading js libraries-->
+<script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
 <script src="https://raw.githack.com/jeromeetienne/AR.js/2.2.0/aframe/build/aframe-ar.js"></script>
-<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<!--<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+<!--https://www.creators3d.com/online-viewer !! https://gltf-viewer.donmccurdy.com/-->
+<!--https://atinkerholic.wordpress.com/2018/10/12/how-to-use-multi-markers-on-ar-js-with-a-frame/ -->
+
   <body style='margin : 0px; overflow: hidden;'>
+    <!-- a scene -->
     <a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false'>
+      <!-- registering assets -->
       <a-assets>
-        <video id="penguin-sledding" src="./video.mp4"></video>
+        <video id="my-video" src="./video.mp4"></video>
       </a-assets>
       <a-assets>
         <img id="my-image" src="./picture.png">
@@ -14,35 +21,33 @@
       <a-assets>
         <img id="texture" src="./texture.jpg">
       </a-assets>
-      <a-marker preset="kanji">
-        <!-- Using the asset management system. -->
-        <a-image src="#my-image"  scale="1.5 1.5 1.5" position='0 1.5 0'></a-image>
+      <a-assets>
+        <a-asset-item id="train" src="./traindesiro.glb"></a-asset-item>
+      </a-assets>
 
-        <a-box id="myBox" material='opacity: 0.8;' position='0 0 0' material='color: yellow;'> </a-box>
-          </a-entity>
-        </a-marker>
+      <!-- kanji marker -->
+      <a-marker preset="kanji">
+
+        <a-image src="#my-image"  scale="1 1 1" position='0 -1 1'  animation="property: rotation; from:0 0 0; to: 360 0 360; loop: true; dur: 10000" ></a-image>
+        <a-box id="myBox"  visible="false" material='opacity: 0.8;' position='0 3 0' material='color: yellow;' animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" > </a-box>
+        <a-entity id="train" rotation="90 0 0" gltf-model="#train" scale="0.5 0.5 0.5"  position='10 0 0' animation="property: position;from: 10 0 0; to: -10 0 0; dur: 8000; easing: linear;  loop: true;" ></a-entity>
+
+      </a-marker>
+
+      <!-- hiro marker -->
       <a-marker preset="hiro">
         <a-plane  rotation="-90 0 0" color="#CCC" height="0.7" width="0.7"></a-plane>
-      <!-- Using the asset management system. -->
-      
-        <!-- Using the asset management system. -->
-        <!--<a-video src="#penguin-sledding" width="1.5" height="1.5" position="0 0 -0.1"></a-video>-->
-       
-
-         
-        
-          <a-sphere id="Latern"  color="tomato" position='0 3 0' radius="0.5"></a-sphere>
-          <a-box src="#texture" scale="0.15 3 0.15" position="0 1.5 0"> </a-box>
-        </a-entity>
+        <a-sphere id="Latern"  color="tomato" position='0 3 0' radius="0.5"></a-sphere>
+        <a-box src="#texture" scale="0.15 3 0.15" position="0 1.5 0"> </a-box>
       </a-marker>
+
+      <!-- static camera -->
       <a-entity camera></a-entity>
+
     </a-scene>
   </body>
-
- <!-- -->
  <div>
   <span id="myText" style='z-index: 1; color: white; position: fixed; width: 100%; left:0px; bottom: 10px; background-color: #444444; opacity: 50%'>Move the square 
-
   <div style="text-align:center;width:100%;">
     <button class="button button2" id="btnUp" onclick="move(0,-0.1,0)">UP</button><br><br>
     <button class="button button2" id="btnLeft" onclick="move(-0.1,0,0)">LEFT</button>
@@ -50,23 +55,27 @@
     <button  class="button button2" id="btnRight" onclick="move(0.1,0,0)">RIGHT</button><br><br>
     <button  class="button button2" id="btnDown" onclick="move(0,0.1,0)">DOWN</button>
   </div>
-  
   <button  class="button button1" id="btnColor" onclick="changeColor()"> Change color</button>
 </span>
 </div>
   </body>
   <script>
 
-
-
  var myBoxPosition = {};
   myBoxPosition.x = 0;
   myBoxPosition.y = 0;
   myBoxPosition.z = 0;
 
+  var myTrainPosition = {};
+  myTrainPosition.x = 0;
+  myTrainPosition.y = 0;
+  myTrainPosition.z = 0;
+
 var ballElement = document.getElementById("myBox")
 var laternEl = document.getElementById("Latern")
+
 var Color = 1
+
 function changeColor(){
   if(Color == 1){
     laternEl.setAttribute('color', 'green');
@@ -83,11 +92,7 @@ function changeColor(){
 function move(directionX, directionY, directionZ){
   console.log("Button clicked, direction :" + directionX +" : "+ directionY + " : " + directionZ)
   i = 0;
-  document.getElementById("btnUp").disabled = true;
-  document.getElementById("btnDown").disabled = true;
-  document.getElementById("btnRight").disabled = true;
-  document.getElementById("btnLeft").disabled = true;
-  document.getElementById("btnFly").disabled = true;
+  disablleAllButtons(true)
   var idInterval = setInterval(() => {
   myBoxPosition.x += directionX;
   myBoxPosition.y += directionY;
@@ -97,21 +102,23 @@ function move(directionX, directionY, directionZ){
   if(i == 3){
     i=0
     ballElement.setAttribute('color', 'yellow');
-    document.getElementById("btnUp").disabled = false;
-    document.getElementById("btnDown").disabled = false;
-    document.getElementById("btnRight").disabled = false;
-    document.getElementById("btnLeft").disabled = false;
-    document.getElementById("btnFly").disabled = false;
-    clearInterval(idInterval)
+    disableAllButtons(false);
+    clearInterval(idInterval);
   }
   i +=1
 }, 150);
-
 }
 
-
+function disablleAllButtons(bool){
+  document.getElementById("btnUp").disabled = bool;
+  document.getElementById("btnDown").disabled = bool;
+  document.getElementById("btnRight").disabled = bool;
+  document.getElementById("btnLeft").disabled = boolue;
+  document.getElementById("btnFly").disabled = bool;
+}
   </script>
   <style>
+
 .button {
   background-color: #4CAF50; /* Green */
   border: none;
@@ -124,9 +131,6 @@ function move(directionX, directionY, directionZ){
  
   cursor: pointer;
 }
-
-
-
 .button2 {
   background-color: white; 
   color: black; 
@@ -134,5 +138,5 @@ function move(directionX, directionY, directionZ){
   border: 2px solid #008CBA;
   
 }
-    </style>
+</style>
 </html>
