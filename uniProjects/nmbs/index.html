@@ -36,7 +36,6 @@
       <a-assets>
         <a-asset-item id="train" src="./traindesiro.glb"></a-asset-item>
       </a-assets>
-      <a-entity  position="1 1 1"></a-entity>
 
       <!-- kanji marker-->
       <a-marker preset="kanji" >
@@ -65,11 +64,11 @@
       </a-marker>
 
     
-    <a-camera  >
+    <a-entity camera  >
+      
       <a-cursor></a-cursor>
-
         
-    </a-camera>
+    </a-entity>
       
     </a-scene>
   </body>
