@@ -6,6 +6,7 @@
 <!--<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>-->
 <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
 <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script> 
+<script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
 
 <!--https://www.creators3d.com/online-viewer !! https://gltf-viewer.donmccurdy.com/-->
 <!--https://atinkerholic.wordpress.com/2018/10/12/how-to-use-multi-markers-on-ar-js-with-a-frame/ -->
@@ -24,27 +25,36 @@
         <img id="my-image" src="./picture.png">
       </a-assets>
       <a-assets>
-        <img id="texture" src="./texture.jpg">
+        <img id="direction" src="./direction.png">
+      </a-assets>
+      <a-assets>
+        <img id="dienst" src="./dienstregeling.png">
+      </a-assets>
+      <a-assets>
+        <img id="texture" src="./wood.jpg">
       </a-assets>
       <a-assets>
         <a-asset-item id="train" src="./traindesiro.glb"></a-asset-item>
       </a-assets>
+      <a-entity  position="1 1 1"></a-entity>
 
-      <!-- kanji marker -->
+      <!-- kanji marker-->
       <a-marker preset="kanji" >
+        <a-plane  shadow="receive: true"  id="background" height="4" position="0 -0.3 0" width="4" rotation="-90 0 0"   material="src: #texture;"  ></a-plane>
         <a-sphere color="yellow" radius="0.2" position="-2 0 -2"></a-sphere>
         <a-sphere color="red" radius="0.2" position="2 0 -2"></a-sphere>
         <a-sphere color="green" radius="0.2" position="-2 0 2"></a-sphere>
-        <a-sphere color="blue" radius="0.2" position="2 0 2"></a-sphere>
-        <a-image src="#my-image" id="logo" scale="1 1 1" position='0 0 1.5' rotation="270 180 0"   ></a-image>
+        <a-sphere event-set__enter="_event: mouseenter; color: #8FF7FF" event-set__leave="_event: mouseleave; color: #4CC3D9" event-set__down="_event: mousedown; color: #4CC3D9" radius="0.2" position="2 0 2"></a-sphere>
+        <a-image shadow="receive: false"  src="#my-image" id="logo" scale="1 1 1" position='0 0 1.5' rotation="270 180 0"   ></a-image>
         <a-box  id="myBox"  visible="false" material='opacity: 0.8;' position='0 3 0' material='color: yellow;' animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" > </a-box>
-        <a-entity  id="train" rotation="270 180 0" gltf-model="#train" scale="0.5 0.5 0.5"  position='10 0 0'  animation="property: position;from: -10 0 0; to: 10 0 0; dur: 5000; easing: linear;  loop: true;" ></a-entity>
-        <a-entity   position='1.5 0 0.5' rotation="270 180 0" text-geometry="value: NMBS AR; font: #optimerBoldFont"></a-entity>
-        <a-torus position = "0 -1 0 " rotation="90 0 90 "color="#43A367" arc="270" radius="0.3" radius-tubular="0.01"></a-torus>
+        <a-entity  id="train" rotation="270 180 0" gltf-model="#train" scale="0.5 0.5 0.5"  position='10 0 0'  animation="property: position;from: 10 0 0; to: -10 0 0; dur: 5000; easing: linear;  loop: true;" ></a-entity>
+        <a-entity shadow="receive: false"  position='1.5 0 0.5' rotation="270 180 0" text-geometry="value: NMBS AR; font: #optimerBoldFont"></a-entity>
+        <a-torus event-set__enter="_event: mouseenter; color: #8FF7FF" position = "0 -1 0 " rotation="90 0 90 "color="#43A367" arc="270" radius="0.3" radius-tubular="0.01"></a-torus>
         <a-entity line="start: 0, 0, 0; end: 0.5 0 0; color: red"
           line__2="start: 0, 0, 0; end: 0 0.5 0; color: green"
           line__3="start: 0, 0, 0; end: 0 0 0.5; color: blue"></a-entity>
-
+        <a-image event-set__enter="_event: mouseenter; scale: 1.3 1.3 1.3" event-set__down="_event: mousedown; color: yellow" event-set__leave="_event: mouseleave; scale: 1 1 1" shadow="receive: false"  src="#direction" id="logo1" scale="1 1 1" position='-1 0 -1' rotation="270 180 0"   ></a-image>
+        <a-image event-set__enter="_event: mouseenter; scale: 1.3 1.3 1.3" event-set__down="_event: mousedown; color: yellow" event-set__leave="_event: mouseleave; scale: 1 1 1" shadow="receive: false"  src="#dienst" id="logo2" scale="1.2 1 1" position='1 0 -1' rotation="270 180 0"   ></a-image>
       </a-marker>
 
       <!-- hiro marker -->
@@ -55,10 +65,11 @@
       </a-marker>
 
     
-    <a-entity camera   position="0 0 2">
+    <a-camera  >
+      <a-cursor></a-cursor>
 
         
-      </a-entity>
+    </a-camera>
       
     </a-scene>
   </body>
@@ -96,7 +107,7 @@ var rotationZSlider = document.getElementById("rotationSliderZ");
 var positionXSlider = document.getElementById("positionSliderX");
 var positionYSlider = document.getElementById("positionSliderY");
 var positionZSlider = document.getElementById("positionSliderZ");
-var logo = document.getElementById("train");
+var logo = document.getElementById("logo1");
 
 sizeSlider.oninput = function() {
   logo.setAttribute("scale", this.value + ' ' + this.value + ' '+ this.value);
