@@ -5,13 +5,18 @@
 <script src="https://raw.githack.com/jeromeetienne/AR.js/2.2.0/aframe/build/aframe-ar.js"></script>
 <!--<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>-->
 <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+<script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script> 
+
 <!--https://www.creators3d.com/online-viewer !! https://gltf-viewer.donmccurdy.com/-->
 <!--https://atinkerholic.wordpress.com/2018/10/12/how-to-use-multi-markers-on-ar-js-with-a-frame/ -->
 
   <body style='margin : 0px; overflow: hidden;'>
     <!-- a scene -->
-    <a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false'>
+    <a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false' >
       <!-- registering assets -->
+      <a-assets>
+        <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+      </a-assets>
       <a-assets>
         <video id="my-video" src="./video.mp4"></video>
       </a-assets>
@@ -26,11 +31,19 @@
       </a-assets>
 
       <!-- kanji marker -->
-      <a-marker preset="kanji">
-
-        <a-image src="#my-image"  scale="1 1 1" position='0 -1 1'  animation="property: rotation; from:0 0 0; to: 360 0 360; loop: true; dur: 10000" ></a-image>
-        <a-box id="myBox"  visible="false" material='opacity: 0.8;' position='0 3 0' material='color: yellow;' animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" > </a-box>
-        <a-entity id="train" rotation="90 0 0" gltf-model="#train" scale="0.5 0.5 0.5"  position='10 0 0' animation="property: position;from: 10 0 0; to: -10 0 0; dur: 8000; easing: linear;  loop: true;" ></a-entity>
+      <a-marker preset="kanji" >
+        <a-sphere color="yellow" radius="0.2" position="-2 0 -2"></a-sphere>
+        <a-sphere color="red" radius="0.2" position="2 0 -2"></a-sphere>
+        <a-sphere color="green" radius="0.2" position="-2 0 2"></a-sphere>
+        <a-sphere color="blue" radius="0.2" position="2 0 2"></a-sphere>
+        <a-image src="#my-image" id="logo" scale="1 1 1" position='0 0 1.5' rotation="270 180 0"   ></a-image>
+        <a-box  id="myBox"  visible="false" material='opacity: 0.8;' position='0 3 0' material='color: yellow;' animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" > </a-box>
+        <a-entity  id="train" rotation="270 180 0" gltf-model="#train" scale="0.5 0.5 0.5"  position='10 0 0'  animation="property: position;from: -10 0 0; to: 10 0 0; dur: 5000; easing: linear;  loop: true;" ></a-entity>
+        <a-entity   position='1.5 0 0.5' rotation="270 180 0" text-geometry="value: NMBS AR; font: #optimerBoldFont"></a-entity>
+        <a-torus position = "0 -1 0 " rotation="90 0 90 "color="#43A367" arc="270" radius="0.3" radius-tubular="0.01"></a-torus>
+        <a-entity line="start: 0, 0, 0; end: 0.5 0 0; color: red"
+          line__2="start: 0, 0, 0; end: 0 0.5 0; color: green"
+          line__3="start: 0, 0, 0; end: 0 0 0.5; color: blue"></a-entity>
 
       </a-marker>
 
@@ -41,26 +54,75 @@
         <a-box src="#texture" scale="0.15 3 0.15" position="0 1.5 0"> </a-box>
       </a-marker>
 
-      <!-- static camera -->
-      <a-entity camera></a-entity>
+    
+    <a-entity camera   position="0 0 2">
 
+        
+      </a-entity>
+      
     </a-scene>
   </body>
  <div>
   <span id="myText" style='z-index: 1; color: white; position: fixed; width: 100%; left:0px; bottom: 10px; background-color: #444444; opacity: 50%'>Move the square 
   <div style="text-align:center;width:100%;">
-    <button class="button button2" id="btnUp" onclick="move(0,-0.1,0)">UP</button><br><br>
-    <button class="button button2" id="btnLeft" onclick="move(-0.1,0,0)">LEFT</button>
-    <button class="button button2" id="btnFly" onclick="move(0,0,0.1)">FLY</button>
-    <button  class="button button2" id="btnRight" onclick="move(0.1,0,0)">RIGHT</button><br><br>
-    <button  class="button button2" id="btnDown" onclick="move(0,0.1,0)">DOWN</button>
+    <div class="Debug sliders">
+     size:  <input type="range" min="1" max="10" value="1" class="slider" id="sizeSlider">
+     <div> rotation:  
+       <input type="range" min="0" max="360" value="1" class="slider" id="rotationSliderX"> 
+      <input type="range" min="0" max="360" value="1" class="slider" id="rotationSliderY"> 
+      <input type="range" min="0" max="360" value="1" class="slider" id="rotationSliderZ">
+    </div>
+    <div> position:  
+      <input type="range" min="0" max="3" value="0" class="slider" id="positionSliderX"> 
+     <input type="range" min="0" max="3" value="0" class="slider" id="positionSliderY"> 
+     <input type="range" min="0" max="3" value="0" class="slider" id="positionSliderZ">
+   </div>
+    
+    </div>
   </div>
-  <button  class="button button1" id="btnColor" onclick="changeColor()"> Change color</button>
+
 </span>
 </div>
   </body>
   <script>
+   
 
+// Component to change to a sequential color on click.
+
+var sizeSlider = document.getElementById("sizeSlider");
+var rotationXSlider = document.getElementById("rotationSliderX");
+var rotationYSlider = document.getElementById("rotationSliderY");
+var rotationZSlider = document.getElementById("rotationSliderZ");
+var positionXSlider = document.getElementById("positionSliderX");
+var positionYSlider = document.getElementById("positionSliderY");
+var positionZSlider = document.getElementById("positionSliderZ");
+var logo = document.getElementById("train");
+
+sizeSlider.oninput = function() {
+  logo.setAttribute("scale", this.value + ' ' + this.value + ' '+ this.value);
+}
+rotationXSlider.oninput = function() {
+  changeRotation()}
+rotationYSlider.oninput = function() {
+  changeRotation()}
+rotationZSlider.oninput = function() {
+  changeRotation()}
+
+positionYSlider.oninput = function(){
+  changePosition()
+}
+positionXSlider.oninput = function(){
+  changePosition()
+}
+positionZSlider.oninput = function(){
+  changePosition()
+}
+function changePosition(){
+  logo.setAttribute("position", positionXSlider.value + ' ' + positionYSlider.value + ' ' + positionZSlider.value);
+}
+function changeRotation(){
+  logo.setAttribute("rotation", rotationXSlider.value + ' ' +rotationYSlider.value + ' '+ rotationZSlider.value);
+}
  var myBoxPosition = {};
   myBoxPosition.x = 0;
   myBoxPosition.y = 0;
