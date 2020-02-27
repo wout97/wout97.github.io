@@ -53,7 +53,13 @@
           line__2="start: 0, 0, 0; end: 0 0.5 0; color: green"
           line__3="start: 0, 0, 0; end: 0 0 0.5; color: blue"></a-entity>
         <a-image  src="#direction" id="logo1" scale="1 1 1" position='-1 0 -1' rotation="270 180 0"   ></a-image>
-        <a-image    src="#dienst" id="logo2" scale="1.2 1 1" position='1 0 -1' rotation="270 180 0"   ></a-image>
+        <a-entity   position='1 0 -1' rotation="270 180 0" text-geometry="value: 1; font: #optimerBoldFont"></a-entity>
+        <a-entity>
+        <a-entity id="test" rotation="0 0 0">
+        <a-triangle material="side: double" position="1 0 -1.5" scale="0.5 0.5 0.2" src="#texture" id="tri" rotation="0 0 0"></a-triangle>
+        <a-box id="triAng"position="1 -0.6 -1.5" rotation="270 180 0" scale="0.05 0.05 1" ></a-box>
+      </a-entity>
+      </a-entity>
      </a-entity>
       </a-marker>
 
@@ -76,16 +82,16 @@
   <span id="myText" style='z-index: 1; color: white; position: fixed; width: 100%; left:0px; bottom: 10px; background-color: #444444; opacity: 50%'>Move the square 
   <div style="text-align:center;width:100%;">
     <div class="Debug sliders">
-     size:  <input type="range" min="1" max="10" value="1" class="slider" id="sizeSlider">
+     size:  <input type="number" min="1" max="10" value="1" class="slider" id="sizeSlider">
      <div> rotation:  
        <input type="range" min="0" max="360" value="1" class="slider" id="rotationSliderX"> 
       <input type="range" min="0" max="360" value="1" class="slider" id="rotationSliderY"> 
       <input type="range" min="0" max="360" value="1" class="slider" id="rotationSliderZ">
     </div>
     <div> position:  
-      <input type="range" min="0" max="3" value="0" class="slider" id="positionSliderX"> 
-     <input type="range" min="0" max="3" value="0" class="slider" id="positionSliderY"> 
-     <input type="range" min="0" max="3" value="0" class="slider" id="positionSliderZ">
+      <input type="number" min="0" max="3" value="1" step="0.1" class="slider" id="positionSliderX"> 
+     <input type="number" min="0" max="3" value="0" step="0.1" class="slider" id="positionSliderY"> 
+     <input type="number" min="0" max="3" value="-1.5" step="0.1" class="slider" id="positionSliderZ">
    </div>
     
     </div>
@@ -95,6 +101,16 @@
 </div>
   </body>
   <script>
+    var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
      var a = window.location.toString();
   var file = a.substring(a.indexOf("?") + 1);
       var xobj = new XMLHttpRequest();
@@ -119,7 +135,7 @@ var rotationZSlider = document.getElementById("rotationSliderZ");
 var positionXSlider = document.getElementById("positionSliderX");
 var positionYSlider = document.getElementById("positionSliderY");
 var positionZSlider = document.getElementById("positionSliderZ");
-var logo = document.getElementById("all");
+var logo = document.getElementById("test");
 
 sizeSlider.oninput = function() {
   logo.setAttribute("scale", this.value + ' ' + this.value + ' '+ this.value);
