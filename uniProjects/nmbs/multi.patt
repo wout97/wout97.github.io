@@ -1,0 +1,105 @@
+{
+	"meta": {
+		"createdBy": "Area Learning - AR.js 2.2.1",
+		"createdAt": "2020-02-27T13:15:25.031Z"
+	},
+	"trackingBackend": "artoolkit",
+	"subMarkersControls": [
+		{
+			"parameters": {
+				"type": "pattern",
+				"patternUrl": "https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/pattern-files/pattern-letterA.patt"
+			},
+			"poseMatrix": [
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				0,
+				1
+			]
+		},
+		{
+			"parameters": {
+				"type": "pattern",
+				"patternUrl": "https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/pattern-files/pattern-letterB.patt"
+			},
+			"poseMatrix": [
+				0.9999420393527314,
+				0.008279412090441191,
+				0.006858593582138234,
+				0,
+				-0.008155721268476572,
+				0.9998067757412974,
+				-0.017870373021635712,
+				0,
+				-0.007005224023953393,
+				0.01781339535330313,
+				0.9998169667371113,
+				0,
+				1.3289988925029872,
+				0.10922676575991119,
+				0.023961494265378535,
+				0.9999999999999998
+			]
+		},
+		{
+			"parameters": {
+				"type": "pattern",
+				"patternUrl": "https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/pattern-files/pattern-letterC.patt"
+			},
+			"poseMatrix": [
+				0.9983067052280351,
+				0.05816932717050335,
+				-0.0003022250595034137,
+				0,
+				-0.05814432250653344,
+				0.9980057290908084,
+				0.024582045825885152,
+				0,
+				0.0017315430408281075,
+				-0.02452285406230179,
+				0.9996977625996484,
+				0,
+				0.00925455485082713,
+				-0.00977337543533368,
+				1.166464300350443,
+				1
+			]
+		},
+		{
+			"parameters": {
+				"type": "pattern",
+				"patternUrl": "https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/pattern-files/pattern-letterD.patt"
+			},
+			"poseMatrix": [
+				0.9976798707251816,
+				-0.06796864569090312,
+				0.003871647028981521,
+				0,
+				0.06791117628614124,
+				0.9976014899514764,
+				0.013418089819813813,
+				0,
+				-0.004774368960802371,
+				-0.013124037829595786,
+				0.9999023137378512,
+				0,
+				1.2959811152649439,
+				0.04045151807847104,
+				1.148800575301067,
+				0.9999999999999999
+			]
+		}
+	]
+}

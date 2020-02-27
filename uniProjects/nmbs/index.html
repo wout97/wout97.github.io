@@ -38,7 +38,7 @@
       </a-assets>
 
       <!-- kanji marker-->
-      <a-marker preset="kanji" >
+      <a-marker preset="area" >
         <a-plane  shadow="receive: true"  id="background" height="4" position="0 -0.3 0" width="4" rotation="-90 0 0"   material="src: #texture;"  ></a-plane>
         <a-sphere color="yellow" radius="0.2" position="-2 0 -2"></a-sphere>
         <a-sphere color="red" radius="0.2" position="2 0 -2"></a-sphere>
@@ -95,7 +95,21 @@
 </div>
   </body>
   <script>
-   
+     var a = window.location.toString();
+  var file = a.substring(a.indexOf("?") + 1);
+      var xobj = new XMLHttpRequest();
+            xobj.overrideMimeType("application/json");
+            if(file==a){
+              xobj.open('GET', 'ARjsMultiMarkerFile', true); // 
+            }
+            else{
+              xobj.open('GET', file, true); // 
+            }
+          xobj.onreadystatechange = function () { 
+      if (xobj.readyState == 4 && xobj.status == "200") {
+        localStorage.setItem('ARjsMultiMarkerFile',xobj.responseText);
+        }};
+        xobj.send();
 
 // Component to change to a sequential color on click.
 
