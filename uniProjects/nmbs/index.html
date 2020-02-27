@@ -39,6 +39,7 @@
 
       <!-- kanji marker-->
       <a-marker preset="area" >
+        <a-entity id="all" scale="2 2 2">
         <a-plane  id="background" height="4" position="0 -0.3 0" width="4" rotation="-90 0 0"   material="src: #texture;"  ></a-plane>
         <a-sphere color="yellow" radius="0.2" position="-2 0 -2"></a-sphere>
         <a-sphere color="red" radius="0.2" position="2 0 -2"></a-sphere>
@@ -54,6 +55,7 @@
           line__3="start: 0, 0, 0; end: 0 0 0.5; color: blue"></a-entity>
         <a-image event-set__enter="_event: mouseenter; scale: 1.3 1.3 1.3" event-set__down="_event: mousedown; color: yellow" event-set__leave="_event: mouseleave; scale: 1 1 1"  src="#direction" id="logo1" scale="1 1 1" position='-1 0 -1' rotation="270 180 0"   ></a-image>
         <a-image event-set__enter="_event: mouseenter; scale: 1.3 1.3 1.3" event-set__down="_event: mousedown; color: yellow" event-set__leave="_event: mouseleave; scale: 1 1 1"   src="#dienst" id="logo2" scale="1.2 1 1" position='1 0 -1' rotation="270 180 0"   ></a-image>
+     </a-entity>
       </a-marker>
 
       <!-- hiro marker -->
@@ -119,7 +121,7 @@ var rotationZSlider = document.getElementById("rotationSliderZ");
 var positionXSlider = document.getElementById("positionSliderX");
 var positionYSlider = document.getElementById("positionSliderY");
 var positionZSlider = document.getElementById("positionSliderZ");
-var logo = document.getElementById("logo1");
+var logo = document.getElementById("all");
 
 sizeSlider.oninput = function() {
   logo.setAttribute("scale", this.value + ' ' + this.value + ' '+ this.value);
