@@ -72,7 +72,7 @@
 
     
     <a-entity camera >
-      
+
         
     </a-entity>
       
@@ -82,6 +82,7 @@
   <span id="myText" style='z-index: 1; color: white; position: fixed; width: 100%; left:0px; bottom: 10px; background-color: #444444; opacity: 50%'>Move the square 
   <div style="text-align:center;width:100%;">
     <div class="Debug sliders">
+
      size:  <input type="number" min="1" max="10" value="1" class="slider" id="sizeSlider">
      <div> rotation:  
        <input type="range" min="0" max="360" value="1" class="slider" id="rotationSliderX"> 
@@ -111,15 +112,13 @@ function showPage() {
   document.getElementById("loader").style.display = "none";
   document.getElementById("myDiv").style.display = "block";
 }
-     var a = window.location.toString();
-  var file = a.substring(a.indexOf("?") + 1);
-      var xobj = new XMLHttpRequest();
-            xobj.overrideMimeType("application/json");
-            if(file==a){
-              xobj.open('GET', 'ARjsMultiMarkerFile', true); // 
-            }
-            else{
-              xobj.open('GET', file, true); // 
+  var a = window.location.toString();
+  var file = "multi.patt";
+  var xobj = new XMLHttpRequest();
+  xobj.overrideMimeType("application/json");
+  if(file==a){xobj.open('GET', 'ARjsMultiMarkerFile', true); // 
+  }
+  else{xobj.open('GET', file, true); // 
             }
           xobj.onreadystatechange = function () { 
       if (xobj.readyState == 4 && xobj.status == "200") {
