@@ -38,10 +38,12 @@
       </a-assets>
 
       <!-- kanji marker-->
-      <a-marker-camera preset="area">
-
+      <a-marker preset="area">
+        <a-plane  rotation="-90 0 0" color="#CCC" height="0.7" width="0.7"></a-plane>
+        <a-sphere id="Latern"  color="tomato" position='0 3 0' radius="0.5"></a-sphere>
+        <a-box src="#texture" scale="0.15 3 0.15" position="0 1.5 0"> </a-box>
        <!-- <a-marker preset="area"  -->
-        <a-entity id="all" scale="2 2 2">
+        <a-entity id="all" scale="2 2 2" rotation="270 0 0" position="0 10 0">
         <!--<a-plane  id="target" height="4" position="0 -0.3 0" width="4" rotation="-90 0 0"   material="src: #texture;"  ></a-plane>-->
         <a-sphere color="yellow" radius="0.2" position="-2 0 -2"></a-sphere>
         <a-sphere color="red" radius="0.2" position="2 0 -2"></a-sphere>
@@ -63,15 +65,15 @@
       </a-entity>
       </a-entity>
      </a-entity>
-    </a-marker-camera>
+    </a-marker>
      <!-- </a-marker> -->
 
       <!-- hiro marker -->
-      <a-marker-camera preset="hiro">
+      <a-marker preset="hiro">
         <a-plane  rotation="-90 0 0" color="#CCC" height="0.7" width="0.7"></a-plane>
         <a-sphere id="Latern"  color="tomato" position='0 3 0' radius="0.5"></a-sphere>
         <a-box src="#texture" scale="0.15 3 0.15" position="0 1.5 0"> </a-box>
-      </a-marker-camera>
+      </a-marker>
           <!-- hiro marker -->
           <a-marker preset="kanji">
             <a-plane  rotation="-90 0 0" color="green" height="0.7" width="0.7"></a-plane>
