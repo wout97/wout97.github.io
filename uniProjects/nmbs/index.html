@@ -13,7 +13,7 @@
 
   <body style='margin : 0px; overflow: hidden;'>
     <!-- a scene -->
-    <a-scene embedded arjs='trackingMethod: best; debugUIEnabled: false;sourceWidth:1920 ; sourceHeight:1080; displayWidth: 1920; displayHeight: 1080;' >
+    <a-scene embedded arjs=' sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; trackingMethod: best; debugUIEnabled: false;'>
       <!-- registering assets -->
       <a-assets>
         <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
@@ -38,7 +38,9 @@
       </a-assets>
 
       <!-- kanji marker-->
-      <a-marker preset="area"  >
+      <a-marker-camera preset="area">
+
+       <!-- <a-marker preset="area"  -->
         <a-entity id="all" scale="2 2 2">
         <!--<a-plane  id="target" height="4" position="0 -0.3 0" width="4" rotation="-90 0 0"   material="src: #texture;"  ></a-plane>-->
         <a-sphere color="yellow" radius="0.2" position="-2 0 -2"></a-sphere>
@@ -61,14 +63,15 @@
       </a-entity>
       </a-entity>
      </a-entity>
-      </a-marker>
+    </a-marker-camera>
+     <!-- </a-marker> -->
 
       <!-- hiro marker -->
-      <a-marker preset="hiro">
+      <a-marker-camera preset="hiro">
         <a-plane  rotation="-90 0 0" color="#CCC" height="0.7" width="0.7"></a-plane>
         <a-sphere id="Latern"  color="tomato" position='0 3 0' radius="0.5"></a-sphere>
         <a-box src="#texture" scale="0.15 3 0.15" position="0 1.5 0"> </a-box>
-      </a-marker>
+      </a-marker-camera>
           <!-- hiro marker -->
           <a-marker preset="kanji">
             <a-plane  rotation="-90 0 0" color="green" height="0.7" width="0.7"></a-plane>
