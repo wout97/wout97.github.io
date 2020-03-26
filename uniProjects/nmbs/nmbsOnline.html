@@ -1,0 +1,213 @@
+<!doctype HTML>
+<html>
+
+<head>
+<title>NMBS PIP AR</title>
+
+<!--loading libraries from internet so we can use AR.js-->
+<script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script><!-- basic a-frame package-->
+<script src="https://raw.githack.com/jeromeetienne/AR.js/2.2.0/aframe/build/aframe-ar.js"></script><!-- basic ar.js package-->
+<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script><!-- extra functionality support-->
+<script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script> <!-- fonts-->
+<script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script><!-- mouse events-->
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script><!-- 3D model loaders-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/64edab8c67.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+</head>
+
+
+<style>
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+  .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+.buttonBike:hover {
+  background-color: yellow;
+}
+#buttonBike:hover {
+    background-color: yellow;
+
+}
+
+  </style>
+
+<!--https://www.creators3d.com/online-viewer !! https://gltf-viewer.donmccurdy.com/-->
+<!--https://atinkerholic.wordpress.com/2018/10/12/how-to-use-multi-markers-on-ar-js-with-a-frame/ -->
+  <body style='margin : 0px; overflow: hidden;'>
+
+    <!-- start a-scene = camera screen (now this is full screen)-->
+    <a-scene embedded arjs='sourceWidth:1280; sourceHeight:960; trackingMethod: best; debugUIEnabled: false;'>
+
+      
+      <a-assets><!-- registering assets =  fonts, images, 3D models, videos we will use -->
+        <!-- basic font -->
+        <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+      </a-assets>
+     
+      <a-marker preset="hiro"><!-- hiro marker = when hiro marker is in sight this will popup-->
+
+        <a-entity position="0 0 1"><!-- Katrien -->
+            <a-sphere id="bikeArrrow"></a-sphere>
+        </a-entity>
+
+        
+        <a-entity position="0 1 1"><!-- Niko-->
+            <a-sphere  id="disabledArrow"></a-sphere>
+        </a-entity>
+
+        <a-entity position="0 -1 1"><!-- Donald-->
+            <a-sphere  id="firstArrow"></a-sphere>
+        </a-entity>
+        
+        <a-entity><!-- Wout -->
+            <a-sphere></a-sphere>
+        </a-entity>
+
+
+      </a-marker>
+
+    
+    <a-entity camera > </a-entity><!--Static camera object-->
+
+    </a-scene>
+  </body>
+  <span id="myText" style='z-index: 1; color: white; position: fixed; width: 100%; left:0px; bottom: 10px; background-color: #444444; opacity: 80%'>
+    <div class="container" >
+      <div class="row">
+        <div class="col-12">
+            <div id="wrap">
+            </div>
+            <h1>Hello {{ username }}</h1>
+
+            <div class="row" >
+               
+                <div class="col-xs-4  rounded border border-primary" id="bike" style="background-color: #fddede;" >
+                    <div id="iconBike" class="row  text-center" ><i class="fas fa-4x fa-bicycle"></i></div>
+                    <div class="row  text-center"><label class=" text-center switch">
+                        <input id="sliderBike" type="checkbox"  >
+                        <span class="slider round"></span>
+                      </label></div>  
+                </div>
+
+                <div class="col-xs-4  rounded border border-primary" id="firstClass" style="background-color: #fddede;">
+                    <div id="iconFirstClass" class="row  text-center" ><i class="material-icons md-48">
+                      looks_one
+                      </i></div>
+                    <div class="row  text-center"><label class=" text-center switch">
+                        <input id="sliderFirstClass" type="checkbox"  >
+                        <span class="slider round"></span>
+                      </label></div>  
+                </div>
+                <div class="col-xs-4  rounded border border-primary" id="disabled" style="background-color: #fddede;">
+                    <div id="iconDisabled" class="row  text-center" ><i class="fas fa-4x fa-wheelchair"></i></div>
+                    <div class="row  text-center"><label class=" text-center switch">
+                        <input id="sliderDisabled" type="checkbox"  >
+                        <span class="slider round"></span>
+                      </label></div>  
+                </div>
+      
+            </div>
+               
+        </div>
+      </div>
+    </div>
+     </span>
+
+    <!-- Add javascript here-->
+    <script>
+
+      var sliderBike = document.getElementById("sliderBike")
+      var bike = document.getElementById("bike");
+      var sliderFirstClass = document.getElementById("sliderFirstClass")
+      var firstClass = document.getElementById("firstClass");
+      var sliderDisabled = document.getElementById("sliderDisabled")
+      var disabled = document.getElementById("disabled");
+      var iconBike = document.getElementById("iconBike");
+      
+      sliderBike.onchange =  function() {changeBgSlider(this, bike);};
+      sliderFirstClass.onchange =  function() {changeBgSlider(this, firstClass)};
+      sliderDisabled.onchange =  function() {changeBgSlider(this, disabled)};
+      iconBike.onclick = function() {sliderBike.checked ^= 1; changeBgSlider(sliderBike, bike)}
+      iconFirstClass.onclick = function() {sliderFirstClass.checked ^= 1;changeBgSlider(sliderFirstClass, firstClass)}
+      iconDisabled.onclick = function() {sliderDisabled.checked ^= 1;changeBgSlider(sliderDisabled, disabled)}
+      
+      function changeBgSlider(slider, sliderContainer){
+          if (slider.checked == true){
+              sliderContainer.style.backgroundColor = "#caf2d7";
+        } else {
+              sliderContainer.style.backgroundColor = "#fddede";
+        }
+      }
+      
+      
+      </script>
+    <!-- Add css here-->
+    <style>         
+    </style>
+
+</html>
